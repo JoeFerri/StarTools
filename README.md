@@ -98,8 +98,8 @@ To compile StarTools, you need to have the following tools installed on your sys
 Start by cloning this repository to your local machine:
 ```bash
 git clone https://github.com/JoeFerri/StarTools.git
-```
 cd StarTools
+```
 
 #### 2. Install External Dependencies
 StarTools depends on the [**jflibfp**](https://github.com/JoeFerri/jflibfp) library. This library is maintained in a separate repository and is under a different license.
