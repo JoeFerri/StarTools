@@ -52,8 +52,8 @@ StarTools is currently available as a standalone portable application. You don't
 
 |          Package               | Intended Audience |                               Description                             |
 |            :---                |        :---       |                                    :---                               |
-| **startools-vX.X-release.zip** | **Players**       | Optimized for performance, smaller file size, best for daily use.     |
-| **startools-vX.X-debug.zip**   | **Developers**    | Includes debug symbols and verbose logging to help track down issues. |
+| **startools_vX.X-release.zip** | **Players**       | Optimized for performance, smaller file size, best for daily use.     |
+| **startools_vX.X-debug.zip**   | **Developers**    | Includes debug symbols and verbose logging to help track down issues. |
 
 3. Extract the ZIP file to your preferred folder.
 4. Run `StarTools.exe` to launch the application.
@@ -160,7 +160,7 @@ This command will:
 - Create a `bin/` folder.
 - Package the executables along with the `data/` and `saves/` folders.
 - Include essential files such as `README.md`, `LICENSE`, and `CHANGELOG.md`.
-The resulting files (e.g., `StarTools-v1.2.3-Release.zip`, `StarTools-v1.2.3-Debug.zip`) will be ready for distribution inside the `bin/` directory.
+The resulting files (e.g., `StarTools_v1.2.3-Release.zip`, `StarTools_v1.2.3-Debug.zip`) will be ready for distribution inside the `bin/` directory.
 
 ---
 

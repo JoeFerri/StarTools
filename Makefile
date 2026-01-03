@@ -50,7 +50,7 @@ $(info Windows root path: $(PATH_WIN_ROOT))
 
 # Check if the project is a prerelease version
 IS_PRERELEASE := $(shell grep "Attributes pvaPreRelease=\"True\"" project/StarTools.lpi)
-PRERELEASE := $(if $(IS_PRERELEASE),.alpha,)
+PRERELEASE := $(if $(IS_PRERELEASE),-alpha,)
 
 # Extract versions with fallback to 0 if the tag is missing
 MAJOR := $(shell grep "MajorVersionNr Value" project/startools.lpi | sed 's/[^0-9]*//g' || echo 0)
@@ -74,8 +74,8 @@ DATA_SRC = project/data
 SAVES_SRC = project/saves
 DOC_FILES = README.md LICENSE CHANGELOG.md
 
-ZIP_RELEASE = $(BIN_DIR)/StarTools-v$(VERSION_STR)-Release.zip
-ZIP_DEBUG   = $(BIN_DIR)/StarTools-v$(VERSION_STR)-Debug.zip
+ZIP_RELEASE = $(BIN_DIR)/StarTools_v$(VERSION_STR)-Release.zip
+ZIP_DEBUG   = $(BIN_DIR)/StarTools_v$(VERSION_STR)-Debug.zip
 
 
 # =================================================================
