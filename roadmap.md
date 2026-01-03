@@ -1,4 +1,4 @@
-# RoadMap [StarTools](https://github.com/JoeFerri/StarTools)
+# Roadmap [StarTools](https://github.com/JoeFerri/StarTools)
 
 - [x] MVP (Minimum Viable Product) code implementation
 
@@ -7,81 +7,76 @@
         - [ ] labels [JoeFerri/labels](https://github.com/JoeFerri/labels)
     - end:
 
-- [ ] docs
+- [ ] Docs
     - start: 
         - [ ] docs [docs](https://joeferri.github.io/StarTools/)
     - end:
 
-- [ ] Timer associato alla creazione/avvio contratto
+- [ ] Contract creation/start timer
     - start: 
     - end: 
 
-- [ ] Statistiche contratti in corso e passati
+- [ ] Ongoing and past contract statistics
     - start: 
     - end: 
 
-- [ ] Tempo di esecuzione dell'eseguibile Starcitizen
+- [ ] Star Citizen executable runtime tracking
     - start: 
     - end: 
 
-- [ ] Ricavare il nome utente da Starcitizen e mostrare icona, nome e link alla pagina di profilo
+- [ ] Fetch Star Citizen username (show icon, name, and profile link)
     - start: 
     - end: 
 
-- [ ] implementare l'ordinamento personalizzato
+- [ ] Implement custom sorting
     - start: 
     - end: 
 
-- [ ] GUI scheda contratto
+- [ ] Contract tab GUI
     - start: 
     - end: 
 
-- [ ] Report di viaggio
+- [ ] Travel logs / Trip reports
     - start: 
     - end: 
 
-- [ ] GUI scelta della nave e inserimento manuale o automatico del carico sulle griglie
+- [ ] Ship selection GUI (manual or automatic cargo grid snapping)
     - start: 
     - end: 
 
-- [ ] Template missioni (implementare manualmente o attraverso script automatizzati)
+- [ ] Mission templates (manual implementation or automated scripts)
     - start: 
     - end: 
 
-- [ ] Sistema di scelta delle stazioni da mostrare nelle tendine (preferiti o più utilizzati)
+- [ ] Station selection system (favorites or most used in dropdowns)
     - start: 
     - end: 
 
-- [ ] Sistema di segnalazione bug contratto alla comunità
+- [ ] Community bug reporting system for contracts
     - start: 
     - end: 
 
-
-- [ ] Calcolo automatico dei percorsi di viaggio (richiede dati sulle coordinate) (TSP, A*, 2-OPT, ETSP, RCSPP, ...)
+- [ ] Automatic route calculation (requires coordinate data) (TSP, A*, 2-OPT, ETSP, RCSPP, ...)
     - start: 
     - end: 
 
-
-- [ ] Sincronizzazione con il tempo nell'universo di StarCitizen (sincronizzazione temporale con i server di StarCitizen)
+- [ ] Star Citizen universe time sync (server-side time synchronization)
     - start: 
     - end: 
 
-
-- [ ] GUI proprietà navi
+- [ ] Ship properties GUI
     - start: 
     - end: 
 
-
-- [ ] GUI Status Server StarCitizen
+- [ ] Star Citizen Server Status GUI
     - start: 
     - end: 
-
 
 - [ ] System design (diagrams, schematics, flowcharts, ...)
     - start:
         - [diagrams](https://github.com/JoeFerri/StarTools/docs/diagrams)
             - [ ] Components
-            - [ ] WBS
+            - [ ] WBS (Work Breakdown Structure)
             - [ ] Use Case
             - [ ] Activity
             - [ ] Class
