@@ -1,0 +1,67 @@
+object FormSizeDialog: TFormSizeDialog
+  Left = 442
+  Height = 240
+  Top = 250
+  Width = 182
+  BorderIcons = [biSystemMenu]
+  ClientHeight = 240
+  ClientWidth = 182
+  LCLVersion = '4.4.0.0'
+  object PanelSizeDialog: TPanel
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 182
+    Align = alClient
+    ClientHeight = 240
+    ClientWidth = 182
+    TabOrder = 0
+    object ButtonPanelSizeDialog: TButtonPanel
+      Left = 7
+      Height = 34
+      Top = 199
+      Width = 168
+      Anchors = []
+      OKButton.Name = 'OKButton'
+      OKButton.DefaultCaption = True
+      OKButton.OnClick = ButtonOKClick
+      HelpButton.Name = 'HelpButton'
+      HelpButton.DefaultCaption = True
+      CloseButton.Name = 'CloseButton'
+      CloseButton.DefaultCaption = True
+      CancelButton.Name = 'CancelButton'
+      CancelButton.DefaultCaption = True
+      CancelButton.OnClick = ButtonCancelClick
+      TabOrder = 0
+      ShowButtons = [pbOK, pbCancel]
+    end
+    object RadioGroupSizeDialog: TRadioGroup
+      AnchorSideLeft.Control = PanelSizeDialog
+      AnchorSideTop.Control = PanelSizeDialog
+      AnchorSideRight.Control = PanelSizeDialog
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = PanelSizeDialog
+      AnchorSideBottom.Side = asrBottom
+      Left = 41
+      Height = 158
+      Top = 21
+      Width = 100
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      AutoFill = True
+      BorderSpacing.Left = 40
+      BorderSpacing.Top = 20
+      BorderSpacing.Right = 40
+      BorderSpacing.Bottom = 60
+      Caption = 'SCU Max Size'
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ChildSizing.ControlsPerLine = 1
+      ColumnLayout = clVerticalThenHorizontal
+      TabOrder = 1
+    end
+  end
+end

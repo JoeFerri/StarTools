@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>StarTools Docs: ContractDBUnit: Class TContractDB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">StarTools Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<span id="TContractDB"></span><h1 class="cio">Class TContractDB</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="ContractDBUnit.html">ContractDBUnit</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TContractDB = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Main lightweight DB class</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TContractDB</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="ContractDBUnit.TContractDB.html#Create">Create</a></strong>(const AConsoleServer: TConsoleReaderThread);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <strong><a href="ContractDBUnit.TContractDB.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractDBUnit.TContractDB.html#Test">Test</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractDBUnit.TContractDB.html#SetConsoleServer">SetConsoleServer</a></strong>(const AConsoleServer: TConsoleReaderThread);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractDBUnit.TContractDB.html#UnregisterPanel">UnregisterPanel</a></strong>(const PanelID: Integer);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractDBUnit.TContractDB.html#PanelChanged">PanelChanged</a></strong>(const PanelID: Integer; const AItem: <a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>; const ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractDBUnit.TContractDB.html#GetContracts">GetContracts</a></strong>: <a href="ContractUnit.html#TContractArray">TContractArray</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractDBUnit.TContractDB.html#RegisterPanel">RegisterPanel</a></strong>( const ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>; const OnLegNotify: <a href="ContractUnit.html#TPanelLegNotify">TPanelLegNotify</a>; const OnContractNotify: <a href="ContractUnit.html#TPanelContractNotify">TPanelContractNotify</a>): Integer; overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractDBUnit.TContractDB.html#RegisterPanel">RegisterPanel</a></strong>( const OnLegNotify: <a href="ContractUnit.html#TPanelLegNotify">TPanelLegNotify</a>; const OnContractNotify: <a href="ContractUnit.html#TPanelContractNotify">TPanelContractNotify</a>): Integer; overload;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractDBUnit.TContractDB.html#Contracts">Contracts</a></strong>: <a href="ContractUnit.html#TContractArray">TContractArray</a> read <a href="ContractDBUnit.TContractDB.html#GetContracts">GetContracts</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>(const AConsoleServer: TConsoleReaderThread);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Constructor </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AConsoleServer</dt>
+<dd></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Destructor</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Test"></span><code>procedure <strong>Test</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Test the DB.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetConsoleServer"></span><code>procedure <strong>SetConsoleServer</strong>(const AConsoleServer: TConsoleReaderThread);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Set the console server for logging purposes.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="UnregisterPanel"></span><code>procedure <strong>UnregisterPanel</strong>(const PanelID: Integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Unregister a panel and cleanup limbo leg (if any).</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="PanelChanged"></span><code>procedure <strong>PanelChanged</strong>(const PanelID: Integer; const AItem: <a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>; const ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Called by panels when something changed in the GUI. The DB will decide whether to store the leg in the limbo dict or attach it to a contract. AItem describes which field was changed.    </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>PanelID</dt>
+<dd></dd>
+<dt>AItem</dt>
+<dd>The field that changed.</dd>
+<dt>ATradeRouteLeg</dt>
+<dd>The updated leg.</dd>
+</dl>
+<h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>Exception</code></dt>
+<dd></dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetContracts"></span><code>function <strong>GetContracts</strong>: <a href="ContractUnit.html#TContractArray">TContractArray</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Retrieve all contracts. </p>
+<h6 class="description_section">Returns</h6>
+<p class="return">TContractArray</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="RegisterPanel"></span><code>function <strong>RegisterPanel</strong>( const ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>; const OnLegNotify: <a href="ContractUnit.html#TPanelLegNotify">TPanelLegNotify</a>; const OnContractNotify: <a href="ContractUnit.html#TPanelContractNotify">TPanelContractNotify</a>): Integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Register a panel. Returns a unique PanelID. The panel should keep this ID. Both callbacks are optional (pass nil if not required).    </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ATradeRouteLeg</dt>
+<dd>The updated leg.</dd>
+<dt>OnLegNotify</dt>
+<dd>The callback for leg updates.</dd>
+<dt>OnContractNotify</dt>
+<dd>The callback for contract updates.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Integer the PanelID.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="RegisterPanel"></span><code>function <strong>RegisterPanel</strong>( const OnLegNotify: <a href="ContractUnit.html#TPanelLegNotify">TPanelLegNotify</a>; const OnContractNotify: <a href="ContractUnit.html#TPanelContractNotify">TPanelContractNotify</a>): Integer; overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Register a panel. Returns a unique PanelID. The panel should keep this ID. Both callbacks are optional (pass nil if not required).   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>OnLegNotify</dt>
+<dd>The callback for leg updates.</dd>
+<dt>OnContractNotify</dt>
+<dd>The callback for contract updates.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">Integer the PanelID.</p></td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Contracts"></span><code>property <strong>Contracts</strong>: <a href="ContractUnit.html#TContractArray">TContractArray</a> read <a href="ContractDBUnit.TContractDB.html#GetContracts">GetContracts</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Retrieve contracts.</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <div class="footer-text">
+            <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri/StarTools" target="_blank" rel="noopener noreferrer">github.com/JoeFerri</a></p>
+            <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+        </div>
+        <div class="footer-logo">
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">
+                <img src="agplv3-with-text-100x42.png" alt="AGPL Logo">
+            </a>
+        </div>
+    </div>
+</footer></div></div></body></html>

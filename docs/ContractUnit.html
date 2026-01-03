@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>StarTools Docs: ContractUnit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">StarTools Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<h1 class="unit">Unit ContractUnit</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section"><a class="section" href="#PasDoc-Classes">Classes, Interfaces, Objects and Records</a></div><div class="one_section">Functions and Procedures</div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section"><a class="section" href="#PasDoc-Constants">Constants</a></div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+Provides tools for managing mission data, contracts, and routes.</p>
+<span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-Classes"></span><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Record&nbsp;<a class="bold" href="ContractUnit.TLoadingRecord.html"><code>TLoadingRecord</code></a></td>
+<td class="itemdesc">Contains data relating to the loading station and the total number of crates loaded.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Record&nbsp;<a class="bold" href="ContractUnit.TUnloadingRecord.html"><code>TUnloadingRecord</code></a></td>
+<td class="itemdesc">Contains data for one of the crate drop-off stations, including the count of unloaded crates categorized by size.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Record&nbsp;<a class="bold" href="ContractUnit.TTradeRouteLeg.html"><code>TTradeRouteLeg</code></a></td>
+<td class="itemdesc">Leg of Trade Route </p>
+
+<ul class="paragraph_spacing">
+  <li><p>Corresponds to a panel in the UI.</p></li>
+  <li><p>Used within <a class="normal" href="ContractUnit.TContractLeg.html">TContractLeg</a> and <a class="normal" href="ContractUnit.TContract.html">TContract</a>.</p></li>
+  <li><p>SCU and <code>SCUMaxSize.TotalSCU</code> must be equal for consistency (see <a class="normal" href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a>).</p></li>
+</ul>
+
+<p></td>
+</tr>
+<tr class="list2">
+<td class="itemname">Record&nbsp;<a class="bold" href="ContractUnit.TItemsStringListRecord.html"><code>TItemsStringListRecord</code></a></td>
+<td class="itemdesc">String records for filling in <code>TCheckBox</code></td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold" href="ContractUnit.TContractLeg.html"><code>TContractLeg</code></a></td>
+<td class="itemdesc">Represents a transport contract within a main contract.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold" href="ContractUnit.TContract.html"><code>TContract</code></a></td>
+<td class="itemdesc">Represents a complete contract, consisting of one or more station-to-station contracts.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold" href="ContractUnit.EContractException.html"><code>EContractException</code></a></td>
+<td class="itemdesc">Exception class for contract-related errors.</td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractRouteType">TContractRouteType</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractRouteTypeArray">TContractRouteTypeArray</a></strong> = array[<a href="ContractUnit.html#TContractRouteType">TContractRouteType</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractCargoRoute">TContractCargoRoute</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractCargoRouteArray">TContractCargoRouteArray</a></strong> = array[<a href="ContractUnit.html#TContractCargoRoute">TContractCargoRoute</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TUserRank">TUserRank</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TUserRankArray">TUserRankArray</a></strong> = array[<a href="ContractUnit.html#TUserRank">TUserRank</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractCargoGradeScale">TContractCargoGradeScale</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractCargoGradeScaleArray">TContractCargoGradeScaleArray</a></strong> = array[<a href="ContractUnit.html#TContractCargoGradeScale">TContractCargoGradeScale</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractCargoGradeScaleDirect">TContractCargoGradeScaleDirect</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractCargoGradeScaleDirectArray">TContractCargoGradeScaleDirectArray</a></strong> = array[<a href="ContractUnit.html#TContractCargoGradeScaleDirect">TContractCargoGradeScaleDirect</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractTransportType">TContractTransportType</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractTransportTypeArray">TContractTransportTypeArray</a></strong> = array[<a href="ContractUnit.html#TContractTransportType">TContractTransportType</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractDifficultyModifier">TContractDifficultyModifier</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractDifficultyModifierArray">TContractDifficultyModifierArray</a></strong> = array[<a href="ContractUnit.html#TContractDifficultyModifier">TContractDifficultyModifier</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegList">TTradeRouteLegList</a></strong> = specialize TList&lt;<a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>&gt;;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegArray">TTradeRouteLegArray</a></strong> = array of <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegItemArray">TTradeRouteLegItemArray</a></strong> = array[<a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>] of String;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegItemError">TTradeRouteLegItemError</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegChanged">TTradeRouteLegChanged</a></strong> = procedure(Sender: TObject; AItem: <a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>) of object;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TUnloadingRecordArray">TUnloadingRecordArray</a></strong> = array of <a href="ContractUnit.TUnloadingRecord.html">TUnloadingRecord</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TIDArray">TIDArray</a></strong> = array of Integer;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TIDSet">TIDSet</a></strong> = specialize THashSet&lt;Integer&gt;;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegDictionary">TTradeRouteLegDictionary</a></strong> = specialize TDictionary&lt;Integer, <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>&gt;;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegDictionaryPair">TTradeRouteLegDictionaryPair</a></strong> = TTradeRouteLegDictionary.TDictionaryPair;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TTradeRouteLegDictionaryPairArray">TTradeRouteLegDictionaryPairArray</a></strong> = array of <a href="ContractUnit.html#TTradeRouteLegDictionaryPair">TTradeRouteLegDictionaryPair</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractLegList">TContractLegList</a></strong> = specialize TList&lt;<a href="ContractUnit.TContractLeg.html">TContractLeg</a>&gt;;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractLegArray">TContractLegArray</a></strong> = array of <a href="ContractUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractArray">TContractArray</a></strong> = array of <a href="ContractUnit.TContract.html">TContract</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractDictionary">TContractDictionary</a></strong> = specialize TDictionary&lt;Integer, <a href="ContractUnit.TContract.html">TContract</a>&gt;;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractDictionaryPair">TContractDictionaryPair</a></strong> = TContractDictionary.TDictionaryPair;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractDictionaryPairArray">TContractDictionaryPairArray</a></strong> = array of <a href="ContractUnit.html#TContractDictionaryPair">TContractDictionaryPair</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractObjectDictionary">TContractObjectDictionary</a></strong> = specialize TObjectDictionary&lt;Integer, <a href="ContractUnit.TContract.html">TContract</a>&gt;;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractObjectDictionaryPair">TContractObjectDictionaryPair</a></strong> = TContractObjectDictionary.TDictionaryPair;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TContractObjectDictionaryPairArray">TContractObjectDictionaryPairArray</a></strong> = array of <a href="ContractUnit.html#TContractObjectDictionaryPair">TContractObjectDictionaryPair</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TPanelLegNotify">TPanelLegNotify</a></strong> = procedure(const Sender: TObject; const PanelID: Integer; const AItem: <a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>; const Leg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>) of object;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TPanelContractNotify">TPanelContractNotify</a></strong> = procedure( const Sender: TObject; const GroupID: Integer; const AContract: <a href="ContractUnit.TContract.html">TContract</a>) of object;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Constants"></span><h3 class="summary">Constants</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#ContractRouteTypeArray">ContractRouteTypeArray</a></strong>: <a href="ContractUnit.html#TContractRouteTypeArray">TContractRouteTypeArray</a> = ('Undefined', 'A to B', 'Single to Multi', 'Multi to Single');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#ContractCargoRouteArray">ContractCargoRouteArray</a></strong>: <a href="ContractUnit.html#TContractCargoRouteArray">TContractCargoRouteArray</a> = ('Undefined', 'Local', 'Planetary', 'Stellar', 'Interstellar');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#UserRankArray">UserRankArray</a></strong>: <a href="ContractUnit.html#TUserRankArray">TUserRankArray</a> = ('Undefined', 'Trainee', 'Rookie', 'Junior', 'Member', 'Experienced', 'Senior', 'Master');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#ContractCargoGradeScaleArray">ContractCargoGradeScaleArray</a></strong>: <a href="ContractUnit.html#TContractCargoGradeScaleArray">TContractCargoGradeScaleArray</a> =  ('Undefined',
+                                                                  'Small', 'Extra Small', 'Medium', 'Large', 'Extra Large',
+                                                                  'Cargo Transfer from Shuttered Facility',
+                                                                  'Small Scale', 'Medium Shipment', 'Large Shipment', 'Bulk Shipment');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#ContractCargoGradeScaleDirectArray">ContractCargoGradeScaleDirectArray</a></strong>: <a href="ContractUnit.html#TContractCargoGradeScaleDirectArray">TContractCargoGradeScaleDirectArray</a> = ('Undefined', 'Direct', 'No Direct');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#ContractTransportTypeArray">ContractTransportTypeArray</a></strong>: <a href="ContractUnit.html#TContractTransportTypeArray">TContractTransportTypeArray</a> = ('Undefined', 'Hauling', 'Delivery');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#ContractDifficultyModifierArray">ContractDifficultyModifierArray</a></strong>: <a href="ContractUnit.html#TContractDifficultyModifierArray">TContractDifficultyModifierArray</a> = ('Undefined', 'Regular', 'Combat', 'Illegal');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TradeRouteLegItemArray">TradeRouteLegItemArray</a></strong>: <a href="ContractUnit.html#TTradeRouteLegItemArray">TTradeRouteLegItemArray</a> =  ('Undefined', 'Ignored', 'GroupId', 'GroupIdEnabled', 'LoadingStationName', 'UnloadingStationName',
+                                                      'Commodity', 'SCU', 'SCUMaxSize',
+                                                      'Done', 'Hide', 'SCUxSize');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="ContractUnit.html#TradeRouteLegItemErrorArray">TradeRouteLegItemErrorArray</a></strong>: array[<a href="ContractUnit.html#TTradeRouteLegItemError">TTradeRouteLegItemError</a>] of String =  ('None', 'Ignored', 'Generic Error', 'GroupId Error',
+                                                                            'LoadingStationName Error', 'UnloadingStationName Error',
+                                                                            'Commodity Error', 'SCU Error', 'SCUMaxSize Error',
+                                                                            'Done Error', 'Hide Error', 'SCUxSize Error');</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractRouteType"></span><code><strong>TContractRouteType</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of contract route.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="crtUndefined">crtUndefined</span>: Undefined route.</li>
+<li>
+<span id="crtAtoB">crtAtoB</span>: A to B route.</li>
+<li>
+<span id="crtSingleToMulti">crtSingleToMulti</span>: Single to Multi route.</li>
+<li>
+<span id="crtMultiToSingle">crtMultiToSingle</span>: Multi to Single route.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractRouteTypeArray"></span><code><strong>TContractRouteTypeArray</strong> = array[<a href="ContractUnit.html#TContractRouteType">TContractRouteType</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of contract route types.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractCargoRoute"></span><code><strong>TContractCargoRoute</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of contract cargo route.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="ccrUNDEFINED">ccrUNDEFINED</span>: Undefined route.</li>
+<li>
+<span id="ccrLOCAL">ccrLOCAL</span>: Local route.</li>
+<li>
+<span id="ccrPLANETARY">ccrPLANETARY</span>: Planetary route.</li>
+<li>
+<span id="ccrSTELLAR">ccrSTELLAR</span>: Stellar route.</li>
+<li>
+<span id="ccrINTERSTELLAR">ccrINTERSTELLAR</span>: Interstellar route.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractCargoRouteArray"></span><code><strong>TContractCargoRouteArray</strong> = array[<a href="ContractUnit.html#TContractCargoRoute">TContractCargoRoute</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of contract cargo route types.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TUserRank"></span><code><strong>TUserRank</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of user rank.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="urUNDEFINED">urUNDEFINED</span>: Undefined rank.</li>
+<li>
+<span id="urTRAINEE">urTRAINEE</span>: Trainee rank.</li>
+<li>
+<span id="urROOKIE">urROOKIE</span>: Rookie rank.</li>
+<li>
+<span id="urJUNIOR">urJUNIOR</span>: Junior rank.</li>
+<li>
+<span id="urMEMBER">urMEMBER</span>: Member rank.</li>
+<li>
+<span id="urEXPERIENCED">urEXPERIENCED</span>: Experienced rank.</li>
+<li>
+<span id="urSENIOR">urSENIOR</span>: Senior rank.</li>
+<li>
+<span id="urMASTER">urMASTER</span>: Master rank.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TUserRankArray"></span><code><strong>TUserRankArray</strong> = array[<a href="ContractUnit.html#TUserRank">TUserRank</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of user ranks.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractCargoGradeScale"></span><code><strong>TContractCargoGradeScale</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of contract cargo grade scale.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="ccgsUNDEFINED">ccgsUNDEFINED</span>: Undefined scale.</li>
+<li>
+<span id="ccgsSMALL">ccgsSMALL</span>: Small scale.</li>
+<li>
+<span id="ccgsEXTRA_SMALL">ccgsEXTRA_SMALL</span>: Extra Small scale.</li>
+<li>
+<span id="ccgsMEDIUM">ccgsMEDIUM</span>: Medium scale.</li>
+<li>
+<span id="ccgsLARGE">ccgsLARGE</span>: Large scale.</li>
+<li>
+<span id="ccgsEXTRA_LARGE">ccgsEXTRA_LARGE</span>: Extra Large scale.</li>
+<li>
+<span id="ccgsCARGO_TRANSFER_FROM_SHUTTERED_FACILITY">ccgsCARGO_TRANSFER_FROM_SHUTTERED_FACILITY</span>: Cargo Transfer from Shuttered Facility scale.</li>
+<li>
+<span id="ccgsSMALL_SCALE">ccgsSMALL_SCALE</span>: Small Scale.</li>
+<li>
+<span id="ccgsMEDIUM_SHIPMENT">ccgsMEDIUM_SHIPMENT</span>: Medium Shipment.</li>
+<li>
+<span id="ccgsLARGE_SHIPMENT">ccgsLARGE_SHIPMENT</span>: Large Shipment.</li>
+<li>
+<span id="ccgsBULK_SHIPMENT">ccgsBULK_SHIPMENT</span>: Bulk Shipment.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractCargoGradeScaleArray"></span><code><strong>TContractCargoGradeScaleArray</strong> = array[<a href="ContractUnit.html#TContractCargoGradeScale">TContractCargoGradeScale</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of contract cargo grade scale types.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractCargoGradeScaleDirect"></span><code><strong>TContractCargoGradeScaleDirect</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of contract cargo grade scale direct.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="ccgsdUNDEFINED">ccgsdUNDEFINED</span>: Undefined direct.</li>
+<li>
+<span id="ccgsdDIRECT">ccgsdDIRECT</span>: Direct scale.</li>
+<li>
+<span id="ccgsdNO_DIRECT">ccgsdNO_DIRECT</span>: No Direct scale.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractCargoGradeScaleDirectArray"></span><code><strong>TContractCargoGradeScaleDirectArray</strong> = array[<a href="ContractUnit.html#TContractCargoGradeScaleDirect">TContractCargoGradeScaleDirect</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of contract cargo grade scale direct types.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractTransportType"></span><code><strong>TContractTransportType</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of contract transport.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="cttUNDEFINED">cttUNDEFINED</span>: Undefined transport.</li>
+<li>
+<span id="cttHAULING">cttHAULING</span>: Hauling transport.</li>
+<li>
+<span id="cttDELIVERY">cttDELIVERY</span>: Delivery transport.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractTransportTypeArray"></span><code><strong>TContractTransportTypeArray</strong> = array[<a href="ContractUnit.html#TContractTransportType">TContractTransportType</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of contract transport types.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractDifficultyModifier"></span><code><strong>TContractDifficultyModifier</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type of contract difficulty modifier.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="cdmUndefined">cdmUndefined</span>: Undefined difficulty.</li>
+<li>
+<span id="cdmRegular">cdmRegular</span>: Regular difficulty.</li>
+<li>
+<span id="cdmCombat">cdmCombat</span>: Combat difficulty.</li>
+<li>
+<span id="cdmIllegal">cdmIllegal</span>: Illegal difficulty.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractDifficultyModifierArray"></span><code><strong>TContractDifficultyModifierArray</strong> = array[<a href="ContractUnit.html#TContractDifficultyModifier">TContractDifficultyModifier</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of contract difficulty modifier types.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegList"></span><code><strong>TTradeRouteLegList</strong> = specialize TList&lt;<a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+List of <a class="normal" href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegArray"></span><code><strong>TTradeRouteLegArray</strong> = array of <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of <a class="normal" href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegItem"></span><code><strong>TTradeRouteLegItem</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Enumeration of utilities for <a class="normal" href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a></p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="eUndefined">eUndefined</span>: Undefined.</li>
+<li>
+<span id="eIgnored">eIgnored</span>: Ignored.</li>
+<li>
+<span id="eGroupId">eGroupId</span>: GroupId.</li>
+<li>
+<span id="eGroupIdEnabled">eGroupIdEnabled</span>: GroupIdEnabled.</li>
+<li>
+<span id="eLoadingStationName">eLoadingStationName</span>: LoadingStationName.</li>
+<li>
+<span id="eUnloadingStationName">eUnloadingStationName</span>: UnloadingStationName.</li>
+<li>
+<span id="eCommodity">eCommodity</span>: Commodity.</li>
+<li>
+<span id="eSCU">eSCU</span>: SCU.</li>
+<li>
+<span id="eSCUMaxSize">eSCUMaxSize</span>: SCUMaxSize.</li>
+<li>
+<span id="eDone">eDone</span>: Done.</li>
+<li>
+<span id="eHide">eHide</span>: Hide.</li>
+<li>
+<span id="eSCUxSize">eSCUxSize</span>: SCUxSize.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegItemArray"></span><code><strong>TTradeRouteLegItemArray</strong> = array[<a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>] of String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of <a class="normal" href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegItemError"></span><code><strong>TTradeRouteLegItemError</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Enumeration of utilities for <a class="normal" href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a></p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="erNone">erNone</span>: No error.</li>
+<li>
+<span id="erIgnored">erIgnored</span>: Ignored.</li>
+<li>
+<span id="erGeneric">erGeneric</span>: Generic error.</li>
+<li>
+<span id="erGroupId">erGroupId</span>: GroupId error.</li>
+<li>
+<span id="erLoadingStationName">erLoadingStationName</span>: LoadingStationName error.</li>
+<li>
+<span id="erUnloadingStationName">erUnloadingStationName</span>: UnloadingStationName error.</li>
+<li>
+<span id="erCommodity">erCommodity</span>: Commodity error.</li>
+<li>
+<span id="erSCU">erSCU</span>: SCU error.</li>
+<li>
+<span id="erSCUMaxSize">erSCUMaxSize</span>: SCUMaxSize error.</li>
+<li>
+<span id="erDone">erDone</span>: Done error.</li>
+<li>
+<span id="erHide">erHide</span>: Hide error.</li>
+<li>
+<span id="erSCUxSize">erSCUxSize</span>: SCUxSize error.</li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegChanged"></span><code><strong>TTradeRouteLegChanged</strong> = procedure(Sender: TObject; AItem: <a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>) of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Notification when a single trade route leg changes. Sender = <a class="normal" href="PanelRowUnit.TPanelRow.html">TPanelRow</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TUnloadingRecordArray"></span><code><strong>TUnloadingRecordArray</strong> = array of <a href="ContractUnit.TUnloadingRecord.html">TUnloadingRecord</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of <a class="normal" href="ContractUnit.TUnloadingRecord.html">TUnloadingRecord</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TIDArray"></span><code><strong>TIDArray</strong> = array of Integer;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of Trade Route Leg IDs.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TIDSet"></span><code><strong>TIDSet</strong> = specialize THashSet&lt;Integer&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Set of <code>Integer</code>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegDictionary"></span><code><strong>TTradeRouteLegDictionary</strong> = specialize TDictionary&lt;Integer, <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Dictionary of <a class="normal" href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegDictionaryPair"></span><code><strong>TTradeRouteLegDictionaryPair</strong> = TTradeRouteLegDictionary.TDictionaryPair;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Dictionary pair of <a class="normal" href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegDictionaryPairArray"></span><code><strong>TTradeRouteLegDictionaryPairArray</strong> = array of <a href="ContractUnit.html#TTradeRouteLegDictionaryPair">TTradeRouteLegDictionaryPair</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of dictionary pairs of <a class="normal" href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractLegList"></span><code><strong>TContractLegList</strong> = specialize TList&lt;<a href="ContractUnit.TContractLeg.html">TContractLeg</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+List of <a class="normal" href="ContractUnit.TContractLeg.html">TContractLeg</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractLegArray"></span><code><strong>TContractLegArray</strong> = array of <a href="ContractUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of <a class="normal" href="ContractUnit.TContractLeg.html">TContractLeg</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractArray"></span><code><strong>TContractArray</strong> = array of <a href="ContractUnit.TContract.html">TContract</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+List of <a class="normal" href="ContractUnit.TContract.html">TContract</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractDictionary"></span><code><strong>TContractDictionary</strong> = specialize TDictionary&lt;Integer, <a href="ContractUnit.TContract.html">TContract</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Dictionary of <a class="normal" href="ContractUnit.TContract.html">TContract</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractDictionaryPair"></span><code><strong>TContractDictionaryPair</strong> = TContractDictionary.TDictionaryPair;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Dictionary pair of <a class="normal" href="ContractUnit.TContract.html">TContract</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractDictionaryPairArray"></span><code><strong>TContractDictionaryPairArray</strong> = array of <a href="ContractUnit.html#TContractDictionaryPair">TContractDictionaryPair</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of dictionary pairs of <a class="normal" href="ContractUnit.TContract.html">TContract</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractObjectDictionary"></span><code><strong>TContractObjectDictionary</strong> = specialize TObjectDictionary&lt;Integer, <a href="ContractUnit.TContract.html">TContract</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Object dictionary of <a class="normal" href="ContractUnit.TContract.html">TContract</a>. </p>
+
+<pre class="longcode">
+[doOwnsValues]             -&gt; release the values
+[doOwnsKeys]               -&gt; release the keys
+[doOwnsKeys, doOwnsValues] -&gt; free both
+
+TContractObjectDictionary.Create([doOwnsValues]);</pre>
+
+<p></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractObjectDictionaryPair"></span><code><strong>TContractObjectDictionaryPair</strong> = TContractObjectDictionary.TDictionaryPair;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Object dictionary pair of <a class="normal" href="ContractUnit.TContract.html">TContract</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractObjectDictionaryPairArray"></span><code><strong>TContractObjectDictionaryPairArray</strong> = array of <a href="ContractUnit.html#TContractObjectDictionaryPair">TContractObjectDictionaryPair</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of object dictionary pairs of <a class="normal" href="ContractUnit.TContract.html">TContract</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TPanelLegNotify"></span><code><strong>TPanelLegNotify</strong> = procedure(const Sender: TObject; const PanelID: Integer; const AItem: <a href="ContractUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>; const Leg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>) of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Notification when a single panel/leg changes. Sender = TContractDB.    </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Sender</dt>
+<dd>The sender object.</dd>
+<dt>PanelID</dt>
+<dd>The panel ID.</dd>
+<dt>AItem</dt>
+<dd>The trade route leg item.</dd>
+<dt>Leg</dt>
+<dd>The trade route leg.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TPanelContractNotify"></span><code><strong>TPanelContractNotify</strong> = procedure( const Sender: TObject; const GroupID: Integer; const AContract: <a href="ContractUnit.TContract.html">TContract</a>) of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Notification when a contract changes. Sender = TContractDB.   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Sender</dt>
+<dd>The sender object.</dd>
+<dt>GroupID</dt>
+<dd>The group ID.</dd>
+<dt>AContract</dt>
+<dd>The contract.</dd>
+</dl>
+</td></tr>
+</table>
+<h3 class="detail">Constants</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ContractRouteTypeArray"></span><code><strong>ContractRouteTypeArray</strong>: <a href="ContractUnit.html#TContractRouteTypeArray">TContractRouteTypeArray</a> = ('Undefined', 'A to B', 'Single to Multi', 'Multi to Single');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TContractRouteType.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ContractCargoRouteArray"></span><code><strong>ContractCargoRouteArray</strong>: <a href="ContractUnit.html#TContractCargoRouteArray">TContractCargoRouteArray</a> = ('Undefined', 'Local', 'Planetary', 'Stellar', 'Interstellar');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TContractCargoRoute.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="UserRankArray"></span><code><strong>UserRankArray</strong>: <a href="ContractUnit.html#TUserRankArray">TUserRankArray</a> = ('Undefined', 'Trainee', 'Rookie', 'Junior', 'Member', 'Experienced', 'Senior', 'Master');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TUserRank.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ContractCargoGradeScaleArray"></span><code><strong>ContractCargoGradeScaleArray</strong>: <a href="ContractUnit.html#TContractCargoGradeScaleArray">TContractCargoGradeScaleArray</a> =  ('Undefined',
+                                                                  'Small', 'Extra Small', 'Medium', 'Large', 'Extra Large',
+                                                                  'Cargo Transfer from Shuttered Facility',
+                                                                  'Small Scale', 'Medium Shipment', 'Large Shipment', 'Bulk Shipment');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TContractCargoGradeScale.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ContractCargoGradeScaleDirectArray"></span><code><strong>ContractCargoGradeScaleDirectArray</strong>: <a href="ContractUnit.html#TContractCargoGradeScaleDirectArray">TContractCargoGradeScaleDirectArray</a> = ('Undefined', 'Direct', 'No Direct');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TContractCargoGradeScaleDirect.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ContractTransportTypeArray"></span><code><strong>ContractTransportTypeArray</strong>: <a href="ContractUnit.html#TContractTransportTypeArray">TContractTransportTypeArray</a> = ('Undefined', 'Hauling', 'Delivery');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TContractTransportType.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ContractDifficultyModifierArray"></span><code><strong>ContractDifficultyModifierArray</strong>: <a href="ContractUnit.html#TContractDifficultyModifierArray">TContractDifficultyModifierArray</a> = ('Undefined', 'Regular', 'Combat', 'Illegal');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TContractDifficultyModifier.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TradeRouteLegItemArray"></span><code><strong>TradeRouteLegItemArray</strong>: <a href="ContractUnit.html#TTradeRouteLegItemArray">TTradeRouteLegItemArray</a> =  ('Undefined', 'Ignored', 'GroupId', 'GroupIdEnabled', 'LoadingStationName', 'UnloadingStationName',
+                                                      'Commodity', 'SCU', 'SCUMaxSize',
+                                                      'Done', 'Hide', 'SCUxSize');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TTradeRouteLegItem.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TradeRouteLegItemErrorArray"></span><code><strong>TradeRouteLegItemErrorArray</strong>: array[<a href="ContractUnit.html#TTradeRouteLegItemError">TTradeRouteLegItemError</a>] of String =  ('None', 'Ignored', 'Generic Error', 'GroupId Error',
+                                                                            'LoadingStationName Error', 'UnloadingStationName Error',
+                                                                            'Commodity Error', 'SCU Error', 'SCUMaxSize Error',
+                                                                            'Done Error', 'Hide Error', 'SCUxSize Error');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Labels for TTradeRouteLegItemError.</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <div class="footer-text">
+            <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri/StarTools" target="_blank" rel="noopener noreferrer">github.com/JoeFerri</a></p>
+            <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+        </div>
+        <div class="footer-logo">
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">
+                <img src="agplv3-with-text-100x42.png" alt="AGPL Logo">
+            </a>
+        </div>
+    </div>
+</footer></div></div></body></html>

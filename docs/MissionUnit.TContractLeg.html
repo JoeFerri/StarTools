@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>SCUxSizeTool Docs: MissionUnit: Class TContractLeg</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">SCUxSizeTool Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<span id="TContractLeg"></span><h1 class="cio">Class TContractLeg</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="MissionUnit.html">MissionUnit</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TContractLeg = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Represents a transport contract within a main contract.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TContractLeg</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="MissionUnit.TContractLeg.html#Create">Create</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <strong><a href="MissionUnit.TContractLeg.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="MissionUnit.TContractLeg.html#Clone">Clone</a></strong>: <a href="MissionUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="MissionUnit.TContractLeg.html#Loading">Loading</a></strong>: <a href="MissionUnit.TLoadingRecord.html">TLoadingRecord</a> read FLoading;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="MissionUnit.TContractLeg.html#Unloadings">Unloadings</a></strong>: <a href="MissionUnit.html#TUloadingList">TUloadingList</a> read FUnloadings;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="MissionUnit.TContractLeg.html#Commodity">Commodity</a></strong>: String read FCommodity;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Clone"></span><code>function <strong>Clone</strong>: <a href="MissionUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a deep copy of the TContractLeg instance.</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Loading"></span><code>property <strong>Loading</strong>: <a href="MissionUnit.TLoadingRecord.html">TLoadingRecord</a> read FLoading;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Data relating to the loading station.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Unloadings"></span><code>property <strong>Unloadings</strong>: <a href="MissionUnit.html#TUloadingList">TUloadingList</a> read FUnloadings;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Data relating to the unloading stations.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Commodity"></span><code>property <strong>Commodity</strong>: String read FCommodity;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Name of the goods.</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri">github.com/JoeFerri</a></p>
+        <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+    </div>
+</footer></div></div></body></html>

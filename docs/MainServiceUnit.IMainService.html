@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>StarTools Docs: MainServiceUnit: Interface IMainService</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">StarTools Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<span id="IMainService"></span><h1 class="cio">Interface IMainService</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section">Properties</div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="MainServiceUnit.html">MainServiceUnit</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type IMainService = interface(IInterface)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Interface</p>
+<h6 class="description_section">Attributes</h6>
+<dl class="attributes">
+  <dt>GUID['{F60F6353-A3B1-46A1-82AF-54F1BE568E4C}']</dt>
+  <dd></dd>
+</dl>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">IInterface</li>
+<li class="thisitem">IMainService</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="MainServiceUnit.IMainService.html#Console">Console</a></strong>: TConsoleReaderThread;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="MainServiceUnit.IMainService.html#ContractDB">ContractDB</a></strong>: <a href="ContractDBUnit.TContractDB.html">TContractDB</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#UpdateMainFormPosition">UpdateMainFormPosition</a></strong>(AForm: TForm);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#ValidateMonitorSettings">ValidateMonitorSettings</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#IniPropStorageRestore">IniPropStorageRestore</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#IniPropStorageSetAllOptionsToDefault">IniPropStorageSetAllOptionsToDefault</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#IniPropStorageSetAllOptions">IniPropStorageSetAllOptions</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="MainServiceUnit.IMainService.html#GetPathLoadExecuteDir">GetPathLoadExecuteDir</a></strong>: String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SetPathLoadExecuteDir">SetPathLoadExecuteDir</a></strong>(Path: String);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SavePathLoadExecuteDir">SavePathLoadExecuteDir</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="MainServiceUnit.IMainService.html#GetPathSaveExecuteDir">GetPathSaveExecuteDir</a></strong>: String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SetPathSaveExecuteDir">SetPathSaveExecuteDir</a></strong>(Path: String);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SavePathSaveExecuteDir">SavePathSaveExecuteDir</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="MainServiceUnit.IMainService.html#GetFileNameCommoditiesList">GetFileNameCommoditiesList</a></strong>: String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SetFileNameCommoditiesList">SetFileNameCommoditiesList</a></strong>(Path: String);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SaveFileNameCommoditiesList">SaveFileNameCommoditiesList</a></strong>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="MainServiceUnit.IMainService.html#GetFileNameStationsList">GetFileNameStationsList</a></strong>: String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SetFileNameStationsList">SetFileNameStationsList</a></strong>(Path: String);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#SaveFileNameStationsList">SaveFileNameStationsList</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#ShowConsoleSettings">ShowConsoleSettings</a></strong>(Sender: TObject);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#ShowHideConsole">ShowHideConsole</a></strong>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="MainServiceUnit.IMainService.html#FormKeyDownPressConsole">FormKeyDownPressConsole</a></strong>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Console"></span><code>function <strong>Console</strong>: TConsoleReaderThread;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Console Server</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractDB"></span><code>function <strong>ContractDB</strong>: <a href="ContractDBUnit.TContractDB.html">TContractDB</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Contract Database</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="UpdateMainFormPosition"></span><code>procedure <strong>UpdateMainFormPosition</strong>(AForm: TForm);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Updates the position of the main form based on the current positioning mode.
+
+<p>The method calculates the new coordinates (X, Y) to center the form within the work area of the target monitor, excluding taskbars and docked toolbars.
+
+<p>
+
+<p><strong>Positioning Modes:</strong> </p>
+
+<ul class="paragraph_spacing">
+  <li><p><code>fpmDefault</code>: No action is taken; the form remains at its current position.</p></li>
+  <li><p><code>fpmFollowActiveMonitor</code>: The form is centered on the monitor where it is currently located.</p></li>
+  <li><p><code>fpmSpecificMonitor</code>: The form is moved to the monitor specified by the global index <code>_SelectedFormMainMonitorIndex</code>.</p></li>
+</ul>
+
+<p></p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AForm</dt>
+<dd>The form instance to be repositioned. Currently, the method internal logic is tied to the main form, but is designed for future generalization.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ValidateMonitorSettings"></span><code>procedure <strong>ValidateMonitorSettings</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Validates and corrects monitor-related settings to prevent errors after hardware changes.
+
+<p>This procedure acts as a safety check (fail-safe). If a previously selected monitor is no longer available (e.g., unplugged), it resets the positioning mode and index to their default values.
+
+<p><strong>Technical Notes:</strong> This method is typically called during application startup or in response to a <code>WM_DISPLAYCHANGE</code> message.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IniPropStorageRestore"></span><code>procedure <strong>IniPropStorageRestore</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Resets all application settings to their predefined default values in the INI storage.
+
+<p>This method bypasses the current session variables and writes the <code>ValueDefault</code> constants directly to the storage.
+
+<p><strong>Note:</strong> A call to <code>IniPropStorage.Save</code> is performed at the end to ensure changes are flushed to the physical disk.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IniPropStorageSetAllOptionsToDefault"></span><code>procedure <strong>IniPropStorageSetAllOptionsToDefault</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Persists the current session variables into the INI storage.
+
+<p>This method takes the values currently held in the private fields and writes them to the <code>IniPropStorage</code> component.
+
+<p><strong>Note:</strong> Enumerated types are stored as integers using the <code>Ord()</code> function to ensure compatibility with the INI format.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IniPropStorageSetAllOptions"></span><code>procedure <strong>IniPropStorageSetAllOptions</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Restores session variables from the INI storage into memory.
+
+<p>This procedure reads the values from the storage and populates the application's internal state. It includes fallback logic to handle missing keys or corrupted data.
+
+<p><strong>Technical Notes:</strong> The range checking on integers is critical to prevent <em>Access Violations</em> or undefined behavior when an INI file is manually edited with invalid values.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetPathLoadExecuteDir"></span><code>function <strong>GetPathLoadExecuteDir</strong>: String;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;<h6 class="description_section">Returns</h6>
+<p class="return">The path to the load execute directory.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetPathLoadExecuteDir"></span><code>procedure <strong>SetPathLoadExecuteDir</strong>(Path: String);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Sets the path to the load execute directory.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SavePathLoadExecuteDir"></span><code>procedure <strong>SavePathLoadExecuteDir</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Saves the path to the load execute directory.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetPathSaveExecuteDir"></span><code>function <strong>GetPathSaveExecuteDir</strong>: String;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;<h6 class="description_section">Returns</h6>
+<p class="return">The path to the save execute directory.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetPathSaveExecuteDir"></span><code>procedure <strong>SetPathSaveExecuteDir</strong>(Path: String);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Sets the path to the save execute directory.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SavePathSaveExecuteDir"></span><code>procedure <strong>SavePathSaveExecuteDir</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Saves the path to the save execute directory.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetFileNameCommoditiesList"></span><code>function <strong>GetFileNameCommoditiesList</strong>: String;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;<h6 class="description_section">Returns</h6>
+<p class="return">The name of the commodities list file.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetFileNameCommoditiesList"></span><code>procedure <strong>SetFileNameCommoditiesList</strong>(Path: String);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Sets the name of the commodities list file.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SaveFileNameCommoditiesList"></span><code>procedure <strong>SaveFileNameCommoditiesList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Saves the name of the commodities list file.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetFileNameStationsList"></span><code>function <strong>GetFileNameStationsList</strong>: String;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;<h6 class="description_section">Returns</h6>
+<p class="return">The name of the stations list file.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetFileNameStationsList"></span><code>procedure <strong>SetFileNameStationsList</strong>(Path: String);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Sets the name of the stations list file.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SaveFileNameStationsList"></span><code>procedure <strong>SaveFileNameStationsList</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Saves the name of the stations list file.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ShowConsoleSettings"></span><code>procedure <strong>ShowConsoleSettings</strong>(Sender: TObject);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Shows the console settings form.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ShowHideConsole"></span><code>procedure <strong>ShowHideConsole</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Shows or hides the console.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="FormKeyDownPressConsole"></span><code>procedure <strong>FormKeyDownPressConsole</strong>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Helper method to manage the visibility and focus of the external console.
+
+<p>If the console is currently visible, it forces it to the foreground. Otherwise, it triggers the console display logic (simulating a click on the console tool button).</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <div class="footer-text">
+            <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri/StarTools" target="_blank" rel="noopener noreferrer">github.com/JoeFerri</a></p>
+            <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+        </div>
+        <div class="footer-logo">
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">
+                <img src="agplv3-with-text-100x42.png" alt="AGPL Logo">
+            </a>
+        </div>
+    </div>
+</footer></div></div></body></html>

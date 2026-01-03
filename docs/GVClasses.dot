@@ -1,0 +1,27 @@
+DiGraph Classes {
+  "IMainService" -> "IInterface"
+  "IMainService" [href="MainServiceUnit.IMainService.html"]
+  "TFormConsoleSettings" -> "TForm"
+  "TFormConsoleSettings" [href="ConsoleOptionsUnit.TFormConsoleSettings.html"]
+  "TFormContractView" -> "TForm"
+  "TFormContractView" [href="ContractViewUnit.TFormContractView.html"]
+  "TFormMain" -> "TForm"
+  "TFormMain" [href="MainUnit.TFormMain.html"]
+  "TFormSCUxSize" -> "TForm"
+  "TFormSCUxSize" [href="SCUxSizeFormUnit.TFormSCUxSize.html"]
+  "TFormSizeDialog" -> "TForm"
+  "TFormSizeDialog" [href="SizeDialogUnit.TFormSizeDialog.html"]
+  "Exception" -> "TObject"
+  "EContractException" -> "Exception"
+  "EContractException" [href="ContractUnit.EContractException.html"]
+  "TContract" -> "TObject"
+  "TContract" [href="ContractUnit.TContract.html"]
+  "TContractDB" -> "TObject"
+  "TContractDB" [href="ContractDBUnit.TContractDB.html"]
+  "TContractLeg" -> "TObject"
+  "TContractLeg" [href="ContractUnit.TContractLeg.html"]
+  "TPanelSubscriber" -> "TObject"
+  "TPanelSubscriber" [href="ContractDBUnit.TPanelSubscriber.html"]
+  "TPanelRow" -> "TPanel"
+  "TPanelRow" [href="PanelRowUnit.TPanelRow.html"]
+}

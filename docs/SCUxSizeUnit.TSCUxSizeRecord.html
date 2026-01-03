@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>StarTools Docs: SCUxSizeUnit: Record TSCUxSizeRecord</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">StarTools Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<span id="TSCUxSizeRecord"></span><h1 class="cio">Record TSCUxSizeRecord</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Hierarchy</div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="SCUxSizeUnit.html">SCUxSizeUnit</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TSCUxSizeRecord = record</code></p>
+<h2 class="description">Description</h2>
+<p>
+Record to keep track of the number of boxes for each SCU size.
+
+<p>All properties should be &gt;= 0.</p>
+<h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class operator +(const ALeft: <a href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a>; const ARight: <a href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a>): <a href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a>;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#SCUSize32">SCUSize32</a></strong>: Integer read FSCUSize32 write SetSCUSize32;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#SCUSize24">SCUSize24</a></strong>: Integer read FSCUSize24 write SetSCUSize24;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#SCUSize16">SCUSize16</a></strong>: Integer read FSCUSize16 write SetSCUSize16;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#SCUSize08">SCUSize08</a></strong>: Integer read FSCUSize08 write SetSCUSize08;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#SCUSize04">SCUSize04</a></strong>: Integer read FSCUSize04 write SetSCUSize04;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#SCUSize02">SCUSize02</a></strong>: Integer read FSCUSize02 write SetSCUSize02;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#SCUSize01">SCUSize01</a></strong>: Integer read FSCUSize01 write SetSCUSize01;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="SCUxSizeUnit.TSCUxSizeRecord.html#TotalSCU">TotalSCU</a></strong>: Integer read FTotalSCU;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="+"></span><code>class operator +(const ALeft: <a href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a>; const ARight: <a href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a>): <a href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Overload of the sum operator between two <a class="normal" href="SCUxSizeUnit.TSCUxSizeRecord.html">TSCUxSizeRecord</a></p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUSize32"></span><code>property <strong>SCUSize32</strong>: Integer read FSCUSize32 write SetSCUSize32;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUSize24"></span><code>property <strong>SCUSize24</strong>: Integer read FSCUSize24 write SetSCUSize24;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&gt;= 0</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUSize16"></span><code>property <strong>SCUSize16</strong>: Integer read FSCUSize16 write SetSCUSize16;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&gt;= 0</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUSize08"></span><code>property <strong>SCUSize08</strong>: Integer read FSCUSize08 write SetSCUSize08;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&gt;= 0</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUSize04"></span><code>property <strong>SCUSize04</strong>: Integer read FSCUSize04 write SetSCUSize04;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&gt;= 0</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUSize02"></span><code>property <strong>SCUSize02</strong>: Integer read FSCUSize02 write SetSCUSize02;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&gt;= 0</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUSize01"></span><code>property <strong>SCUSize01</strong>: Integer read FSCUSize01 write SetSCUSize01;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&gt;= 0</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="TotalSCU"></span><code>property <strong>TotalSCU</strong>: Integer read FTotalSCU;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Total given by the sum of the products of the number of boxes and their respective sizes.</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <div class="footer-text">
+            <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri/StarTools" target="_blank" rel="noopener noreferrer">github.com/JoeFerri</a></p>
+            <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+        </div>
+        <div class="footer-logo">
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">
+                <img src="agplv3-with-text-100x42.png" alt="AGPL Logo">
+            </a>
+        </div>
+    </div>
+</footer></div></div></body></html>

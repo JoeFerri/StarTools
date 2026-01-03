@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>SCUxSizeTool Docs: MissionUnit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">SCUxSizeTool Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<h1 class="unit">Unit MissionUnit</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section"><a class="section" href="#PasDoc-Classes">Classes, Interfaces, Objects and Records</a></div><div class="one_section">Functions and Procedures</div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+Provides tools for managing mission data, contracts, and routes.</p>
+<span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-Classes"></span><h3 class="cio">Classes, Interfaces, Objects and Records</h3>
+<table class="classestable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname">Record&nbsp;<a class="bold" href="MissionUnit.TLoadingRecord.html"><code>TLoadingRecord</code></a></td>
+<td class="itemdesc">Contains data relating to the loading station and the total number of crates loaded.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Record&nbsp;<a class="bold" href="MissionUnit.TUnloadingRecord.html"><code>TUnloadingRecord</code></a></td>
+<td class="itemdesc">Contains data for one of the crate drop-off stations, including the count of unloaded crates categorized by size.</td>
+</tr>
+<tr class="list">
+<td class="itemname">Record&nbsp;<a class="bold" href="MissionUnit.TTradeRouteLeg.html"><code>TTradeRouteLeg</code></a></td>
+<td class="itemdesc">Leg of Trade Route</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Record&nbsp;<a class="bold" href="MissionUnit.TStringListRecord.html"><code>TStringListRecord</code></a></td>
+<td class="itemdesc">String records for filling in <code>TCheckBox</code></td>
+</tr>
+<tr class="list">
+<td class="itemname">Class&nbsp;<a class="bold" href="MissionUnit.TContractLeg.html"><code>TContractLeg</code></a></td>
+<td class="itemdesc">Represents a transport contract within a main contract.</td>
+</tr>
+<tr class="list2">
+<td class="itemname">Class&nbsp;<a class="bold" href="MissionUnit.TContract.html"><code>TContract</code></a></td>
+<td class="itemdesc">Represents a complete contract, consisting of one or more station-to-station contracts.</td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="MissionUnit.html#TTradeRouteLegList">TTradeRouteLegList</a></strong> = specialize TList&lt;<a href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>&gt;;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="MissionUnit.html#TTradeRouteLegArray">TTradeRouteLegArray</a></strong> = array of <a href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="MissionUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a></strong> = (...);</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="MissionUnit.html#TTradeRouteLegChanged">TTradeRouteLegChanged</a></strong> = procedure(Sender: TObject; AItem: <a href="MissionUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>) of object;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="MissionUnit.html#TTradeRouteLegCompareFunc">TTradeRouteLegCompareFunc</a></strong> = function(constref Left, Right: <a href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>): Integer;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="MissionUnit.html#TUloadingList">TUloadingList</a></strong> = specialize TList&lt;<a href="MissionUnit.TUnloadingRecord.html">TUnloadingRecord</a>&gt;;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="MissionUnit.html#TContractLegList">TContractLegList</a></strong> = specialize TList&lt;<a href="MissionUnit.TContractLeg.html">TContractLeg</a>&gt;;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegList"></span><code><strong>TTradeRouteLegList</strong> = specialize TList&lt;<a href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Lisy type of TPanelRow.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegArray"></span><code><strong>TTradeRouteLegArray</strong> = array of <a href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array type of TPanelRow.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegItem"></span><code><strong>TTradeRouteLegItem</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Enumeration of utilities for <a class="normal" href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a></p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="eGroupId">eGroupId</span></li>
+<li>
+<span id="eLoadingStationName">eLoadingStationName</span></li>
+<li>
+<span id="eUnloadingStationName">eUnloadingStationName</span></li>
+<li>
+<span id="eCommodity">eCommodity</span></li>
+<li>
+<span id="eSCU">eSCU</span></li>
+<li>
+<span id="eSCUMaxSize">eSCUMaxSize</span></li>
+<li>
+<span id="eDone">eDone</span></li>
+<li>
+<span id="eHide">eHide</span></li>
+<li>
+<span id="eSCUxSize">eSCUxSize</span></li>
+</ul>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegChanged"></span><code><strong>TTradeRouteLegChanged</strong> = procedure(Sender: TObject; AItem: <a href="MissionUnit.html#TTradeRouteLegItem">TTradeRouteLegItem</a>) of object;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Procedure type of utilities for <a class="normal" href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a></p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TTradeRouteLegCompareFunc"></span><code><strong>TTradeRouteLegCompareFunc</strong> = function(constref Left, Right: <a href="MissionUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>): Integer;</code></td>
+</tr>
+<tr><td colspan="1">
+&nbsp;</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TUloadingList"></span><code><strong>TUloadingList</strong> = specialize TList&lt;<a href="MissionUnit.TUnloadingRecord.html">TUnloadingRecord</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+List of <a class="normal" href="MissionUnit.TUnloadingRecord.html">TUnloadingRecord</a>.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TContractLegList"></span><code><strong>TContractLegList</strong> = specialize TList&lt;<a href="MissionUnit.TContractLeg.html">TContractLeg</a>&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+List of <a class="normal" href="MissionUnit.TContractLeg.html">TContractLeg</a>.</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri">github.com/JoeFerri</a></p>
+        <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+    </div>
+</footer></div></div></body></html>

@@ -1,0 +1,89 @@
+object FormConsoleSettings: TFormConsoleSettings
+  Left = 2170
+  Height = 204
+  Top = 250
+  Width = 400
+  BorderStyle = bsDialog
+  Caption = 'Console Settings'
+  ClientHeight = 204
+  ClientWidth = 400
+  Position = poMainFormCenter
+  LCLVersion = '4.4.0.0'
+  object ButtonPanel: TButtonPanel
+    Left = 6
+    Height = 34
+    Top = 164
+    Width = 388
+    OKButton.Name = 'OKButton'
+    OKButton.DefaultCaption = True
+    HelpButton.Name = 'HelpButton'
+    HelpButton.DefaultCaption = True
+    CloseButton.Name = 'CloseButton'
+    CloseButton.DefaultCaption = True
+    CancelButton.Name = 'CancelButton'
+    CancelButton.DefaultCaption = True
+    TabOrder = 0
+    ShowButtons = [pbOK, pbCancel]
+    object BitBtnApply: TBitBtn
+      AnchorSideLeft.Control = ButtonPanel
+      AnchorSideTop.Control = ButtonPanel
+      Left = 0
+      Height = 26
+      Hint = 'Apply settings'
+      Top = 8
+      Width = 77
+      AutoSize = True
+      BorderSpacing.Top = 8
+      Caption = 'Apply'
+      Images = FormMain.ImageListMenu
+      ImageIndex = 20
+      TabOrder = 4
+    end
+  end
+  object GroupBoxView: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 14
+    Height = 105
+    Top = 10
+    Width = 372
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 14
+    BorderSpacing.Top = 10
+    BorderSpacing.Right = 14
+    Caption = 'View'
+    ClientHeight = 85
+    ClientWidth = 368
+    TabOrder = 1
+    object StaticTextConsoleWindowPosition: TStaticText
+      AnchorSideLeft.Control = GroupBoxView
+      AnchorSideTop.Control = GroupBoxView
+      AnchorSideTop.Side = asrCenter
+      Left = 10
+      Height = 16
+      Top = 34
+      Width = 136
+      AutoSize = True
+      BorderSpacing.Left = 10
+      Caption = 'Console Window Position'
+      TabOrder = 0
+    end
+    object ComboBoxMonitors: TComboBox
+      AnchorSideTop.Control = StaticTextConsoleWindowPosition
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = GroupBoxView
+      AnchorSideRight.Side = asrBottom
+      Left = 158
+      Height = 23
+      Top = 31
+      Width = 200
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 10
+      ItemHeight = 15
+      TabOrder = 1
+      Text = 'ComboBoxMonitors'
+    end
+  end
+end

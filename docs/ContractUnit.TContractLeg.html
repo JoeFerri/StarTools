@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>StarTools Docs: ContractUnit: Class TContractLeg</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">StarTools Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<span id="TContractLeg"></span><h1 class="cio">Class TContractLeg</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="ContractUnit.html">ContractUnit</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TContractLeg = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Represents a transport contract within a main contract.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TContractLeg</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractUnit.TContractLeg.html#AddOrSetTradeRouteLeg">AddOrSetTradeRouteLeg</a></strong>(const ID: Integer; const ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>; out AItemError: <a href="ContractUnit.html#TTradeRouteLegItemError">TTradeRouteLegItemError</a>);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractUnit.TContractLeg.html#RemoveTradeRouteLeg">RemoveTradeRouteLeg</a></strong>(const ID: Integer);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractUnit.TContractLeg.html#TryGetTradeRouteLeg">TryGetTradeRouteLeg</a></strong>(const ID: Integer; out ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#GetTradeRouteLegIDs">GetTradeRouteLegIDs</a></strong>: <a href="ContractUnit.html#TIDArray">TIDArray</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#TradeRouteLegsContainsID">TradeRouteLegsContainsID</a></strong>(const ID: Integer) : Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#TradeRouteLegsToArray">TradeRouteLegsToArray</a></strong>: <a href="ContractUnit.html#TTradeRouteLegDictionaryPairArray">TTradeRouteLegDictionaryPairArray</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="ContractUnit.TContractLeg.html#Create">Create</a></strong>(const ALoadingName: String; const ACommodity: String; const ASCUMaxSize: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a>); overload;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="ContractUnit.TContractLeg.html#Create">Create</a></strong>(const ALoading: <a href="ContractUnit.TLoadingRecord.html">TLoadingRecord</a>; const ASCUMaxSize: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a>); overload;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <strong><a href="ContractUnit.TContractLeg.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#GetGroupedUnloadings">GetGroupedUnloadings</a></strong>(const StationCommodityGrouping: Boolean): <a href="ContractUnit.html#TUnloadingRecordArray">TUnloadingRecordArray</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#Clone">Clone</a></strong>: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#LoadingToString">LoadingToString</a></strong>: String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#UnloadingsToString">UnloadingsToString</a></strong>: String;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContractLeg.html#ToString">ToString</a></strong>: String; override;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <strong><a href="ContractUnit.TContractLeg.html#IsConformedTradeRouteLeg">IsConformedTradeRouteLeg</a></strong>(ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>) : Boolean; static;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContractLeg.html#Loading">Loading</a></strong>: <a href="ContractUnit.TLoadingRecord.html">TLoadingRecord</a> read FLoading;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContractLeg.html#Unloadings">Unloadings</a></strong>: <a href="ContractUnit.html#TUnloadingRecordArray">TUnloadingRecordArray</a> read GetUnloadings;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContractLeg.html#UnloadingsCount">UnloadingsCount</a></strong>: Integer read GetUnloadingsCount;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContractLeg.html#SCUMaxSize">SCUMaxSize</a></strong>: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a> read FSCUMaxSize;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AddOrSetTradeRouteLeg"></span><code>procedure <strong>AddOrSetTradeRouteLeg</strong>(const ID: Integer; const ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>; out AItemError: <a href="ContractUnit.html#TTradeRouteLegItemError">TTradeRouteLegItemError</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Adds or sets a trade route leg.   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ID</dt>
+<dd>The ID (<code>PanelID</code>) of the trade route leg.</dd>
+<dt>ATradeRouteLeg</dt>
+<dd>The trade route leg.</dd>
+<dt>AItemError</dt>
+<dd>The error of the trade route leg.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="RemoveTradeRouteLeg"></span><code>procedure <strong>RemoveTradeRouteLeg</strong>(const ID: Integer);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Removes a trade route leg. </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ID</dt>
+<dd>The ID (<code>PanelID</code>) of the trade route leg.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="TryGetTradeRouteLeg"></span><code>procedure <strong>TryGetTradeRouteLeg</strong>(const ID: Integer; out ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Tries to get a trade route leg.  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ID</dt>
+<dd>The ID (<code>PanelID</code>) of the trade route leg.</dd>
+<dt>ATradeRouteLeg</dt>
+<dd>The trade route leg.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetTradeRouteLegIDs"></span><code>function <strong>GetTradeRouteLegIDs</strong>: <a href="ContractUnit.html#TIDArray">TIDArray</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;<h6 class="description_section">Returns</h6>
+<p class="return">the IDs of all trade route legs.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="TradeRouteLegsContainsID"></span><code>function <strong>TradeRouteLegsContainsID</strong>(const ID: Integer) : Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ID</dt>
+<dd>The ID (<code>PanelID</code>) of the trade route leg.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> if the trade route leg with the given ID exists.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="TradeRouteLegsToArray"></span><code>function <strong>TradeRouteLegsToArray</strong>: <a href="ContractUnit.html#TTradeRouteLegDictionaryPairArray">TTradeRouteLegDictionaryPairArray</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+&nbsp;<h6 class="description_section">Returns</h6>
+<p class="return">the trade route legs as an array of dictionary pairs.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>(const ALoadingName: String; const ACommodity: String; const ASCUMaxSize: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Creates a new TContractLeg instance.    </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ALoadingName</dt>
+<dd>The name of the loading station.</dd>
+<dt>ACommodity</dt>
+<dd>The commodity.</dd>
+<dt>ASCUMaxSize</dt>
+<dd>The maximum container size.</dd>
+</dl>
+<h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>EArgumentException</code></dt>
+<dd>if ALoadingName or ACommodity is empty.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>(const ALoading: <a href="ContractUnit.TLoadingRecord.html">TLoadingRecord</a>; const ASCUMaxSize: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a>); overload;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Creates a new TContractLeg instance.  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>ALoading</dt>
+<dd>The loading station.</dd>
+<dt>ASCUMaxSize</dt>
+<dd>The maximum container size.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Destructor.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetGroupedUnloadings"></span><code>function <strong>GetGroupedUnloadings</strong>(const StationCommodityGrouping: Boolean): <a href="ContractUnit.html#TUnloadingRecordArray">TUnloadingRecordArray</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Groups the unloading stations by station and commodity. TODO: generalize for the custom filter  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>StationCommodityGrouping</dt>
+<dd>If <code>True</code>, the unloading stations are grouped by station and commodity.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><a class="normal" href="ContractUnit.html#TUnloadingRecordArray">TUnloadingRecordArray</a> with all unloading stations.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Clone"></span><code>function <strong>Clone</strong>: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a deep copy of the TContractLeg instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="LoadingToString"></span><code>function <strong>LoadingToString</strong>: String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a string representation of the Loading field.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="UnloadingsToString"></span><code>function <strong>UnloadingsToString</strong>: String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a string representation of the Unloadings field.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ToString"></span><code>function <strong>ToString</strong>: String; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a string representation of the TContractLeg instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IsConformedTradeRouteLeg"></span><code>class function <strong>IsConformedTradeRouteLeg</strong>(ATradeRouteLeg: <a href="ContractUnit.TTradeRouteLeg.html">TTradeRouteLeg</a>) : Boolean; static;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Checks if the given TTradeRouteLeg conforms to the rules for being part of a TContractLeg.</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Loading"></span><code>property <strong>Loading</strong>: <a href="ContractUnit.TLoadingRecord.html">TLoadingRecord</a> read FLoading;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Data relating to the loading station.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Unloadings"></span><code>property <strong>Unloadings</strong>: <a href="ContractUnit.html#TUnloadingRecordArray">TUnloadingRecordArray</a> read GetUnloadings;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Data relating to the unloading stations.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="UnloadingsCount"></span><code>property <strong>UnloadingsCount</strong>: Integer read GetUnloadingsCount;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Number of unloading stations.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUMaxSize"></span><code>property <strong>SCUMaxSize</strong>: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a> read FSCUMaxSize;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Maximum container size.</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <div class="footer-text">
+            <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri/StarTools" target="_blank" rel="noopener noreferrer">github.com/JoeFerri</a></p>
+            <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+        </div>
+        <div class="footer-logo">
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">
+                <img src="agplv3-with-text-100x42.png" alt="AGPL Logo">
+            </a>
+        </div>
+    </div>
+</footer></div></div></body></html>

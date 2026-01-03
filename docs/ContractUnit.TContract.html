@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>StarTools Docs: ContractUnit: Class TContract</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">StarTools Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
+<span id="TContract"></span><h1 class="cio">Class TContract</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a href="ContractUnit.html">ContractUnit</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TContract = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+Represents a complete contract, consisting of one or more station-to-station contracts.</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TContract</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContract.html#GetContractLeg">GetContractLeg</a></strong>(const LoadingStationName: String; const Commodity: String): <a href="ContractUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>procedure <strong><a href="ContractUnit.TContract.html#AddContractLeg">AddContractLeg</a></strong>(const AContractLeg: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContract.html#RemoveTradeRouteLeg">RemoveTradeRouteLeg</a></strong>(const PanelID: Integer; out Leg: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContract.html#RemoveContractLeg">RemoveContractLeg</a></strong>(const AContractLeg: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>): Boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContract.html#Clone">Clone</a></strong>: <a href="ContractUnit.TContract.html">TContract</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <strong><a href="ContractUnit.TContract.html#ToString">ToString</a></strong>: String; override;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <strong><a href="ContractUnit.TContract.html#Create">Create</a></strong>(const AID: Integer; const ASCUMaxSize: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a>);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <strong><a href="ContractUnit.TContract.html#Destroy">Destroy</a></strong>; override;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class procedure <strong><a href="ContractUnit.TContract.html#SetConsoleServer">SetConsoleServer</a></strong>(AConsoleServer: TConsoleReaderThread); static;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ID">ID</a></strong>: Integer read FID;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#Contractor">Contractor</a></strong>: String read FContractor;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#aUEC">aUEC</a></strong>: Integer read FaUEC;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#SCUMaxSize">SCUMaxSize</a></strong>: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a> read FSCUMaxSize;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractLegsCount">ContractLegsCount</a></strong> : Integer read GetContractLegsCount;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractLegs">ContractLegs</a></strong>: <a href="ContractUnit.html#TContractLegArray">TContractLegArray</a> read GetContractLegs;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractRouteType">ContractRouteType</a></strong>: <a href="ContractUnit.html#TContractRouteType">TContractRouteType</a> read FContractRouteType;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractCargoRoute">ContractCargoRoute</a></strong>: <a href="ContractUnit.html#TContractCargoRoute">TContractCargoRoute</a> read FContractCargoRoute;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#UserRank">UserRank</a></strong>: <a href="ContractUnit.html#TUserRank">TUserRank</a> read FUserRank;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractCargoGradeScale">ContractCargoGradeScale</a></strong>: <a href="ContractUnit.html#TContractCargoGradeScale">TContractCargoGradeScale</a> read FContractCargoGradeScale;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractCargoGradeScaleDirect">ContractCargoGradeScaleDirect</a></strong>: <a href="ContractUnit.html#TContractCargoGradeScaleDirect">TContractCargoGradeScaleDirect</a> read FContractCargoGradeScaleDirect;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractTransportType">ContractTransportType</a></strong>: <a href="ContractUnit.html#TContractTransportType">TContractTransportType</a> read FContractTransportType;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <strong><a href="ContractUnit.TContract.html#ContractDifficultyModifier">ContractDifficultyModifier</a></strong>: <a href="ContractUnit.html#TContractDifficultyModifier">TContractDifficultyModifier</a> read FContractDifficultyModifier;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetContractLeg"></span><code>function <strong>GetContractLeg</strong>(const LoadingStationName: String; const Commodity: String): <a href="ContractUnit.TContractLeg.html">TContractLeg</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>LoadingStationName</dt>
+<dd>The name of the loading station.</dd>
+<dt>Commodity</dt>
+<dd>The name of the commodity.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><a class="normal" href="ContractUnit.TContractLeg.html">TContractLeg</a> with the given loading station name and commodity.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AddContractLeg"></span><code>procedure <strong>AddContractLeg</strong>(const AContractLeg: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Adds a trade route leg.  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>const</dt>
+<dd>AContractLeg: TContractLeg</dd>
+</dl>
+<h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><a class="normal" href="ContractUnit.EContractException.html">EContractException</a></dt>
+<dd>if the trade route leg is not conformed.</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="RemoveTradeRouteLeg"></span><code>function <strong>RemoveTradeRouteLeg</strong>(const PanelID: Integer; out Leg: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>): Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Removes a trade route leg. <code>Leg</code> is set to the removed trade route leg or <code>nil</code> if the trade route leg was not found.   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>PanelID</dt>
+<dd>The ID (<code>PanelID</code>) of the trade route leg.</dd>
+<dt>Leg</dt>
+<dd>The trade route leg.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> if the trade route leg was removed.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="RemoveContractLeg"></span><code>function <strong>RemoveContractLeg</strong>(const AContractLeg: <a href="ContractUnit.TContractLeg.html">TContractLeg</a>): Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Removes a trade route Leg  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AContractLeg</dt>
+<dd>The trade route leg.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> if the trade route leg was removed.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Clone"></span><code>function <strong>Clone</strong>: <a href="ContractUnit.TContract.html">TContract</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a deep copy of the TContract instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ToString"></span><code>function <strong>ToString</strong>: String; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Returns a string representation of the TContract instance.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <strong>Create</strong>(const AID: Integer; const ASCUMaxSize: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a>);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Creates a new TContract instance.  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>const</dt>
+<dd>AID: Integer</dd>
+<dt>const</dt>
+<dd>ASCUMaxSize: TSCUSize</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <strong>Destroy</strong>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Destructor.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SetConsoleServer"></span><code>class procedure <strong>SetConsoleServer</strong>(AConsoleServer: TConsoleReaderThread); static;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Sets the console server. </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>AConsoleServer</dt>
+<dd>The console server.</dd>
+</dl>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ID"></span><code>property <strong>ID</strong>: Integer read FID;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+ID of the contract.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Contractor"></span><code>property <strong>Contractor</strong>: String read FContractor;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Contractor</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="aUEC"></span><code>property <strong>aUEC</strong>: Integer read FaUEC;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Total mission payout in aUEC.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="SCUMaxSize"></span><code>property <strong>SCUMaxSize</strong>: <a href="SCUxSizeUnit.html#TSCUSize">TSCUSize</a> read FSCUMaxSize;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Maximum SCU size accepted for loading.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractLegsCount"></span><code>property <strong>ContractLegsCount</strong> : Integer read GetContractLegsCount;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Number of contract legs.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractLegs"></span><code>property <strong>ContractLegs</strong>: <a href="ContractUnit.html#TContractLegArray">TContractLegArray</a> read GetContractLegs;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Contracts that make up the mission.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractRouteType"></span><code>property <strong>ContractRouteType</strong>: <a href="ContractUnit.html#TContractRouteType">TContractRouteType</a> read FContractRouteType;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Type of contract route.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractCargoRoute"></span><code>property <strong>ContractCargoRoute</strong>: <a href="ContractUnit.html#TContractCargoRoute">TContractCargoRoute</a> read FContractCargoRoute;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Cargo route.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="UserRank"></span><code>property <strong>UserRank</strong>: <a href="ContractUnit.html#TUserRank">TUserRank</a> read FUserRank;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+User rank.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractCargoGradeScale"></span><code>property <strong>ContractCargoGradeScale</strong>: <a href="ContractUnit.html#TContractCargoGradeScale">TContractCargoGradeScale</a> read FContractCargoGradeScale;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Cargo grade scale.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractCargoGradeScaleDirect"></span><code>property <strong>ContractCargoGradeScaleDirect</strong>: <a href="ContractUnit.html#TContractCargoGradeScaleDirect">TContractCargoGradeScaleDirect</a> read FContractCargoGradeScaleDirect;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Cargo grade scale direct.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractTransportType"></span><code>property <strong>ContractTransportType</strong>: <a href="ContractUnit.html#TContractTransportType">TContractTransportType</a> read FContractTransportType;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Transport type.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ContractDifficultyModifier"></span><code>property <strong>ContractDifficultyModifier</strong>: <a href="ContractUnit.html#TContractDifficultyModifier">TContractDifficultyModifier</a> read FContractDifficultyModifier;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+Difficulty modifier.</p>
+</td></tr>
+</table>
+<br>
+<footer id="main-footer" class="doc-footer">
+    <div class="footer-content">
+        <div class="footer-text">
+            <p>&copy; Copyright (c) 2025 Giuseppe Ferri - <a href="https://github.com/JoeFerri/StarTools" target="_blank" rel="noopener noreferrer">github.com/JoeFerri</a></p>
+            <p><em>Generated by <a href="https://pasdoc.github.io/">PasDoc</a>.</em></p>
+        </div>
+        <div class="footer-logo">
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">
+                <img src="agplv3-with-text-100x42.png" alt="AGPL Logo">
+            </a>
+        </div>
+    </div>
+</footer></div></div></body></html>
