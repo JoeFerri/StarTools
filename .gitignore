@@ -12,6 +12,7 @@
 /project/libs/*
 !/project/libs/.gitkeep
 bin
+/project/images/starcitizen
 
 #
 #
