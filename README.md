@@ -178,9 +178,17 @@ The resulting files (e.g., `StarTools_v1.2.3-Release.zip`, `StarTools_v1.2.3-Deb
 
 ---
 
-# License 
+# License
 
-## AGPL-3.0 license 
+## Third-Party Intellectual Property (IP)
+
+All **game content, assets, and materials** are copyright of **Cloud Imperium Rights LLC** and **Cloud Imperium Rights Ltd**. **Star Citizen®**, **Squadron 42®**, **[Roberts Space Industries](https://robertsspaceindustries.com/en/)®**, and **[Cloud Imperium](https://cloudimperiumgames.com/)®** are registered trademarks of Cloud Imperium Rights LLC. All such materials are used here under "Fair Use" or the specific "Fandom/Fan Content" guidelines provided by the developer.
+
+## Software License (AGPL-3.0)
+
+**Only the source code** of this program is owned by the author and licensed under the terms of the **GNU Affero General Public License** as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Game assets, trademarks, and third-party materials mentioned above are expressly excluded from this license.
+
+### AGPL-3.0 license 
 
 Copyright (c) 2025 Giuseppe Ferri
 
