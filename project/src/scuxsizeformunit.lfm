@@ -6,9 +6,14 @@ object FormSCUxSize: TFormSCUxSize
   Anchors = []
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'StarTools - Hauling Manager'
+  Caption = 'Hauling Manager'
   ClientHeight = 616
   ClientWidth = 1380
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Electrolize'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
   KeyPreview = True
   Menu = MenuMain
   PopupMenu = PopupMenuMain
@@ -42,10 +47,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 738
-      Height = 15
-      Top = 30
-      Width = 22
+      Left = 736
+      Height = 16
+      Top = 29
+      Width = 27
       Anchors = [akLeft, akBottom]
       Caption = 'SCU'
     end
@@ -54,10 +59,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 789
-      Height = 15
-      Top = 30
-      Width = 44
+      Left = 786
+      Height = 16
+      Top = 29
+      Width = 51
       Anchors = [akLeft, akBottom]
       Caption = 'Max size'
     end
@@ -66,10 +71,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 589
-      Height = 15
-      Top = 30
-      Width = 72
+      Left = 587
+      Height = 16
+      Top = 29
+      Width = 77
       Anchors = [akLeft, akBottom]
       Caption = 'Commodities'
     end
@@ -78,10 +83,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 373
-      Height = 15
-      Top = 30
-      Width = 95
+      Left = 369
+      Height = 16
+      Top = 29
+      Width = 103
       Anchors = [akLeft, akBottom]
       Caption = 'Unloading Station'
     end
@@ -90,10 +95,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 985
-      Height = 15
-      Top = 30
-      Width = 12
+      Left = 983
+      Height = 16
+      Top = 29
+      Width = 16
       Anchors = [akLeft, akBottom]
       Caption = '32'
     end
@@ -102,10 +107,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 1039
-      Height = 15
-      Top = 30
-      Width = 12
+      Left = 1037
+      Height = 16
+      Top = 29
+      Width = 17
       Anchors = [akLeft, akBottom]
       Caption = '24'
     end
@@ -114,10 +119,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 1093
-      Height = 15
-      Top = 30
-      Width = 12
+      Left = 1092
+      Height = 16
+      Top = 29
+      Width = 14
       Anchors = [akLeft, akBottom]
       Caption = '16'
     end
@@ -126,10 +131,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 1150
-      Height = 15
-      Top = 30
-      Width = 6
+      Left = 1149
+      Height = 16
+      Top = 29
+      Width = 9
       Anchors = [akLeft, akBottom]
       Caption = '8'
     end
@@ -138,10 +143,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 1204
-      Height = 15
-      Top = 30
-      Width = 6
+      Left = 1203
+      Height = 16
+      Top = 29
+      Width = 9
       Anchors = [akLeft, akBottom]
       Caption = '4'
     end
@@ -150,10 +155,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 1258
-      Height = 15
-      Top = 30
-      Width = 6
+      Left = 1257
+      Height = 16
+      Top = 29
+      Width = 8
       Anchors = [akLeft, akBottom]
       Caption = '2'
     end
@@ -162,10 +167,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 1312
-      Height = 15
-      Top = 30
-      Width = 6
+      Left = 1313
+      Height = 16
+      Top = 29
+      Width = 5
       Anchors = [akLeft, akBottom]
       Caption = '1'
     end
@@ -174,10 +179,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 149
-      Height = 15
-      Top = 30
-      Width = 83
+      Left = 145
+      Height = 16
+      Top = 29
+      Width = 90
       Anchors = [akLeft, akBottom]
       Caption = 'Loading Station'
     end
@@ -186,10 +191,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = Bevel1
       AnchorSideBottom.Side = asrBottom
-      Left = 17
-      Height = 15
-      Top = 30
-      Width = 47
+      Left = 15
+      Height = 16
+      Top = 29
+      Width = 51
       Anchors = [akLeft, akBottom]
       BorderSpacing.Bottom = 10
       Caption = 'Group ID'
@@ -200,10 +205,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 855
-      Height = 15
-      Top = 30
-      Width = 28
+      Left = 854
+      Height = 16
+      Top = 29
+      Width = 30
       Anchors = [akLeft, akBottom]
       Caption = 'Done'
     end
@@ -212,10 +217,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideBottom.Control = LabelGroupID
       AnchorSideBottom.Side = asrBottom
-      Left = 913
-      Height = 15
-      Top = 30
-      Width = 29
+      Left = 911
+      Height = 16
+      Top = 29
+      Width = 32
       Anchors = [akLeft, akBottom]
       Caption = 'Show'
     end
@@ -947,26 +952,26 @@ object FormSCUxSize: TFormSCUxSize
     AnchorSideRight.Control = PanelRows
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
-    Left = 652
+    Left = 647
     Height = 99
     Top = 56
-    Width = 712
+    Width = 717
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 56
     ClientHeight = 99
-    ClientWidth = 712
+    ClientWidth = 717
     TabOrder = 1
     object EditSCUTotal: TEdit
       AnchorSideLeft.Control = PanelTotals
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 86
-      Height = 23
+      Left = 91
+      Height = 24
       Hint = 'Total SCU for all routes (including non-contractual routes).'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akLeft, akBottom]
-      BorderSpacing.Left = 85
+      BorderSpacing.Left = 90
       BorderSpacing.Bottom = 10
       NumbersOnly = True
       ParentShowHint = False
@@ -980,10 +985,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideLeft.Side = asrCenter
       AnchorSideTop.Control = BevelTotals
       AnchorSideBottom.Control = BevelTotals
-      Left = 455
-      Height = 15
-      Top = 26
-      Width = 125
+      Left = 451
+      Height = 16
+      Top = 24
+      Width = 143
       Anchors = [akLeft, akBottom]
       BorderSpacing.Top = 10
       BorderSpacing.Bottom = 8
@@ -994,10 +999,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 657
-      Height = 23
+      Left = 662
+      Height = 24
       Hint = 'Total SCU size 1.'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1014,10 +1019,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = EditSCUTotal01
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 603
-      Height = 23
+      Left = 608
+      Height = 24
       Hint = 'Total SCU size 2.'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1034,10 +1039,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = EditSCUTotal02
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 549
-      Height = 23
+      Left = 554
+      Height = 24
       Hint = 'Total SCU size 4.'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1054,10 +1059,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = EditSCUTotal04
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 495
-      Height = 23
+      Left = 500
+      Height = 24
       Hint = 'Total SCU size 8.'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1074,10 +1079,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = EditSCUTotal08
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 441
-      Height = 23
+      Left = 446
+      Height = 24
       Hint = 'Total SCU size 16.'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1094,10 +1099,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = EditSCUTotal16
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 387
-      Height = 23
+      Left = 392
+      Height = 24
       Hint = 'Total SCU size 24.'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1114,10 +1119,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = EditSCUTotal24
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 333
-      Height = 23
+      Left = 338
+      Height = 24
       Hint = 'Total SCU size 32.'
-      Top = 65
+      Top = 64
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1135,9 +1140,9 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = EditSCUTotal01
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = EditSCUTotal
-      Left = 333
+      Left = 338
       Height = 8
-      Top = 49
+      Top = 48
       Width = 368
       Anchors = [akLeft, akRight, akBottom]
       BorderSpacing.Bottom = 8
@@ -1145,10 +1150,10 @@ object FormSCUxSize: TFormSCUxSize
     object EditSCUTotalDone: TEdit
       AnchorSideLeft.Control = EditSCUTotal
       AnchorSideBottom.Control = EditSCUTotal
-      Left = 86
-      Height = 23
+      Left = 91
+      Height = 24
       Hint = 'Total SCUs completed.'
-      Top = 37
+      Top = 35
       Width = 44
       Anchors = [akLeft, akBottom]
       BorderSpacing.Bottom = 5
@@ -1162,10 +1167,10 @@ object FormSCUxSize: TFormSCUxSize
     object EditSCUTotalToDo: TEdit
       AnchorSideLeft.Control = EditSCUTotal
       AnchorSideBottom.Control = EditSCUTotalDone
-      Left = 86
-      Height = 23
+      Left = 91
+      Height = 24
       Hint = 'Total SCU to be completed.'
-      Top = 9
+      Top = 6
       Width = 44
       Anchors = [akLeft, akBottom]
       BorderSpacing.Bottom = 5
@@ -1181,9 +1186,9 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Control = EditSCUTotal
       AnchorSideTop.Side = asrCenter
       Left = 11
-      Height = 15
-      Top = 69
-      Width = 68
+      Height = 16
+      Top = 68
+      Width = 77
       BorderSpacing.Left = 10
       Caption = 'Total All SCU'
     end
@@ -1192,9 +1197,9 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Control = EditSCUTotalDone
       AnchorSideTop.Side = asrCenter
       Left = 11
-      Height = 15
-      Top = 41
-      Width = 57
+      Height = 16
+      Top = 39
+      Width = 62
       BorderSpacing.Left = 10
       Caption = 'Total Done'
     end
@@ -1203,9 +1208,9 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Control = EditSCUTotalToDo
       AnchorSideTop.Side = asrCenter
       Left = 11
-      Height = 15
-      Top = 13
-      Width = 60
+      Height = 16
+      Top = 10
+      Width = 65
       BorderSpacing.Left = 10
       Caption = 'Total To Do'
     end

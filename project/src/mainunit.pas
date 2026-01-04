@@ -35,34 +35,47 @@ uses
   TRLSortUnit, SCUxSizeFormUnit,
   ConsoleUnit, FormUnit,
   ConsoleSettingsDialogUnit, MainServiceUnit,
+  InfoUnit,
   VersionUnit;
 
 
 type
   { TFormMain }
   TFormMain = class(TForm, IConsoleInputHandler, IMainService)
+    ActionAbout: TAction;
     ActionShowConsoleSettings: TAction;
     ActionList: TActionList;
     ApplicationProperties: TApplicationProperties;
     Bevel16: TBevel;
     BitBtnSCUxSize: TBitBtn;
     CoolBarTopLeftMenu: TCoolBar;
+    ImageOrganization: TImage;
+    ImageAvatar: TImage;
     ImageAGPL: TImage;
     ImageBanner: TImage;
     ImageInfoTime_1: TImage;
     ImageInfoTime_2: TImage;
     ImageListMenu: TImageList;
-    ImageTimeStamp_1: TImage;
-    ImageTimeStamp_2: TImage;
+    ImageStarCitizenLogoLeft: TImage;
+    ImageStarCitizenLogoRight: TImage;
+    ImageStarCitizenLogoGreyLeft: TImage;
+    ImageStarCitizenLogoGreyRight: TImage;
     ImageWarning_1: TImage;
     ImageWarning_2: TImage;
     IniPropStorage: TIniPropStorage;
+    LabelStarCitizenActivity: TLabel;
+    LabelTime: TLabel;
     MainMenuItemShowConsoleSettings: TMenuItem;
+    MenuItemAbout: TMenuItem;
+    MenuItemAiuto: TMenuItem;
     MenuMain: TMainMenu;
+    PanelOrganization: TPanel;
+    PanelTop: TPanel;
+    PanelAvatar: TPanel;
     PanelTopMenu: TPanel;
     PanelBanner: TPanel;
     PanelTime: TPanel;
-    PanelTimeStamp: TPanel;
+    PanelStarCitizenActivity: TPanel;
     PopupMenuItemShowConsoleSettings: TMenuItem;
     MainMenuItemSettings: TMenuItem;
     PopupMenuItemSettings: TMenuItem;
@@ -79,6 +92,7 @@ type
     ToolButtonAlwaysShowOnTop: TToolButton;
     ToolButton3: TToolButton;
     ToolButtonConsole: TToolButton;
+    procedure ActionAboutExecute(Sender: TObject);
     procedure ActionShowConsoleSettingsExecute(Sender: TObject);
     procedure ApplicationPropertiesActivate(Sender: TObject);
     procedure ApplicationPropertiesDeactivate(Sender: TObject);
@@ -732,6 +746,18 @@ begin
     end;
   finally
     Dlg.Free;
+  end;
+end;
+
+procedure TFormMain.ActionAboutExecute(Sender: TObject);
+var
+  InfoDialog: TInfoForm;
+begin
+  InfoDialog := TInfoForm.Create(nil);
+  try
+    InfoDialog.ShowModal;
+  finally
+    InfoDialog.Free;
   end;
 end;
 

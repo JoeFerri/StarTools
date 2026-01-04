@@ -28,7 +28,7 @@ uses
 
 const        
   {* StarTools Version }
-  StarToolsVersion = '1.0.0'; // TODO: Make this dynamic
+  StarToolsVersion = '1.0.0-alpha'; // TODO: Make this dynamic
 
 
 

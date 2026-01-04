@@ -197,6 +197,14 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="VersionUnit"/>
       </Unit>
+      <Unit>
+        <Filename Value="src\infounit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="InfoForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="InfoUnit"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

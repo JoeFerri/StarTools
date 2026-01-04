@@ -6,6 +6,11 @@ object FormSizeDialog: TFormSizeDialog
   BorderIcons = [biSystemMenu]
   ClientHeight = 240
   ClientWidth = 182
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Electrolize'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
   LCLVersion = '4.4.0.0'
   object PanelSizeDialog: TPanel
     Left = 0

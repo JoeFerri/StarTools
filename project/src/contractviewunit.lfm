@@ -8,6 +8,11 @@ object FormContractView: TFormContractView
   ClientWidth = 800
   Constraints.MinHeight = 600
   Constraints.MinWidth = 800
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Electrolize'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
   Position = poWorkAreaCenter
   LCLVersion = '4.4.0.0'
   object PanelMain: TPanel
