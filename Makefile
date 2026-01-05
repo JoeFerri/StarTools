@@ -109,7 +109,9 @@ SRC = \
     "$(PATH_ROOT_SRC)$(SEP)project/src/scuxsizeunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/sizedialogunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/trlsortunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/versionunit.pas"
+    "$(PATH_ROOT_SRC)$(SEP)project/src/usernicknamesunit.pas" \
+    "$(PATH_ROOT_SRC)$(SEP)project/src/versionunit.pas" \
+    "$(PATH_ROOT_SRC)$(SEP)project/src/webunit.pas"
 
 
 

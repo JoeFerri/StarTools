@@ -72,6 +72,7 @@ DiGraph Uses {
   "MainUnit" -> "LCLType"
   "MainUnit" -> "ComCtrls"
   "MainUnit" -> "Windows"
+  "MainUnit" -> "LCLIntf"
   "MainUnit" -> "StateFormUnit"
   "MainUnit" -> "ContractUnit"
   "MainUnit" -> "ContractDBUnit"
@@ -81,6 +82,11 @@ DiGraph Uses {
   "MainUnit" -> "FormUnit"
   "MainUnit" -> "ConsoleSettingsDialogUnit"
   "MainUnit" -> "MainServiceUnit"
+  "MainUnit" -> "InfoUnit"
+  "MainUnit" -> "ProcessInfoUnit"
+  "MainUnit" -> "WebUnit"
+  "MainUnit" -> "UserNickNameUnit"
+  "MainUnit" -> "HTTPSUnit"
   "MainUnit" -> "VersionUnit"
   "MainUnit" [href="MainUnit.html"]
   "PanelRowUnit" -> "Classes"
@@ -151,4 +157,10 @@ DiGraph Uses {
   "VersionUnit" -> "Classes"
   "VersionUnit" -> "SysUtils"
   "VersionUnit" [href="VersionUnit.html"]
+  "WebUnit" -> "Classes"
+  "WebUnit" -> "SysUtils"
+  "WebUnit" -> "Windows"
+  "WebUnit" -> "WinHttp"
+  "WebUnit" -> "RegExpr"
+  "WebUnit" [href="WebUnit.html"]
 }
