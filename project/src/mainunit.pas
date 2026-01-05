@@ -35,7 +35,8 @@ uses
   TRLSortUnit, SCUxSizeFormUnit,
   ConsoleUnit, FormUnit,
   ConsoleSettingsDialogUnit, MainServiceUnit,
-  InfoUnit, ProcessInfoUnit,
+  InfoUnit, ProcessInfoUnit, WebUnit,
+  UserNickNameUnit, HTTPSUnit,
   VersionUnit;
 
 
@@ -116,7 +117,6 @@ type
     {* State of the Main Form }
     State: TState;
 
-    {*}
     FFormSCUxSize: TFormSCUxSize;
 
     {*
@@ -136,6 +136,9 @@ type
       operates on updated data.
     }
     procedure WMDisplayChange(var Message: TMessage); message WM_DISPLAYCHANGE;
+
+    {* Check and extract user info from web }
+    procedure UserInfoWebCheck;
   public
     {* Console Server }
     function Console : TConsoleReaderThread;
@@ -945,22 +948,65 @@ end;
 
 
 
+procedure TFormMain.UserInfoWebCheck;
+var
+  FormUserNickName: TFormUserNickName;
+  NickName: String;
+  UserOrganizationName: String;
+begin
+  NickName := '';
+
+  if _UserNickName = '' then
+  begin
+    FormUserNickName := TFormUserNickName.Create(nil);
+    try
+      if FormUserNickName.ShowModal = mrOK then
+      begin
+        NickName := FormUserNickName.NickName;
+
+        if CheckHTTPSURL( 'robertsspaceindustries.com',
+                          '/en/citizens/' + UnicodeString(NickName),
+                          'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
+        begin
+          _UserNickName := NickName;
+
+          _UserOrganization := '';
+          GetUserOrganization(_UserNickName, UserOrganizationName, 'StarTools Agent/' + UnicodeString(StarToolsVersionMM));
+          if UserOrganizationName <> '' then
+            _UserOrganization := UserOrganizationName;
+        end
+        else begin
+          ShowMessage('Invalid Nickname');
+        end;
+      end;
+    finally
+      FormUserNickName.Free;
+    end;
+  end;
+end;
+
+
+
 procedure TFormMain.ImageAvatarClick(Sender: TObject);
 begin
-   if not (_UserNickName = '') then
-   begin
-     OpenURL('https://robertsspaceindustries.com/en/citizens/' + _UserNickName);
-   end;
+  UserInfoWebCheck;
+
+  if not (_UserNickName = '') then
+  begin
+    OpenURL('https://robertsspaceindustries.com/en/citizens/' + _UserNickName);
+  end;
 end;
 
 
 
 procedure TFormMain.ImageOrganizationClick(Sender: TObject);
 begin
-   if not (_UserOrganization = '') then
-   begin
-     OpenURL('https://robertsspaceindustries.com/en/orgs/' + _UserOrganization);
-   end;
+  UserInfoWebCheck;
+
+  if not (_UserOrganization = '') then
+  begin
+    OpenURL('https://robertsspaceindustries.com/en/orgs/' + _UserOrganization);
+  end;
 end;
 
 

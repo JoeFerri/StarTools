@@ -26,9 +26,23 @@ uses
   Classes, SysUtils;
 
 
-const        
+const                   // TODO: Make this dynamic
+  {* Major Version Value }
+  StarToolsVersionMajor = '1';
+  {* Minor Version Value }
+  StarToolsVersionMinor = '0';
+  {* Patch Version Value }
+  StarToolsVersionPatch = '0';
+
+  {* Pre-Release Version Value }
+  StarToolsVersionPreRelease = 'alpha';
+  {* Major.Minor Version Value }
+  StarToolsVersionMM = StarToolsVersionMajor + '.' + StarToolsVersionMinor;
+  {* Major.Minor.Patch Version Value }
+  StarToolsVersionMMP = StarToolsVersionMM + '.' + StarToolsVersionPatch;
+
   {* StarTools Version }
-  StarToolsVersion = '1.0.0-alpha'; // TODO: Make this dynamic
+  StarToolsVersion = StarToolsVersionMMP + '-' + StarToolsVersionPreRelease;
 
 
 

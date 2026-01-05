@@ -205,6 +205,19 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InfoUnit"/>
       </Unit>
+      <Unit>
+        <Filename Value="src\usernicknameunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormUserNickName"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UserNickNameUnit"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\webunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="WebUnit"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
