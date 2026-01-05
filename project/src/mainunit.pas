@@ -825,11 +825,19 @@ begin
   begin
     LabelStarCitizenActivity.Caption := 'Star Citizen Online';
     LabelStarCitizenActivity.Font.Color := clGreen;
+    ImageStarCitizenLogoLeft.Visible := True;
+    ImageStarCitizenLogoRight.Visible := True;
+    ImageStarCitizenLogoGreyLeft.Visible := False;
+    ImageStarCitizenLogoGreyRight.Visible := False;
   end
   else
   begin
     LabelStarCitizenActivity.Caption := 'Star Citizen Offline';
-    LabelStarCitizenActivity.Font.Color := clMaroon;
+    LabelStarCitizenActivity.Font.Color := clMaroon;   
+    ImageStarCitizenLogoLeft.Visible := False;
+    ImageStarCitizenLogoRight.Visible := False;
+    ImageStarCitizenLogoGreyLeft.Visible := True;
+    ImageStarCitizenLogoGreyRight.Visible := True;
   end;
 end;
 
