@@ -2055,6 +2055,7 @@ object FormMain: TFormMain
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = PanelOrganization
         AnchorSideBottom.Side = asrBottom
+        Cursor = crHandPoint
         Left = 9
         Height = 45
         Hint = 'View Organization'
@@ -2212,6 +2213,7 @@ object FormMain: TFormMain
           23DF288EEE851A16A88CFFD9
         }
         ShowHint = True
+        OnClick = ImageOrganizationClick
       end
     end
     object PanelAvatar: TPanel
@@ -2237,6 +2239,7 @@ object FormMain: TFormMain
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = PanelAvatar
         AnchorSideBottom.Side = asrBottom
+        Cursor = crHandPoint
         Left = 9
         Height = 45
         Hint = 'View Citizen Dossier'
@@ -2368,6 +2371,7 @@ object FormMain: TFormMain
         }
         Proportional = True
         ShowHint = True
+        OnClick = ImageAvatarClick
       end
     end
   end
@@ -2394,7 +2398,7 @@ object FormMain: TFormMain
       end
     end
     object MenuItemAiuto: TMenuItem
-      Caption = 'Aiuto'
+      Caption = 'Help'
       object MenuItemAbout: TMenuItem
         Action = ActionAbout
       end
@@ -2422,8 +2426,8 @@ object FormMain: TFormMain
       end
     end
   end
-  object Timer1: TTimer
-    OnTimer = Timer1Timer
+  object TimerTimeActivity: TTimer
+    OnTimer = TimerTimeActivityTimer
     Left = 16
     Top = 488
   end
@@ -2628,5 +2632,11 @@ object FormMain: TFormMain
       8F11B13D900D2B0A8BE2D6B009694571F6CF0D4E3890EE957D22E344BCCA2ECB
       FE1FC1E49223
     }
+  end
+  object TimerStarCitizenActivity: TTimer
+    Interval = 6000
+    OnTimer = TimerStarCitizenActivityTimer
+    Left = 16
+    Top = 440
   end
 end

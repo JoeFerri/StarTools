@@ -29,13 +29,13 @@ uses
   Menus, ActnList,
   fpjson, jsonparser,
   Generics.Defaults,
-  LCLType, ComCtrls, Windows,
+  LCLType, ComCtrls, Windows, LCLIntf,
   StateFormUnit,
   ContractUnit, ContractDBUnit,
   TRLSortUnit, SCUxSizeFormUnit,
   ConsoleUnit, FormUnit,
   ConsoleSettingsDialogUnit, MainServiceUnit,
-  InfoUnit,
+  InfoUnit, ProcessInfoUnit,
   VersionUnit;
 
 
@@ -85,7 +85,8 @@ type
     SaveDialog1: TSaveDialog;
     StaticTextTime: TStaticText;
     StaticTextTimeStamp: TStaticText;
-    Timer1: TTimer;
+    TimerStarCitizenActivity: TTimer;
+    TimerTimeActivity: TTimer;
     ToolBarTopMenuWin: TToolBar;
     ToolBarTopMenuDev: TToolBar;
     ToolButtonTest: TToolButton;
@@ -103,14 +104,20 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormKeyPress(Sender: TObject; var Key: char);
+    procedure ImageAvatarClick(Sender: TObject);
+    procedure ImageOrganizationClick(Sender: TObject);
+    procedure TimerStarCitizenActivityTimer(Sender: TObject);
 
     procedure ToolButtonAlwaysShowOnTopClick(Sender: TObject);
     procedure ToolButtonConsoleClick(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
+    procedure TimerTimeActivityTimer(Sender: TObject);
     procedure ToolButtonTestClick(Sender: TObject);
   private
     {* State of the Main Form }
     State: TState;
+
+    {*}
+    FFormSCUxSize: TFormSCUxSize;
 
     {*
       Handles the @bold(WM_DISPLAYCHANGE) system message.
@@ -283,6 +290,10 @@ type
 
 
 
+const
+  StarCitizenProcessName = 'starcitizen.exe';
+
+
 
 
 var
@@ -326,12 +337,17 @@ const
   SelectedConsoleMonitorIndexKey = 'Selected_Console_Monitor_Index';
   SelectedConsoleMonitorIndexValueDefault = 0;
 
+  UserNickNameKey              = 'User_Nick_Name';
+  UserNickNameValueDefault     = '';
+
+  UserOrganizationKey          = 'User_Organization';
+  UserOrganizationValueDefault = '';
+
 
 
 
 
 var
-  _StartTime: TDateTime;
   _State: TState = TState.UnCreated;
 
   _ConsoleHide: Boolean;
@@ -349,8 +365,13 @@ var
   _FormMainPosMode: TFormPosMode;
   _SelectedFormMainMonitorIndex: Integer;
 
+  _UserNickName: String;
+  _UserOrganization: String;
 
-  FormSCUxSize: TFormSCUxSize;
+
+  _StarCitizenProcessStart: TDateTime;
+  _StarCitizenProcessFound: Boolean;
+
 
   {* Console Server }
   _Console: TConsoleReaderThread;
@@ -396,6 +417,10 @@ begin
   IniPropStorage.WriteInteger(ConsolePosModeKey,               Ord(ConsolePosModeValueDefault));
   IniPropStorage.WriteInteger(SelectedConsoleMonitorIndexKey,  SelectedConsoleMonitorIndexValueDefault);
 
+  IniPropStorage.WriteString(UserNickNameKey, UserNickNameValueDefault);
+  IniPropStorage.WriteString(UserOrganizationKey, UserOrganizationValueDefault);
+
+
   IniPropStorage.Save;
 end;
 
@@ -413,6 +438,10 @@ begin
 
   IniPropStorage.WriteInteger(ConsolePosModeKey,               Ord(_ConsolePosMode));
   IniPropStorage.WriteInteger(SelectedConsoleMonitorIndexKey,   _SelectedConsoleMonitorIndex);
+
+  IniPropStorage.WriteString(UserNickNameKey, _UserNickName);
+  IniPropStorage.WriteString(UserOrganizationKey, _UserOrganization);
+
 
   IniPropStorage.Save;
 end;
@@ -462,6 +491,12 @@ begin
   _SelectedConsoleMonitorIndex := IniPropStorage.ReadInteger(SelectedConsoleMonitorIndexKey, SelectedConsoleMonitorIndexValueDefault);
   if _SelectedConsoleMonitorIndex >= Screen.MonitorCount then
     _SelectedConsoleMonitorIndex := 0;
+
+  //
+  _UserNickName := IniPropStorage.ReadString(UserNickNameKey, UserNickNameValueDefault);
+  if _UserNickName = '' then _UserNickName := UserNickNameValueDefault;
+  _UserOrganization := IniPropStorage.ReadString(UserOrganizationKey, UserOrganizationValueDefault);
+  if _UserOrganization = '' then _UserOrganization := UserOrganizationValueDefault;
 end;
 
 
@@ -681,7 +716,7 @@ end;
 
 procedure TFormMain.BitBtnSCUxSizeClick(Sender: TObject);
 begin
-  FormSCUxSize.Show;
+  FFormSCUxSize.Show;
 end;
 
 
@@ -784,15 +819,48 @@ end;
 
 
 
-procedure TFormMain.Timer1Timer(Sender: TObject);
+procedure TFormMain.TimerStarCitizenActivityTimer(Sender: TObject);
+begin
+  if _StarCitizenProcessFound then
+  begin
+    LabelStarCitizenActivity.Caption := 'Star Citizen Online';
+    LabelStarCitizenActivity.Font.Color := clGreen;
+  end
+  else
+  begin
+    LabelStarCitizenActivity.Caption := 'Star Citizen Offline';
+    LabelStarCitizenActivity.Font.Color := clMaroon;
+  end;
+end;
+
+
+
+procedure TFormMain.TimerTimeActivityTimer(Sender: TObject);
 var
-  CurrentTime: TDateTime;
+  CurrentTime: TDateTime;   
+  StartTime: TDateTime;
 begin
   CurrentTime := Now;
 
   StaticTextTime.Caption := FormatDateTime('hh" : "nn" : "ss', CurrentTime);
 
-  StaticTextTimeStamp.Caption := FormatDateTime('hh"h " nn"m " ss"s"', CurrentTime - _StartTime);
+  //StaticTextTimeStamp.Caption := FormatDateTime('hh"h " nn"m " ss"s"', CurrentTime - _StartTime);
+  if FindProcessStartForExe(StarCitizenProcessName, StartTime) then
+  begin
+    _StarCitizenProcessFound := True;
+    _StarCitizenProcessStart := StartTime;
+
+    // 'hh"h " nn"m " ss"s"'
+    // 'yyyy-mm-dd hh:nn:ss'
+    StaticTextTimeStamp.Caption := FormatDateTime('hh:nn:ss', CurrentTime - _StarCitizenProcessStart);
+  end
+  else
+  begin
+    _StarCitizenProcessFound := False;
+    _StarCitizenProcessStart := 0;
+
+    StaticTextTimeStamp.Caption := 'hh:nn:ss';
+  end;
 end;
 
 
@@ -869,6 +937,26 @@ end;
 
 
 
+procedure TFormMain.ImageAvatarClick(Sender: TObject);
+begin
+   if not (_UserNickName = '') then
+   begin
+     OpenURL('https://robertsspaceindustries.com/en/citizens/' + _UserNickName);
+   end;
+end;
+
+
+
+procedure TFormMain.ImageOrganizationClick(Sender: TObject);
+begin
+   if not (_UserOrganization = '') then
+   begin
+     OpenURL('https://robertsspaceindustries.com/en/orgs/' + _UserOrganization);
+   end;
+end;
+
+
+
 constructor TFormMain.Create(TheOwner: TComponent);var
   ConfigPath: string;
 begin
@@ -938,7 +1026,7 @@ begin
   TContract.SetConsoleServer(_Console);
   // ------------------------------------------------   
 
-  FormSCUxSize := TFormSCUxSize.Create(nil, Self as IMainService);
+  FFormSCUxSize := TFormSCUxSize.Create(nil, Self as IMainService);
 
   ValidateMonitorSettings;
   UpdateMainFormPosition(Self); // TODO generalizzare in UpdateFormPosition
@@ -977,8 +1065,8 @@ end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
 begin
-  FormSCUxSize.Free;
-  FormSCUxSize := nil;
+  FFormSCUxSize.Free;
+  FFormSCUxSize := nil;
 
   _ContractDB.Free;
   _ContractDB := nil;
@@ -999,8 +1087,6 @@ end;
 
 
 initialization
-_StartTime := Now;
-
 _Console := nil;
 
 _ContractDB := nil;
@@ -1019,6 +1105,12 @@ _SelectedFormMainMonitorIndex := 0;
 
 _ConsolePosMode := cpmFollowMain;
 _SelectedConsoleMonitorIndex := 0;
+
+_UserNickName := '';
+
+
+_StarCitizenProcessStart := 0;
+_StarCitizenProcessFound := False;
 
 
 
