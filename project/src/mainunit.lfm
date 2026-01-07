@@ -18,6 +18,7 @@ object FormMain: TFormMain
   Menu = MenuMain
   PopupMenu = PopupMenuMain
   LCLVersion = '4.4.0.0'
+  OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -2212,7 +2213,35 @@ object FormMain: TFormMain
           D1A1008E6142C80A2A814AC80C840C5BAE5E06079A8B62DEC2260A32248ACA81
           23DF288EEE851A16A88CFFD9
         }
+        Proportional = True
         ShowHint = True
+        Transparent = True
+        OnClick = ImageOrganizationClick
+      end
+      object ImageOrganizationWeb: TImage
+        AnchorSideLeft.Control = PanelOrganization
+        AnchorSideLeft.Side = asrCenter
+        AnchorSideTop.Control = PanelOrganization
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = PanelOrganization
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = PanelOrganization
+        AnchorSideBottom.Side = asrBottom
+        Cursor = crHandPoint
+        Left = 9
+        Height = 45
+        Hint = 'View Organization'
+        Top = 7
+        Width = 45
+        BorderSpacing.Left = 3
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        BorderSpacing.Bottom = 3
+        ParentShowHint = False
+        Proportional = True
+        ShowHint = True
+        Transparent = True
+        Visible = False
         OnClick = ImageOrganizationClick
       end
     end
@@ -2371,6 +2400,33 @@ object FormMain: TFormMain
         }
         Proportional = True
         ShowHint = True
+        Transparent = True
+        OnClick = ImageAvatarClick
+      end
+      object ImageAvatarWeb: TImage
+        AnchorSideLeft.Control = PanelAvatar
+        AnchorSideLeft.Side = asrCenter
+        AnchorSideTop.Control = PanelAvatar
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = PanelAvatar
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = PanelAvatar
+        AnchorSideBottom.Side = asrBottom
+        Cursor = crHandPoint
+        Left = 9
+        Height = 45
+        Hint = 'View Citizen Dossier'
+        Top = 7
+        Width = 45
+        BorderSpacing.Left = 3
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 3
+        BorderSpacing.Bottom = 3
+        ParentShowHint = False
+        Proportional = True
+        ShowHint = True
+        Transparent = True
+        Visible = False
         OnClick = ImageAvatarClick
       end
     end

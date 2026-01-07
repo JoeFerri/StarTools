@@ -101,6 +101,8 @@ SRC = \
     "$(PATH_ROOT_SRC)$(SEP)project/src/contractdbunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/contractunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/contractviewunit.pas" \
+    "$(PATH_ROOT_SRC)$(SEP)project/src/infounit.pas" \
+    "$(PATH_ROOT_SRC)$(SEP)project/src/initunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/iounit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/mainserviceunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/mainunit.pas" \
@@ -108,6 +110,7 @@ SRC = \
     "$(PATH_ROOT_SRC)$(SEP)project/src/scuxsizeformunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/scuxsizeunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/sizedialogunit.pas" \
+    "$(PATH_ROOT_SRC)$(SEP)project/src/splashscreenunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/trlsortunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/usernicknamesunit.pas" \
     "$(PATH_ROOT_SRC)$(SEP)project/src/versionunit.pas" \

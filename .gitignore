@@ -73,6 +73,7 @@ saves/*
 backup
 
 # Temporary files for compilation, debugging or experimentation
+elab
 temp
 temp/
 temp.*

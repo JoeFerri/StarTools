@@ -6,6 +6,7 @@ object FormUserNickName: TFormUserNickName
   Caption = 'User NickName'
   ClientHeight = 130
   ClientWidth = 400
+  Position = poWorkAreaCenter
   LCLVersion = '4.4.0.0'
   object PanelTop: TPanel
     AnchorSideLeft.Control = Owner

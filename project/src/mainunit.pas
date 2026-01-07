@@ -25,7 +25,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   Buttons, ExtCtrls,
-  IniPropStorage,
+  IniPropStorage, InitUnit,
   Menus, ActnList,
   fpjson, jsonparser,
   Generics.Defaults,
@@ -37,7 +37,20 @@ uses
   ConsoleSettingsDialogUnit, MainServiceUnit,
   InfoUnit, ProcessInfoUnit, WebUnit,
   UserNickNameUnit, HTTPSUnit,
+  SplashScreenUnit,
   VersionUnit;
+
+
+
+type
+  TInitMainOperation = (
+    {*}
+    imoCheckingUserDossier,
+    {*}
+    imoCheckingUserOrg
+  );
+
+  TSetInitMainOperation = set of TInitMainOperation;
 
 
 type
@@ -50,6 +63,7 @@ type
     Bevel16: TBevel;
     BitBtnSCUxSize: TBitBtn;
     CoolBarTopLeftMenu: TCoolBar;
+    ImageAvatarWeb: TImage;
     ImageOrganization: TImage;
     ImageAvatar: TImage;
     ImageAGPL: TImage;
@@ -57,6 +71,7 @@ type
     ImageInfoTime_1: TImage;
     ImageInfoTime_2: TImage;
     ImageListMenu: TImageList;
+    ImageOrganizationWeb: TImage;
     ImageStarCitizenLogoLeft: TImage;
     ImageStarCitizenLogoRight: TImage;
     ImageStarCitizenLogoGreyLeft: TImage;
@@ -100,6 +115,7 @@ type
     procedure ApplicationPropertiesDeactivate(Sender: TObject);
     procedure BitBtnSCUxSizeClick(Sender: TObject);
     procedure BitBtnShowConsoleSettingsApplyClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -117,7 +133,15 @@ type
     {* State of the Main Form }
     State: TState;
 
+    FSetInitMainOperation: TSetInitMainOperation;
+
+    FFirstActivate: Boolean;
+
+    FActiveSplash: TFormSplashScreen;
+
     FFormSCUxSize: TFormSCUxSize;
+
+    FFormSplashScreen: TFormSplashScreen;
 
     {*
       Handles the @bold(WM_DISPLAYCHANGE) system message.
@@ -139,6 +163,21 @@ type
 
     {* Check and extract user info from web }
     procedure UserInfoWebCheck;
+
+    {*}
+    procedure SubInizializzazioneTerminata(Sender: TObject);
+
+    {*}
+    procedure CheckingUserDossier;
+
+    {*}
+    procedure CheckingUserDossierTerminate(Sender: TObject);
+
+    {*}
+    procedure CheckingUserOrg;
+
+    {*}
+    procedure CheckingUserOrgTerminate(Sender: TObject);
   public
     {* Console Server }
     function Console : TConsoleReaderThread;
@@ -346,6 +385,8 @@ const
   UserOrganizationKey          = 'User_Organization';
   UserOrganizationValueDefault = '';
 
+  UserOrganizationNoValue      = '___User_Organization_No_Value___';
+
 
 
 
@@ -369,7 +410,10 @@ var
   _SelectedFormMainMonitorIndex: Integer;
 
   _UserNickName: String;
-  _UserOrganization: String;
+  _UserNickNameTemp : String;
+  _UserOrganization: String;  
+  _UserOrganizationTemp: String;
+  _OrgLogoStream: TMemoryStream;
 
 
   _StarCitizenProcessStart: TDateTime;
@@ -948,42 +992,258 @@ end;
 
 
 
+procedure TFormMain.CheckingUserDossier;
+begin
+  if (_UserNickNameTemp <> '') and CheckHTTPSURL( 'robertsspaceindustries.com',
+                                                  '/en/citizens/' + UnicodeString(_UserNickNameTemp),
+                                                  'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
+  begin
+    _UserNickName := _UserNickNameTemp;
+    _UserNickNameTemp += _UserNickNameTemp;
+    _UserOrganization := '';
+  end;
+end;
+
+
+
+procedure TFormMain.CheckingUserDossierTerminate(Sender: TObject);
+begin
+  if Application.Terminated then Exit;
+
+  if (_UserNickNameTemp <> '') and (_UserNickNameTemp = _UserNickName + _UserNickName) then
+  begin
+    _UserNickNameTemp := '';
+
+    FFormSplashScreen.Hide;
+    FFormSplashScreen.ResetMessage;
+
+    Exclude(FSetInitMainOperation, imoCheckingUserDossier);
+
+    Self.Enabled := True;
+
+    UserInfoWebCheck;
+  end
+  else begin                 
+    _UserNickName := '';
+    _UserNickNameTemp := '';
+    _UserOrganization := '';
+
+    FFormSplashScreen.Hide;
+    FFormSplashScreen.ResetMessage;
+
+    Exclude(FSetInitMainOperation, imoCheckingUserDossier);
+
+    Self.Enabled := True;
+
+    ShowMessage('Invalid Nickname');
+  end;
+end;
+
+
+
+procedure TFormMain.CheckingUserOrg;
+var
+  LogoURL: string;
+begin
+  // Eseguito nel Thread: I/O e Parsing
+  _UserOrganizationTemp := '';
+  if (_UserNickName <> '') and GetOrgDataAndLogoURL(_UserNickName, _UserOrganizationTemp, LogoURL) then
+  begin
+    if _UserOrganizationTemp <> '' then
+    begin
+      _OrgLogoStream := TMemoryStream.Create;
+      // Scarica o carica dalla cache nello stream (Thread-safe)
+      if not GetOrLoadOrgLogoToStream(_UserOrganizationTemp, LogoURL, _OrgLogoStream) then
+        FreeAndNil(_OrgLogoStream);
+    end;
+  end;
+end;
+
+
+
+
+procedure TFormMain.CheckingUserOrgTerminate(Sender: TObject);
+begin
+  if Application.Terminated then Exit;
+
+  try
+    if Assigned(_OrgLogoStream) then
+    begin
+      _OrgLogoStream.Position := 0;
+      ImageOrganizationWeb.Picture.LoadFromStream(_OrgLogoStream);
+      _UserOrganization := _UserOrganizationTemp;
+      FreeAndNil(_OrgLogoStream);
+    end;
+  finally      
+    _UserOrganizationTemp := '';
+
+    FFormSplashScreen.Hide;
+    FFormSplashScreen.ResetMessage;
+
+    Exclude(FSetInitMainOperation, imoCheckingUserOrg);
+
+    Self.Enabled := True;
+
+    UserInfoWebCheck;
+  end;
+end;
+
+
+
 procedure TFormMain.UserInfoWebCheck;
 var
   FormUserNickName: TFormUserNickName;
-  NickName: String;
-  UserOrganizationName: String;
+  LThread: TInitializationThread;
 begin
-  NickName := '';
-
-  if _UserNickName = '' then
+  if (_UserNickName = '') and not (imoCheckingUserDossier in FSetInitMainOperation) then
   begin
     FormUserNickName := TFormUserNickName.Create(nil);
     try
       if FormUserNickName.ShowModal = mrOK then
       begin
-        NickName := FormUserNickName.NickName;
-
-        if CheckHTTPSURL( 'robertsspaceindustries.com',
-                          '/en/citizens/' + UnicodeString(NickName),
-                          'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
+        if FormUserNickName.NickName <> '' then
         begin
-          _UserNickName := NickName;
+          Self.Enabled := False;
+          Include(FSetInitMainOperation, imoCheckingUserDossier);
+          _UserNickNameTemp := FormUserNickName.NickName;
 
-          _UserOrganization := '';
-          GetUserOrganization(_UserNickName, UserOrganizationName, 'StarTools Agent/' + UnicodeString(StarToolsVersionMM));
-          if UserOrganizationName <> '' then
-            _UserOrganization := UserOrganizationName;
+          LThread := TInitializationThread.Create(@CheckingUserDossier, @CheckingUserDossierTerminate);
+
+          FFormSplashScreen.Show;
+          FFormSplashScreen.Message := 'Searching for user dossier...';
+          FFormSplashScreen.Update;
+
+          LThread.Start;
         end
         else begin
           ShowMessage('Invalid Nickname');
         end;
+        Exit;
       end;
     finally
       FormUserNickName.Free;
     end;
   end;
+
+  if ((_UserNickName <> '') and (_UserOrganization = '')) or
+    (
+      (_UserNickName <> '') and (_UserOrganization <> '') and (_UserOrganization <> UserOrganizationNoValue) and
+      (
+         not Assigned(ImageOrganizationWeb.Picture.Graphic) or
+         ImageOrganizationWeb.Picture.Graphic.Empty
+       )
+    ) then
+  begin
+    if not (imoCheckingUserOrg in FSetInitMainOperation) then
+    begin
+      Self.Enabled := False;   
+      _UserOrganizationTemp := '';
+
+      Include(FSetInitMainOperation, imoCheckingUserOrg);
+
+      LThread := TInitializationThread.Create(@CheckingUserOrg, @CheckingUserOrgTerminate);
+
+      FFormSplashScreen.Show;
+      FFormSplashScreen.Message := 'Retrieving Organization data...';
+      FFormSplashScreen.Update;
+
+      LThread.Start;
+      Exit; // Esci e attendi il thread
+    end;
+    // TODO: spostare queste righe nelle procedure del main e del thread, qui settare e avviare il thread e inserire un flag in FSetInitMainOperation
+    //if GetUserOrganizationAndLogo(_UserNickName, UserOrganizationName,
+    //                                ImageOrganizationWeb,
+    //                                  'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
+    //begin
+    //  _UserOrganization := UserOrganizationName;
+    //end;
+  end;
+
+  if (_UserOrganization <> '') and (_UserOrganization <> UserOrganizationNoValue) and
+        Assigned(ImageOrganizationWeb.Picture.Graphic) and
+          not ImageOrganizationWeb.Picture.Graphic.Empty and
+            (ImageOrganizationWeb.Picture.Width > 0) and
+              (ImageOrganizationWeb.Picture.Height > 0) then
+  begin
+    ImageOrganizationWeb.Visible := True;
+    ImageOrganization.Visible := False;
+  end
+  else begin
+    ImageOrganizationWeb.Visible := False;
+    ImageOrganization.Visible := True;
+  end;
 end;
+
+
+
+//procedure TFormMain.UserInfoWebCheck;
+//var
+//  FormUserNickName: TFormUserNickName;
+//  NickName: String;
+//  UserOrganizationName: String;   
+//  LThread: TInitializationThread;
+//begin
+//  NickName := '';
+//
+//  if _UserNickName = '' then
+//  begin
+//    FormUserNickName := TFormUserNickName.Create(nil);
+//    try
+//      if FormUserNickName.ShowModal = mrOK then
+//      begin
+//        NickName := FormUserNickName.NickName;
+//
+//        if CheckHTTPSURL( 'robertsspaceindustries.com',
+//                          '/en/citizens/' + UnicodeString(NickName),
+//                          'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
+//        begin
+//          _UserNickName := NickName;
+//
+//          _UserOrganization := '';
+//        end
+//        else begin
+//          ShowMessage('Invalid Nickname');
+//        end;
+//      end;
+//    finally
+//      FormUserNickName.Free;
+//    end;
+//  end;
+//
+//  if ((_UserNickName <> '') and (_UserOrganization = '')) or
+//    (
+//      (_UserNickName <> '') and (_UserOrganization <> '') and
+//      (
+//         not Assigned(ImageOrganizationWeb.Picture.Graphic) or
+//         ImageOrganizationWeb.Picture.Graphic.Empty
+//       )
+//    ) then
+//  begin
+//    if GetUserOrganizationAndLogo(_UserNickName, UserOrganizationName,
+//                                    ImageOrganizationWeb,
+//                                      'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
+//    begin
+//      _UserOrganization := UserOrganizationName;
+//    end;
+//    //GetUserOrganization(_UserNickName, UserOrganizationName, 'StarTools Agent/' + UnicodeString(StarToolsVersionMM));
+//    //if UserOrganizationName <> '' then
+//    //  _UserOrganization := UserOrganizationName;
+//  end;
+//
+//  if (_UserOrganization <> '') and
+//        Assigned(ImageOrganizationWeb.Picture.Graphic) and
+//          not ImageOrganizationWeb.Picture.Graphic.Empty and
+//            (ImageOrganizationWeb.Picture.Width > 0) and
+//              (ImageOrganizationWeb.Picture.Height > 0) then
+//  begin
+//    ImageOrganizationWeb.Visible := True;
+//    ImageOrganization.Visible := False;
+//  end
+//  else begin
+//    ImageOrganizationWeb.Visible := False;
+//    ImageOrganization.Visible := True;
+//  end;
+//end;
 
 
 
@@ -1019,6 +1279,11 @@ begin
   State:= TState.Created;
   _State:= TState.Created;
 
+  FSetInitMainOperation := [];
+
+  FFirstActivate := True;
+  FActiveSplash := nil;
+
   IniPropStorage.IniSection:= 'Application';
   {$IFDEF LINUX}
   ConfigPath := GetAppConfigFile(False,True); // /home/<user>/.config/StarTools/StarTools.cfg;
@@ -1049,6 +1314,8 @@ begin
       ApplicationPropertiesActivate(Sender);
     end;
 
+  ImageAvatarWeb.Picture.Assign(nil);
+  ImageOrganizationWeb.Picture.Assign(nil);
 
   // Console Server ---------------------------------
   S := LineEnding +
@@ -1078,7 +1345,7 @@ begin
   _Console.DebugLog('TFormMain.FormCreate', 'ContractDB created');
   // ------------------------------------------------
   TContract.SetConsoleServer(_Console);
-  // ------------------------------------------------   
+  // ------------------------------------------------
 
   FFormSCUxSize := TFormSCUxSize.Create(nil, Self as IMainService);
 
@@ -1089,6 +1356,43 @@ begin
   // C:\Users\<user>\AppData\Local\StarTools\StarTools.cfg
   _Console.DebugLog('TFormMain.FormCreate', 'IniFile = ' + IniPropStorage.IniFileName);
 end;
+
+
+
+procedure TFormMain.FormActivate(Sender: TObject);
+begin
+  if FFirstActivate then
+  begin
+    FFirstActivate := False;
+
+    FFormSplashScreen := TFormSplashScreen.Create(Self);
+    FFormSplashScreen.Hide;
+
+    UserInfoWebCheck;
+  end;
+end;
+
+
+
+procedure TFormMain.SubInizializzazioneTerminata(Sender: TObject);
+var
+  LThread: TInitializationThread;
+begin
+  LThread := TInitializationThread(Sender);
+
+  if LThread.ErrorMessage <> '' then
+    ShowMessage('Errore inizializzazione: ' + LThread.ErrorMessage);
+
+  if Assigned(FActiveSplash) then
+  begin
+    FActiveSplash.Free;
+    FActiveSplash := nil;
+  end;
+
+  Self.Enabled := True;
+  Self.SetFocus;
+end;
+
 
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -1121,6 +1425,9 @@ procedure TFormMain.FormDestroy(Sender: TObject);
 begin
   FFormSCUxSize.Free;
   FFormSCUxSize := nil;
+
+  //FFormSplashScreen.Free;
+  //FFormSplashScreen := nil;
 
   _ContractDB.Free;
   _ContractDB := nil;
@@ -1161,6 +1468,10 @@ _ConsolePosMode := cpmFollowMain;
 _SelectedConsoleMonitorIndex := 0;
 
 _UserNickName := '';
+_UserNickNameTemp := '';
+_UserOrganization := '';
+_UserOrganizationTemp := '';
+_OrgLogoStream := nil;
 
 
 _StarCitizenProcessStart := 0;
