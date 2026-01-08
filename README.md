@@ -36,12 +36,32 @@ In no way have the game's executable files been examined and/or manipulated for 
 
 ---
 
-## Main RoadMap - tasks completed
+## Documentation
 
-- [x] MVP (Minimum Viable Product) code implementation
+### Technical Documentation
 
-for the full roadmap see [roadmap.md](roadmap.md)
+For developers and contributors, the API reference generated from the source code is available here:
+* **[StarTools Online Documentation](https://joeferri.github.io/StarTools/)**
 
+### User Guides (Coming Soon)
+I am currently working on comprehensive guides to help players get the most out of StarTools:
+* 🎬 **Video Tutorial:** A step-by-step walkthrough of the main features (to be hosted on YouTube).
+* 📄 **PDF User Manual:** A downloadable, detailed guide covering all tools and shortcuts.
+
+*Stay tuned for updates in the upcoming releases!*
+
+### Main Dashboard
+
+#### Personal avatar and organization logos with game status tracking
+[![Main Dashboard Game online](images/StarTools_Main-Online.png)](images/StarTools_Main-Online.png)
+
+#### Default logos and game idle state
+[![Main Dashboard Game offline](images/StarTools_Main-Offline.png)](images/StarTools_Main-Offline.png)
+
+#### Loading/unloading contract and route management tools
+[![Hauling Manager and Contract View](images/StarTools_Hauling_Manager-ContractView.png)](images/StarTools_Hauling_Manager-ContractView.png)
+
+---
 
 ## Installation
 
@@ -63,19 +83,11 @@ StarTools is currently available as a standalone portable application. You don't
 
 ---
 
-## Documentation
+## Main RoadMap - tasks completed
 
-### Technical Documentation
+- [x] MVP (Minimum Viable Product) code implementation
 
-For developers and contributors, the API reference generated from the source code is available here:
-* **[StarTools Online Documentation](https://joeferri.github.io/StarTools/)**
-
-### User Guides (Coming Soon)
-I am currently working on comprehensive guides to help players get the most out of StarTools:
-* 🎬 **Video Tutorial:** A step-by-step walkthrough of the main features (to be hosted on YouTube).
-* 📄 **PDF User Manual:** A downloadable, detailed guide covering all tools and shortcuts.
-
-*Stay tuned for updates in the upcoming releases!*
+for the full roadmap see [roadmap.md](roadmap.md)
 
 ---
 
