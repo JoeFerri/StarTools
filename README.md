@@ -11,7 +11,17 @@ The project is built with a **non-intrusive philosophy**: StarTools does not rea
 
 <p align="center">
   <a href="https://github.com/JoeFerri/StarTools/releases/latest">
-    <img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge&logo=rocket&logoColor=white" />
+    <img src="https://img.shields.io/badge/Release_Page-Latest-blue?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/JoeFerri/StarTools/releases/download/v1.1.0-alpha/StarTools_v1.1.0-alpha-Release.zip">
+    <img src="https://img.shields.io/badge/Download-v1.1.0--alpha_Release-forestgreen?style=for-the-badge&logo=rocket&logoColor=white" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/JoeFerri/StarTools/releases/download/v1.1.0-alpha/StarTools_v1.1.0-alpha-Debug.zip">
+    <img src="https://img.shields.io/badge/Download-v1.1.0--alpha_Debug-grey?style=for-the-badge&logo=bug&logoColor=white" />
   </a>
 </p>
 
