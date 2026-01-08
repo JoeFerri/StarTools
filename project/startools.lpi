@@ -22,6 +22,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
+      <BuildNr Value="3"/>
       <Attributes pvaPreRelease="True"/>
       <StringTable Comments="Fan-made Star Citizen tools." CompanyName="Giuseppe Ferri 2025" FileDescription="Fan-made Star Citizen tools." LegalCopyright="Giuseppe Ferri 2025" ProductName="StarTools" ProductVersion="1.0"/>
     </VersionInfo>
@@ -80,7 +81,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="startools-release" ApplyConventions="False"/>
+            <Filename Value="startools-release"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
