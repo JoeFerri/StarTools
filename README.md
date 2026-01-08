@@ -3,13 +3,19 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct-eng.md)
 
 
-# StarTools
+# 👨‍🚀 StarTools 👩‍🚀
 
 **StarTools** is a collection of utilities designed to enhance the Quality of Life (QoL) for players in **Star Citizen**.
 
 The project is built with a **non-intrusive philosophy**: StarTools does not read the game's memory or cache, nor does it modify game executables or any other internal files. It operates as a completely external assistant, ensuring full compatibility with the game's Terms of Service.
 
-## Features
+<p align="center">
+  <a href="https://github.com/JoeFerri/StarTools/releases/latest">
+    <img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge&logo=rocket&logoColor=white" />
+  </a>
+</p>
+
+## ✨ Features
 
 The application features a main dashboard where users can access various specialized tools. Currently, the following module is implemented:
 
@@ -22,7 +28,7 @@ The application features a main dashboard where users can access various special
 
 More tools are currently under development and will be added to the main dashboard in future updates.
 
-## Legal Disclaimer
+## ⚖️ Legal Disclaimer
 
 **StarTools** is a fan-made, non-profit software developed by a player for the community.
 
@@ -31,19 +37,19 @@ More tools are currently under development and will be added to the main dashboa
 
 ---
 
-## Data Sources
-In no way have the game's executable files been examined and/or manipulated for the design and development of StarTools.
+## 📡 Data Sources
+⚠️ In no way have the game's executable files been examined and/or manipulated for the design and development of StarTools.
 
 ---
 
-## Documentation
+## 📖 Documentation
 
-### Technical Documentation
+### 🛠️ Technical Documentation
 
 For developers and contributors, the API reference generated from the source code is available here:
 * **[StarTools Online Documentation](https://joeferri.github.io/StarTools/)**
 
-### User Guides (Coming Soon)
+### ⏳ User Guides (Coming Soon)
 I am currently working on comprehensive guides to help players get the most out of StarTools:
 * 🎬 **Video Tutorial:** A step-by-step walkthrough of the main features (to be hosted on YouTube).
 * 📄 **PDF User Manual:** A downloadable, detailed guide covering all tools and shortcuts.
@@ -52,20 +58,20 @@ I am currently working on comprehensive guides to help players get the most out 
 
 ### Main Dashboard
 
-#### Personal avatar and organization logos with game status tracking
+#### 👤 Personal avatar and organization logos with game status tracking
 [![Main Dashboard Game online](images/StarTools_Main-Online.png)](images/StarTools_Main-Online.png)
 
-#### Default logos and game idle state
+#### 🛸 Default logos and game idle state
 [![Main Dashboard Game offline](images/StarTools_Main-Offline.png)](images/StarTools_Main-Offline.png)
 
-#### Loading/unloading contract and route management tools
+#### 📦 Loading/unloading contract and route management tools
 [![Hauling Manager and Contract View](images/StarTools_Hauling_Manager-ContractView.png)](images/StarTools_Hauling_Manager-ContractView.png)
 
 ---
 
-## Installation
+## 📥 Installation
 
-StarTools is currently available as a standalone portable application. You don't need to run an installer.
+**StarTools** is currently available as a standalone portable application. You don't need to run an installer.
 
 1. Navigate to the **[Releases](https://github.com/JoeFerri/StarTools/releases)** page.
 2. Download the `.zip` package that best suits your needs:
@@ -83,7 +89,7 @@ StarTools is currently available as a standalone portable application. You don't
 
 ---
 
-## Main RoadMap - tasks completed
+## 🗺️ Main RoadMap - tasks completed
 
 - [x] MVP (Minimum Viable Product) code implementation
 
@@ -91,11 +97,11 @@ for the full roadmap see [roadmap.md](roadmap.md)
 
 ---
 
-## Compilation
+## 🏗️ Compilation
 
 This project is specifically designed for **Windows**, as Star Citizen is a Windows-only application.
 
-### Prerequisites
+### 📋 Prerequisites
 
 To compile StarTools, you need to have the following tools installed on your system:
 
@@ -104,7 +110,7 @@ To compile StarTools, you need to have the following tools installed on your sys
 * **Documentation Tools:** [PasDoc](https://pasdoc.github.io/) and [Graphviz](https://graphviz.org/) (required only if you want to generate the documentation via Makefile).
 * **Environment:** [WSL2 (Ubuntu)](https://learn.microsoft.com/en-us/windows/wsl/install) is required to run the provided `Makefile` on Windows 11.
 
-### Step-by-Step Instructions
+### 👣 Step-by-Step Instructions
 
 #### 1. Clone the Repository
 Start by cloning this repository to your local machine:
@@ -176,7 +182,7 @@ The resulting files (e.g., `StarTools_v1.2.3-Release.zip`, `StarTools_v1.2.3-Deb
 
 ---
 
-### Code of conduct
+### 🤝 Code of conduct
 
 [ENG](code_of_conduct-eng.md)
 
@@ -184,23 +190,23 @@ The resulting files (e.g., `StarTools_v1.2.3-Release.zip`, `StarTools_v1.2.3-Deb
 
 ---
 
-## Contribution Guidelines
+## 💡 Contribution Guidelines
 
 [Contribution Guidelines](https://github.com/JoeFerri/StarTools/CONTRIBUTING.md)
 
 ---
 
-# License
+# 📜 License
 
-## Third-Party Intellectual Property (IP)
+## 📑 Third-Party Intellectual Property (IP)
 
 All **game content, assets, and materials** are copyright of **Cloud Imperium Rights LLC** and **Cloud Imperium Rights Ltd**. **Star Citizen®**, **Squadron 42®**, **[Roberts Space Industries](https://robertsspaceindustries.com/en/)®**, and **[Cloud Imperium](https://cloudimperiumgames.com/)®** are registered trademarks of Cloud Imperium Rights LLC. All such materials are used here under "Fair Use" or the specific "Fandom/Fan Content" guidelines provided by the developer.
 
-## Software License (AGPL-3.0)
+## ⚖️ Software License (AGPL-3.0)
 
 **Only the source code** of this program is owned by the author and licensed under the terms of the **GNU Affero General Public License** as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Game assets, trademarks, and third-party materials mentioned above are expressly excluded from this license.
 
-### AGPL-3.0 license 
+### 🔓 AGPL-3.0 license 
 
 Copyright (c) 2025 Giuseppe Ferri
 
