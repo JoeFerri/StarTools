@@ -11,6 +11,12 @@ DiGraph Classes {
   "TFormSCUxSize" [href="SCUxSizeFormUnit.TFormSCUxSize.html"]
   "TFormSizeDialog" -> "TForm"
   "TFormSizeDialog" [href="SizeDialogUnit.TFormSizeDialog.html"]
+  "TFormSplashScreen" -> "TForm"
+  "TFormSplashScreen" [href="SplashScreenUnit.TFormSplashScreen.html"]
+  "TFormUserNickName" -> "TForm"
+  "TFormUserNickName" [href="UserNickNameUnit.TFormUserNickName.html"]
+  "TInfoForm" -> "TForm"
+  "TInfoForm" [href="InfoUnit.TInfoForm.html"]
   "Exception" -> "TObject"
   "EContractException" -> "Exception"
   "EContractException" [href="ContractUnit.EContractException.html"]
@@ -22,6 +28,9 @@ DiGraph Classes {
   "TContractLeg" [href="ContractUnit.TContractLeg.html"]
   "TPanelSubscriber" -> "TObject"
   "TPanelSubscriber" [href="ContractDBUnit.TPanelSubscriber.html"]
+  "TThread" -> "TObject"
+  "TInitializationThread" -> "TThread"
+  "TInitializationThread" [href="InitUnit.TInitializationThread.html"]
   "TPanelRow" -> "TPanel"
   "TPanelRow" [href="PanelRowUnit.TPanelRow.html"]
 }

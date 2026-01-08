@@ -23,39 +23,46 @@ unit MainUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, ExtCtrls,
-  IniPropStorage, InitUnit,
-  Menus, ActnList,
-  fpjson, jsonparser,
-  Generics.Defaults,
-  LCLType, ComCtrls, Windows, LCLIntf,
-  StateFormUnit,
-  ContractUnit, ContractDBUnit,
-  TRLSortUnit, SCUxSizeFormUnit,
-  ConsoleUnit, FormUnit,
-  ConsoleSettingsDialogUnit, MainServiceUnit,
-  InfoUnit, ProcessInfoUnit, WebUnit,
-  UserNickNameUnit, HTTPSUnit,
-  SplashScreenUnit,
-  VersionUnit;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
+  ExtCtrls, FileUtil, LazFileUtils, IniPropStorage, InitUnit, Menus, ActnList,
+  fpjson, jsonparser, Generics.Defaults, LCLType, ComCtrls, Windows, LCLIntf,
+  AdvLed, LedNumber, IndLed, BCLeaLED, BCLeaQLED, StateFormUnit, ContractUnit,
+  ContractDBUnit, TRLSortUnit, SCUxSizeFormUnit, ConsoleUnit, FormUnit,
+  ConsoleSettingsDialogUnit, MainServiceUnit, InfoUnit, ProcessInfoUnit,
+  WebUnit, UserNicknameUnit, HTTPSUnit, SplashScreenUnit, IOUnit, VersionUnit;
 
 
 
 type
+  {* 
+    Defines the specific sub-operations involved in the user profile initialization 
+    and web data retrieval process. 
+  }
   TInitMainOperation = (
-    {*}
+    {* The application is scraping the RSI website to verify the citizen's existence and public dossier. }
     imoCheckingUserDossier,
-    {*}
-    imoCheckingUserOrg
+    {* The application is downloading the user's avatar image. }
+    imoCheckingUserAvatar,
+    {* The application is identifying the user's primary organization and downloading its logo. }
+    imoCheckingUserOrg,
+    {* State triggered when the user clicks the avatar placeholder before a nickname is set. }
+    imoAvatarClick,
+    {* State triggered when the user clicks the organization placeholder before a nickname is set. }
+    imoOrganizationClick,
+    {* State triggered when the user manually initiates a profile change/update. }
+    imoProfileClick,
+    {* State used to clear all current web-retrieved profile data from memory and UI. }
+    imoProfileReset
   );
 
+  {* Set of active profile initialization operations. }
   TSetInitMainOperation = set of TInitMainOperation;
 
 
 type
   { TFormMain }
   TFormMain = class(TForm, IConsoleInputHandler, IMainService)
+    ActionClearCache: TAction;
     ActionAbout: TAction;
     ActionShowConsoleSettings: TAction;
     ActionList: TActionList;
@@ -82,6 +89,8 @@ type
     LabelStarCitizenActivity: TLabel;
     LabelTime: TLabel;
     MainMenuItemShowConsoleSettings: TMenuItem;
+    MenuItemClearCache: TMenuItem;
+    MenuItemTools: TMenuItem;
     MenuItemAbout: TMenuItem;
     MenuItemAiuto: TMenuItem;
     MenuMain: TMainMenu;
@@ -105,11 +114,13 @@ type
     TimerTimeActivity: TTimer;
     ToolBarTopMenuWin: TToolBar;
     ToolBarTopMenuDev: TToolBar;
+    ToolButtonProfile: TToolButton;
     ToolButtonTest: TToolButton;
     ToolButtonAlwaysShowOnTop: TToolButton;
     ToolButton3: TToolButton;
     ToolButtonConsole: TToolButton;
     procedure ActionAboutExecute(Sender: TObject);
+    procedure ActionClearCacheExecute(Sender: TObject);
     procedure ActionShowConsoleSettingsExecute(Sender: TObject);
     procedure ApplicationPropertiesActivate(Sender: TObject);
     procedure ApplicationPropertiesDeactivate(Sender: TObject);
@@ -124,6 +135,7 @@ type
     procedure ImageAvatarClick(Sender: TObject);
     procedure ImageOrganizationClick(Sender: TObject);
     procedure TimerStarCitizenActivityTimer(Sender: TObject);
+    procedure ToolButtonProfileClick(Sender: TObject);
 
     procedure ToolButtonAlwaysShowOnTopClick(Sender: TObject);
     procedure ToolButtonConsoleClick(Sender: TObject);
@@ -133,14 +145,15 @@ type
     {* State of the Main Form }
     State: TState;
 
+    {* Set of flags tracking the progress of the profile data retrieval state machine. }
     FSetInitMainOperation: TSetInitMainOperation;
 
     FFirstActivate: Boolean;
 
-    FActiveSplash: TFormSplashScreen;
-
+    {* Reference to the SCU size calculation form. }
     FFormSCUxSize: TFormSCUxSize;
 
+    {* Reference to the splash screen/overlay form used to show progress during web requests. }
     FFormSplashScreen: TFormSplashScreen;
 
     {*
@@ -161,23 +174,49 @@ type
     }
     procedure WMDisplayChange(var Message: TMessage); message WM_DISPLAYCHANGE;
 
-    {* Check and extract user info from web }
+    {*
+      Orchestrates the asynchronous state machine for profile data retrieval.
+      
+      This procedure manages the transition between different initialization states:
+      @orderedList(
+        @item(Prompts for a Nickname if missing or requested via @link(imoProfileClick).)
+        @item(Starts a background thread to verify the Dossier via @link(WebUnit.GetOrgDataAndLogoURL).)
+        @item(Triggers Avatar retrieval via @link(WebUnit.GetAvatarDataAndLogoURL).)
+        @item(Triggers Organization logo retrieval via @link(WebUnit.GetOrLoadOrgLogoToStream).)
+        @item(Updates the UI @code(TImage) components once data is available.)
+      )
+      
+      @bold(Technical Note:) Each step is executed in a @link(TInitializationThread) to prevent
+      the UI from freezing during WinHttp blocking calls.
+    }
     procedure UserInfoWebCheck;
 
-    {*}
-    procedure SubInizializzazioneTerminata(Sender: TObject);
-
-    {*}
+    {* Thread-safe wrapper for @link(WebUnit.GetOrgDataAndLogoURL) and HTTPS availability checks. }
     procedure CheckingUserDossier;
 
-    {*}
+    {*
+      Callback triggered when the Dossier check thread finishes. 
+      Updates the @code(_UserNickname) and progresses the state machine.
+    }
     procedure CheckingUserDossierTerminate(Sender: TObject);
 
-    {*}
+    {* Thread-safe wrapper for retrieving Organization SID and Logo URL. }
     procedure CheckingUserOrg;
 
-    {*}
-    procedure CheckingUserOrgTerminate(Sender: TObject);
+    {*
+      Callback triggered when the Organization data retrieval thread finishes. 
+      Loads the resulting stream into @code(ImageOrganizationWeb).
+    }
+    procedure CheckingUserOrgTerminate(Sender: TObject);    
+
+    {* Thread-safe wrapper for retrieving the User Avatar URL and downloading the image. }
+    procedure CheckingUserAvatar;
+
+    {*
+      Callback triggered when the Avatar retrieval thread finishes. 
+      Loads the resulting stream into @code(ImageAvatarWeb).
+    }
+    procedure CheckingUserAvatarTerminate(Sender: TObject);
   public
     {* Console Server }
     function Console : TConsoleReaderThread;
@@ -332,11 +371,6 @@ type
 
 
 
-const
-  StarCitizenProcessName = 'starcitizen.exe';
-
-
-
 
 var
   {* Main Form }
@@ -379,8 +413,8 @@ const
   SelectedConsoleMonitorIndexKey = 'Selected_Console_Monitor_Index';
   SelectedConsoleMonitorIndexValueDefault = 0;
 
-  UserNickNameKey              = 'User_Nick_Name';
-  UserNickNameValueDefault     = '';
+  UserNicknameKey              = 'User_Nick_Name';
+  UserNicknameValueDefault     = '';
 
   UserOrganizationKey          = 'User_Organization';
   UserOrganizationValueDefault = '';
@@ -409,11 +443,17 @@ var
   _FormMainPosMode: TFormPosMode;
   _SelectedFormMainMonitorIndex: Integer;
 
-  _UserNickName: String;
-  _UserNickNameTemp : String;
+  _UserNickname: String;
+  _UserNicknameTemp : String;
   _UserOrganization: String;  
   _UserOrganizationTemp: String;
+
+  _AvatarLogoStream: TMemoryStream;
   _OrgLogoStream: TMemoryStream;
+
+  _DebugMessageTemp: String;
+  _UserAvatarNoLogo: Boolean; 
+  _UserOrganizationNoLogo: Boolean;
 
 
   _StarCitizenProcessStart: TDateTime;
@@ -464,7 +504,7 @@ begin
   IniPropStorage.WriteInteger(ConsolePosModeKey,               Ord(ConsolePosModeValueDefault));
   IniPropStorage.WriteInteger(SelectedConsoleMonitorIndexKey,  SelectedConsoleMonitorIndexValueDefault);
 
-  IniPropStorage.WriteString(UserNickNameKey, UserNickNameValueDefault);
+  IniPropStorage.WriteString(UserNicknameKey, UserNicknameValueDefault);
   IniPropStorage.WriteString(UserOrganizationKey, UserOrganizationValueDefault);
 
 
@@ -486,7 +526,7 @@ begin
   IniPropStorage.WriteInteger(ConsolePosModeKey,               Ord(_ConsolePosMode));
   IniPropStorage.WriteInteger(SelectedConsoleMonitorIndexKey,   _SelectedConsoleMonitorIndex);
 
-  IniPropStorage.WriteString(UserNickNameKey, _UserNickName);
+  IniPropStorage.WriteString(UserNicknameKey, _UserNickname);
   IniPropStorage.WriteString(UserOrganizationKey, _UserOrganization);
 
 
@@ -540,8 +580,8 @@ begin
     _SelectedConsoleMonitorIndex := 0;
 
   //
-  _UserNickName := IniPropStorage.ReadString(UserNickNameKey, UserNickNameValueDefault);
-  if _UserNickName = '' then _UserNickName := UserNickNameValueDefault;
+  _UserNickname := IniPropStorage.ReadString(UserNicknameKey, UserNicknameValueDefault);
+  if _UserNickname = '' then _UserNickname := UserNicknameValueDefault;
   _UserOrganization := IniPropStorage.ReadString(UserOrganizationKey, UserOrganizationValueDefault);
   if _UserOrganization = '' then _UserOrganization := UserOrganizationValueDefault;
 end;
@@ -845,6 +885,60 @@ end;
 
 
 
+procedure TFormMain.ActionClearCacheExecute(Sender: TObject);
+var
+  FileList: TStringList;
+  FileName: string;
+  LockedCount: Integer;
+  TotalFiles: Integer;
+begin
+  if not DirectoryExists(GetCacheDir) then
+  begin
+    ShowMessage('Info: The cache folder does not exist.');
+    Exit;
+  end;
+
+  LockedCount := 0;
+  FileList := FindAllFiles(GetCacheDir, '*', True); // Recursive: True
+  TotalFiles := FileList.Count;
+
+  try
+    for FileName in FileList do
+    begin
+      // DeleteFileUTF8 returns False if the file is locked or inaccessible
+      if not DeleteFileUTF8(FileName) then
+        Inc(LockedCount);
+    end;
+
+    // Attempt to remove empty subfolders
+    // DeleteDirectory with False does not remove the root if it contains files (locked ones)
+    if LockedCount = 0 then
+    begin
+      if DeleteDirectory(GetCacheDir, False) then
+        ForceDirectories(GetCacheDir);
+    end;
+
+    if LockedCount = 0 then
+    begin
+      if TotalFiles = 0 then
+        ShowMessage('The cache is already empty.')
+      else
+        ShowMessage('Cache successfully cleared.');
+    end
+    else
+    begin
+      ShowMessage(Format( 'Partial cleanup: %d files in %d are in use by other processes and cannot be removed.' + 
+                          'Close any open files and try again.',
+                          [LockedCount, TotalFiles]));
+    end;
+
+  finally
+    FileList.Free;
+  end;
+end;
+
+
+
 procedure TFormMain.ToolButtonAlwaysShowOnTopClick(Sender: TObject); // BUG
 begin
   if Self.FormStyle = fsNormal then
@@ -994,13 +1088,30 @@ end;
 
 procedure TFormMain.CheckingUserDossier;
 begin
-  if (_UserNickNameTemp <> '') and CheckHTTPSURL( 'robertsspaceindustries.com',
-                                                  '/en/citizens/' + UnicodeString(_UserNickNameTemp),
-                                                  'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
+  if (_UserNicknameTemp <> '') and CheckHTTPSURL( RobertsSpaceIndustriesHost,
+                                                  ENCitizenPrefix + UnicodeString(_UserNicknameTemp),
+                                                  hmGET, //? the server does not implement HEAD correctly and incorrectly returns 200 OK
+                                                  StarToolsAgent) then
   begin
-    _UserNickName := _UserNickNameTemp;
-    _UserNickNameTemp += _UserNickNameTemp;
+    _UserNickname := _UserNicknameTemp;
+    _UserNicknameTemp += _UserNicknameTemp;
+
     _UserOrganization := '';
+    _UserOrganizationTemp := '';
+
+    _UserAvatarNoLogo := False;
+    _UserOrganizationNoLogo := False;
+  end
+  else begin
+    if not (imoProfileClick in FSetInitMainOperation) then
+    begin
+      _UserNickname := '';
+      _UserOrganization := '';    
+      _UserAvatarNoLogo := False;
+      _UserOrganizationNoLogo := False;
+    end;
+    _UserNicknameTemp := '';
+    _UserOrganizationTemp := '';
   end;
 end;
 
@@ -1010,30 +1121,46 @@ procedure TFormMain.CheckingUserDossierTerminate(Sender: TObject);
 begin
   if Application.Terminated then Exit;
 
-  if (_UserNickNameTemp <> '') and (_UserNickNameTemp = _UserNickName + _UserNickName) then
+  if (_UserNicknameTemp <> '') and (_UserNicknameTemp = _UserNickname + _UserNickname) then
   begin
-    _UserNickNameTemp := '';
+    _UserNicknameTemp := '';
 
     FFormSplashScreen.Hide;
     FFormSplashScreen.ResetMessage;
 
-    Exclude(FSetInitMainOperation, imoCheckingUserDossier);
+    Exclude(FSetInitMainOperation, imoCheckingUserDossier);   
+    Exclude(FSetInitMainOperation, imoProfileClick);
 
     Self.Enabled := True;
+    Self.SetFocus;
+
+    if imoAvatarClick in FSetInitMainOperation then
+    begin
+      Exclude(FSetInitMainOperation, imoAvatarClick);
+      ImageAvatarClick(Self);
+    end;
 
     UserInfoWebCheck;
   end
-  else begin                 
-    _UserNickName := '';
-    _UserNickNameTemp := '';
-    _UserOrganization := '';
+  else begin
+    if not (imoProfileClick in FSetInitMainOperation) then
+    begin
+      _UserNickname := '';
+      _UserNicknameTemp := '';
+      _UserOrganization := '';
+      _UserOrganizationTemp := '';
+    end;
 
     FFormSplashScreen.Hide;
     FFormSplashScreen.ResetMessage;
 
     Exclude(FSetInitMainOperation, imoCheckingUserDossier);
+    Exclude(FSetInitMainOperation, imoAvatarClick);
+    Exclude(FSetInitMainOperation, imoOrganizationClick);  
+    Exclude(FSetInitMainOperation, imoProfileClick);
 
     Self.Enabled := True;
+    Self.SetFocus;
 
     ShowMessage('Invalid Nickname');
   end;
@@ -1043,20 +1170,24 @@ end;
 
 procedure TFormMain.CheckingUserOrg;
 var
-  LogoURL: string;
+  LogoURL: UnicodeString;
 begin
-  // Eseguito nel Thread: I/O e Parsing
+  LogoURL := '';
   _UserOrganizationTemp := '';
-  if (_UserNickName <> '') and GetOrgDataAndLogoURL(_UserNickName, _UserOrganizationTemp, LogoURL) then
+  _UserOrganizationNoLogo := False;
+  if (_UserNickname <> '') and GetOrgDataAndLogoURL(_UserNickname, _UserOrganizationTemp, LogoURL) then
   begin
     if _UserOrganizationTemp <> '' then
     begin
       _OrgLogoStream := TMemoryStream.Create;
-      // Scarica o carica dalla cache nello stream (Thread-safe)
       if not GetOrLoadOrgLogoToStream(_UserOrganizationTemp, LogoURL, _OrgLogoStream) then
+      begin
+        LogoURL := '';
         FreeAndNil(_OrgLogoStream);
+      end;
     end;
   end;
+  _UserOrganizationNoLogo := LogoURL = '';
 end;
 
 
@@ -1070,7 +1201,17 @@ begin
     if Assigned(_OrgLogoStream) then
     begin
       _OrgLogoStream.Position := 0;
-      ImageOrganizationWeb.Picture.LoadFromStream(_OrgLogoStream);
+      
+      try
+        ImageOrganizationWeb.Picture.LoadFromStream(_OrgLogoStream);
+      except
+        on E: EInvalidGraphic do
+          begin
+            _UserOrganizationNoLogo := True;
+            // If it starts with "<!DOCTYPE" or "<html", you have downloaded an HTTP error
+          end;
+      end;
+                  
       _UserOrganization := _UserOrganizationTemp;
       FreeAndNil(_OrgLogoStream);
     end;
@@ -1083,6 +1224,73 @@ begin
     Exclude(FSetInitMainOperation, imoCheckingUserOrg);
 
     Self.Enabled := True;
+    Self.SetFocus;
+
+    if imoOrganizationClick in FSetInitMainOperation then
+    begin
+      Exclude(FSetInitMainOperation, imoOrganizationClick);
+      ImageOrganizationClick(Self);
+    end;  
+
+    UserInfoWebCheck;
+  end;
+end;            
+
+
+
+procedure TFormMain.CheckingUserAvatar;
+var
+  LogoURL: UnicodeString;
+begin
+  LogoURL := '';
+  _UserAvatarNoLogo := False;
+
+  if (_UserNickname <> '') and GetAvatarDataAndLogoURL(_UserNickname, LogoURL) then
+  begin
+    if LogoURL <> '' then
+    begin
+      _AvatarLogoStream := TMemoryStream.Create;
+      if not GetOrLoadAvatarLogoToStream(_UserNickname, LogoURL, _AvatarLogoStream) then
+      begin
+        LogoURL := '';
+        FreeAndNil(_AvatarLogoStream);
+      end;
+    end;
+  end;
+
+  _UserAvatarNoLogo := LogoURL = '';
+end;
+
+
+
+
+procedure TFormMain.CheckingUserAvatarTerminate(Sender: TObject);
+begin
+  if Application.Terminated then Exit;
+
+  try
+    if (_UserNickname <> '') and Assigned(_AvatarLogoStream) then
+    begin
+      _AvatarLogoStream.Position := 0;
+      try
+        ImageAvatarWeb.Picture.LoadFromStream(_AvatarLogoStream);
+      except
+        on E: EInvalidGraphic do
+          begin
+            _UserAvatarNoLogo := True;
+            // If it starts with "<!DOCTYPE" or "<html", you have downloaded an HTTP error
+          end;
+      end;
+      FreeAndNil(_AvatarLogoStream);
+    end;
+  finally
+    FFormSplashScreen.Hide;
+    FFormSplashScreen.ResetMessage;
+
+    Exclude(FSetInitMainOperation, imoCheckingUserAvatar);
+
+    Self.Enabled := True;
+    Self.SetFocus;
 
     UserInfoWebCheck;
   end;
@@ -1092,20 +1300,42 @@ end;
 
 procedure TFormMain.UserInfoWebCheck;
 var
-  FormUserNickName: TFormUserNickName;
+  FormUserNickname: TFormUserNickname;
   LThread: TInitializationThread;
 begin
-  if (_UserNickName = '') and not (imoCheckingUserDossier in FSetInitMainOperation) then
+  FormUserNickname := nil;
+  LThread := nil;
+
+  if imoProfileReset in FSetInitMainOperation then
   begin
-    FormUserNickName := TFormUserNickName.Create(nil);
+    _UserNickname := '';
+    _UserNicknameTemp := '';
+    _UserOrganization := '';
+    _UserOrganizationTemp := '';
+
+    _UserAvatarNoLogo := False;
+    _UserOrganizationNoLogo := False;
+
+    ImageAvatarWeb.Picture.Graphic := nil;
+    ImageOrganizationWeb.Picture.Graphic := nil;
+  end;
+
+  if ((_UserNickname = '') or (imoProfileClick in FSetInitMainOperation)) and
+        not (imoProfileReset in FSetInitMainOperation) and
+        not (imoCheckingUserDossier in FSetInitMainOperation) then
+  begin
+    FormUserNickname := TFormUserNickname.Create(nil);
     try
-      if FormUserNickName.ShowModal = mrOK then
+      if (imoProfileClick in FSetInitMainOperation) then
+        FormUserNickname.Nickname := _UserNickname;
+
+      if FormUserNickname.ShowModal = mrOK then
       begin
-        if FormUserNickName.NickName <> '' then
+        if FormUserNickname.Nickname <> '' then
         begin
           Self.Enabled := False;
           Include(FSetInitMainOperation, imoCheckingUserDossier);
-          _UserNickNameTemp := FormUserNickName.NickName;
+          _UserNicknameTemp := FormUserNickname.Nickname;
 
           LThread := TInitializationThread.Create(@CheckingUserDossier, @CheckingUserDossierTerminate);
 
@@ -1116,54 +1346,100 @@ begin
           LThread.Start;
         end
         else begin
-          ShowMessage('Invalid Nickname');
+          Exclude(FSetInitMainOperation, imoAvatarClick);
+          Exclude(FSetInitMainOperation, imoOrganizationClick);
+
+          if (imoProfileClick in FSetInitMainOperation) then
+          begin
+            Exclude(FSetInitMainOperation, imoProfileClick);
+            Include(FSetInitMainOperation, imoProfileReset);
+            UserInfoWebCheck;
+          end
+          else begin
+            ShowMessage('Invalid Nickname');
+          end;
         end;
         Exit;
+      end
+      else begin
+        Exclude(FSetInitMainOperation, imoAvatarClick);
+        Exclude(FSetInitMainOperation, imoOrganizationClick);
+
+        if (imoProfileClick in FSetInitMainOperation) then
+        begin
+          Exclude(FSetInitMainOperation, imoProfileClick);
+          Exit;
+        end;
       end;
     finally
-      FormUserNickName.Free;
+      FormUserNickname.Free;
     end;
   end;
 
-  if ((_UserNickName <> '') and (_UserOrganization = '')) or
-    (
-      (_UserNickName <> '') and (_UserOrganization <> '') and (_UserOrganization <> UserOrganizationNoValue) and
-      (
-         not Assigned(ImageOrganizationWeb.Picture.Graphic) or
-         ImageOrganizationWeb.Picture.Graphic.Empty
-       )
-    ) then
+  if (not (imoCheckingUserAvatar in FSetInitMainOperation)) and
+        (not _UserAvatarNoLogo) and
+        ((_UserNickname <> '') and
+          (not Assigned(ImageAvatarWeb.Picture.Graphic) or
+          ImageAvatarWeb.Picture.Graphic.Empty)) then
   begin
-    if not (imoCheckingUserOrg in FSetInitMainOperation) then
-    begin
-      Self.Enabled := False;   
-      _UserOrganizationTemp := '';
+    Self.Enabled := False;
 
-      Include(FSetInitMainOperation, imoCheckingUserOrg);
+    Include(FSetInitMainOperation, imoCheckingUserAvatar);
 
-      LThread := TInitializationThread.Create(@CheckingUserOrg, @CheckingUserOrgTerminate);
+    LThread := TInitializationThread.Create(@CheckingUserAvatar, @CheckingUserAvatarTerminate);
 
-      FFormSplashScreen.Show;
-      FFormSplashScreen.Message := 'Retrieving Organization data...';
-      FFormSplashScreen.Update;
+    FFormSplashScreen.Show;
+    FFormSplashScreen.Message := 'Retrieving Avatar image...';
+    FFormSplashScreen.Update;
 
-      LThread.Start;
-      Exit; // Esci e attendi il thread
-    end;
-    // TODO: spostare queste righe nelle procedure del main e del thread, qui settare e avviare il thread e inserire un flag in FSetInitMainOperation
-    //if GetUserOrganizationAndLogo(_UserNickName, UserOrganizationName,
-    //                                ImageOrganizationWeb,
-    //                                  'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
-    //begin
-    //  _UserOrganization := UserOrganizationName;
-    //end;
+    LThread.Start;
+    Exit;
+  end;
+
+  if (not (imoCheckingUserOrg in FSetInitMainOperation)) and (not _UserOrganizationNoLogo) and
+        (((_UserNickname <> '') and (_UserOrganization = '')) or
+          (
+            (_UserNickname <> '') and (_UserOrganization <> '') and (_UserOrganization <> UserOrganizationNoValue) and
+            (
+              not Assigned(ImageOrganizationWeb.Picture.Graphic) or
+              ImageOrganizationWeb.Picture.Graphic.Empty
+            )
+          )) then
+  begin
+    Self.Enabled := False;
+    _UserOrganizationTemp := '';
+
+    Include(FSetInitMainOperation, imoCheckingUserOrg);
+
+    LThread := TInitializationThread.Create(@CheckingUserOrg, @CheckingUserOrgTerminate);
+
+    FFormSplashScreen.Show;
+    FFormSplashScreen.Message := 'Retrieving Organization data...';
+    FFormSplashScreen.Update;
+
+    LThread.Start;
+    Exit;
+  end;  
+
+  if (_UserNickname <> '') and
+        Assigned(ImageAvatarWeb.Picture.Graphic) and
+          not ImageAvatarWeb.Picture.Graphic.Empty and
+          (ImageAvatarWeb.Picture.Width > 0) and
+          (ImageAvatarWeb.Picture.Height > 0) then
+  begin
+    ImageAvatarWeb.Visible := True;
+    ImageAvatar.Visible := False;
+  end
+  else begin
+    ImageAvatarWeb.Visible := False;
+    ImageAvatar.Visible := True;
   end;
 
   if (_UserOrganization <> '') and (_UserOrganization <> UserOrganizationNoValue) and
         Assigned(ImageOrganizationWeb.Picture.Graphic) and
           not ImageOrganizationWeb.Picture.Graphic.Empty and
-            (ImageOrganizationWeb.Picture.Width > 0) and
-              (ImageOrganizationWeb.Picture.Height > 0) then
+          (ImageOrganizationWeb.Picture.Width > 0) and
+          (ImageOrganizationWeb.Picture.Height > 0) then
   begin
     ImageOrganizationWeb.Visible := True;
     ImageOrganization.Visible := False;
@@ -1172,88 +1448,24 @@ begin
     ImageOrganizationWeb.Visible := False;
     ImageOrganization.Visible := True;
   end;
+
+  Exclude(FSetInitMainOperation, imoProfileReset);
 end;
-
-
-
-//procedure TFormMain.UserInfoWebCheck;
-//var
-//  FormUserNickName: TFormUserNickName;
-//  NickName: String;
-//  UserOrganizationName: String;   
-//  LThread: TInitializationThread;
-//begin
-//  NickName := '';
-//
-//  if _UserNickName = '' then
-//  begin
-//    FormUserNickName := TFormUserNickName.Create(nil);
-//    try
-//      if FormUserNickName.ShowModal = mrOK then
-//      begin
-//        NickName := FormUserNickName.NickName;
-//
-//        if CheckHTTPSURL( 'robertsspaceindustries.com',
-//                          '/en/citizens/' + UnicodeString(NickName),
-//                          'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
-//        begin
-//          _UserNickName := NickName;
-//
-//          _UserOrganization := '';
-//        end
-//        else begin
-//          ShowMessage('Invalid Nickname');
-//        end;
-//      end;
-//    finally
-//      FormUserNickName.Free;
-//    end;
-//  end;
-//
-//  if ((_UserNickName <> '') and (_UserOrganization = '')) or
-//    (
-//      (_UserNickName <> '') and (_UserOrganization <> '') and
-//      (
-//         not Assigned(ImageOrganizationWeb.Picture.Graphic) or
-//         ImageOrganizationWeb.Picture.Graphic.Empty
-//       )
-//    ) then
-//  begin
-//    if GetUserOrganizationAndLogo(_UserNickName, UserOrganizationName,
-//                                    ImageOrganizationWeb,
-//                                      'StarTools Agent/' + UnicodeString(StarToolsVersionMM)) then
-//    begin
-//      _UserOrganization := UserOrganizationName;
-//    end;
-//    //GetUserOrganization(_UserNickName, UserOrganizationName, 'StarTools Agent/' + UnicodeString(StarToolsVersionMM));
-//    //if UserOrganizationName <> '' then
-//    //  _UserOrganization := UserOrganizationName;
-//  end;
-//
-//  if (_UserOrganization <> '') and
-//        Assigned(ImageOrganizationWeb.Picture.Graphic) and
-//          not ImageOrganizationWeb.Picture.Graphic.Empty and
-//            (ImageOrganizationWeb.Picture.Width > 0) and
-//              (ImageOrganizationWeb.Picture.Height > 0) then
-//  begin
-//    ImageOrganizationWeb.Visible := True;
-//    ImageOrganization.Visible := False;
-//  end
-//  else begin
-//    ImageOrganizationWeb.Visible := False;
-//    ImageOrganization.Visible := True;
-//  end;
-//end;
 
 
 
 procedure TFormMain.ImageAvatarClick(Sender: TObject);
 begin
-  UserInfoWebCheck;
-
-  if not (_UserNickName = '') then
+  if not (imoAvatarClick in FSetInitMainOperation) then
   begin
-    OpenURL('https://robertsspaceindustries.com/en/citizens/' + _UserNickName);
+    if _UserNickname <> '' then
+    begin
+      OpenURL(String(HTTPSPrefix + RobertsSpaceIndustriesHost + ENCitizenPrefix) + _UserNickname);
+    end
+    else begin
+      Include(FSetInitMainOperation, imoAvatarClick);
+      UserInfoWebCheck;
+    end;
   end;
 end;
 
@@ -1261,20 +1473,37 @@ end;
 
 procedure TFormMain.ImageOrganizationClick(Sender: TObject);
 begin
-  UserInfoWebCheck;
-
-  if not (_UserOrganization = '') then
+  if not (imoOrganizationClick in FSetInitMainOperation) then
   begin
-    OpenURL('https://robertsspaceindustries.com/en/orgs/' + _UserOrganization);
+    if (_UserOrganization <> '') and (_UserOrganization <> UserOrganizationNoValue) then
+    begin
+      OpenURL(String(HTTPSPrefix + RobertsSpaceIndustriesHost +  ENOrgsPrefix) + _UserOrganization);
+    end
+    else begin
+      Include(FSetInitMainOperation, imoOrganizationClick);
+      UserInfoWebCheck;
+    end;
   end;
 end;
 
 
 
-constructor TFormMain.Create(TheOwner: TComponent);var
-  ConfigPath: string;
+procedure TFormMain.ToolButtonProfileClick(Sender: TObject);
+begin
+  if not (imoProfileClick in FSetInitMainOperation) then
+  begin
+    Include(FSetInitMainOperation, imoProfileClick);
+    UserInfoWebCheck;
+  end;
+end;
+
+
+
+constructor TFormMain.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
+
+  //! ASSERT: IOUnit.InitPaths called in startools.lpr
 
   State:= TState.Created;
   _State:= TState.Created;
@@ -1282,19 +1511,13 @@ begin
   FSetInitMainOperation := [];
 
   FFirstActivate := True;
-  FActiveSplash := nil;
+  FFormSplashScreen := nil;
 
   IniPropStorage.IniSection:= 'Application';
-  {$IFDEF LINUX}
-  ConfigPath := GetAppConfigFile(False,True); // /home/<user>/.config/StarTools/StarTools.cfg;
-  {$ENDIF}
-  {$IFDEF WINDOWS}
-  ConfigPath := GetAppConfigFile(False);      // C:\Users\<user>\AppData\Local\StarTools\StarTools.cfg;
-  {$ENDIF}
-  IniPropStorage.IniFileName := ConfigPath; 
-  if not FileExists(ConfigPath) then
+  IniPropStorage.IniFileName := GetConfigFilePath;
+  if not FileExists(GetConfigFilePath) then
   begin
-    ForceDirectories(ExtractFilePath(ConfigPath));
+    ForceDirectories(GetConfigDir);
     IniPropStorageSetAllOptionsToDefault();
   end;   
   IniPropStorageRestore();
@@ -1374,27 +1597,6 @@ end;
 
 
 
-procedure TFormMain.SubInizializzazioneTerminata(Sender: TObject);
-var
-  LThread: TInitializationThread;
-begin
-  LThread := TInitializationThread(Sender);
-
-  if LThread.ErrorMessage <> '' then
-    ShowMessage('Errore inizializzazione: ' + LThread.ErrorMessage);
-
-  if Assigned(FActiveSplash) then
-  begin
-    FActiveSplash.Free;
-    FActiveSplash := nil;
-  end;
-
-  Self.Enabled := True;
-  Self.SetFocus;
-end;
-
-
-
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
   CurrentMonitor: TMonitor;
@@ -1425,9 +1627,6 @@ procedure TFormMain.FormDestroy(Sender: TObject);
 begin
   FFormSCUxSize.Free;
   FFormSCUxSize := nil;
-
-  //FFormSplashScreen.Free;
-  //FFormSplashScreen := nil;
 
   _ContractDB.Free;
   _ContractDB := nil;
@@ -1467,11 +1666,16 @@ _SelectedFormMainMonitorIndex := 0;
 _ConsolePosMode := cpmFollowMain;
 _SelectedConsoleMonitorIndex := 0;
 
-_UserNickName := '';
-_UserNickNameTemp := '';
+_UserNickname := '';
+_UserNicknameTemp := '';
 _UserOrganization := '';
 _UserOrganizationTemp := '';
+_AvatarLogoStream := nil;
 _OrgLogoStream := nil;
+_UserAvatarNoLogo := False;
+_UserOrganizationNoLogo := False;
+
+_DebugMessageTemp := '';
 
 
 _StarCitizenProcessStart := 0;

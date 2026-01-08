@@ -95,27 +95,15 @@ DOT_USES_WIN    = $(PATH_ROOT_SRC)$(SEP)$(OUTDIR)/GVUses.dot
 PNG_CLASSES_WIN = $(PATH_ROOT_SRC)$(SEP)$(OUTDIR)/GVClasses.png
 PNG_USES_WIN    = $(PATH_ROOT_SRC)$(SEP)$(OUTDIR)/GVUses.png
 
-SRC = \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/consoleoptionsunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/consolesettingsdialogunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/contractdbunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/contractunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/contractviewunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/infounit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/initunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/iounit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/mainserviceunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/mainunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/panelrowunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/scuxsizeformunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/scuxsizeunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/sizedialogunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/splashscreenunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/trlsortunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/usernicknamesunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/versionunit.pas" \
-    "$(PATH_ROOT_SRC)$(SEP)project/src/webunit.pas"
 
+FILES_REL := $(wildcard project/src/*.pas)
+
+ifeq ($(strip $(IS_WSL_OSRELEASE)$(IS_WSL_VERSION)),)
+    # Native/Linux
+    SRC = $(FILES_REL)
+else
+    SRC = $(foreach f,$(FILES_REL),"$(PATH_WIN_ROOT)\$(subst /,$(SEP),$(f))")
+endif
 
 
 CSS    = style/pasdoc_custom.css

@@ -21,7 +21,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="24"/>
+      <MinorVersionNr Value="1"/>
       <Attributes pvaPreRelease="True"/>
       <StringTable Comments="Fan-made Star Citizen tools." CompanyName="Giuseppe Ferri 2025" FileDescription="Fan-made Star Citizen tools." LegalCopyright="Giuseppe Ferri 2025" ProductName="StarTools" ProductVersion="1.0"/>
     </VersionInfo>
@@ -68,6 +68,11 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <Verbosity>
+              <ShowDebugInfo Value="True"/>
+            </Verbosity>
+          </Other>
         </CompilerOptions>
       </Item>
       <Item Name="Release">
@@ -113,6 +118,9 @@
       <FormatVersion Value="2"/>
     </RunParams>
     <RequiredPackages>
+      <Item>
+        <PackageName Value="industrial"/>
+      </Item>
       <Item>
         <PackageName Value="bgracontrols"/>
       </Item>

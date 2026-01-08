@@ -16,7 +16,7 @@
 
 
 
-{*}
+{* Init Unit }
 unit InitUnit;
 
 {$mode ObjFPC}{$H+}
@@ -24,14 +24,20 @@ unit InitUnit;
 interface
 
 uses
-  Classes, SysUtils, WebUnit;
+  Classes, SysUtils;
 
 
 type
+  {*
+    Callback for the initialization thread.
+  }
   TInitializationThreadCallback = procedure of object;
 
 
 
+  {*
+    Initialization thread.
+  }
   TInitializationThread = class(TThread)
   private
     FErrorMsg: string;
@@ -40,10 +46,17 @@ type
   protected
     procedure Execute; override;
   public
+    {* Error message. }
     property ErrorMessage: string read FErrorMsg;
 
+    {* Error code. }
     property ErrorCode: Integer read FErrorCode;
 
+    {*
+      Constructor.
+      @param(ACallback The callback.)
+      @param(ATerminate The terminate event.)
+    }
     constructor Create(ACallback: TInitializationThreadCallback; ATerminate: TNotifyEvent); reintroduce;
   end;
 

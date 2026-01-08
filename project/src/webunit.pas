@@ -25,46 +25,100 @@ interface
 
 uses
   Classes, SysUtils, Windows, WinHttp, RegExpr, ExtCtrls, Dialogs,
-  Graphics, FPReadPNG, FPReadJPEG, LazFileUtils,
+  Graphics, FPReadPNG, FPReadJPEG, LazFileUtils, URIParser,
+  //StrUtils,
+  IOUnit,
   VersionUnit;
 
 
 
-{*
-  Extract Organization SID by HTML
-
-  @param(HTML HTML string)
-  @returns(Organization SID)
-}
-function ExtractOrganizationSIDByHTML(const HTML: string): string;
-
 
 {*
-  Get User Organization
-
-  @param(UserNickName User Nick Name)
-  @param(UserOrganizationName User Organization Name)
-  @param(UserAgent User Agent)
-  @returns(True on success, False on failure)
+  Scrapes the public dossier of a user to retrieve Organization details.
+  @param(Nickname The Star Citizen Nickname to look up.)
+  @param(OrgName Output parameter for the Organization SID/Name.)
+  @param(LogoURL Output parameter for the absolute URL of the organization's logo.)
+  @returns(@True if the organization data was successfully parsed.)
 }
-function GetUserOrganization(const UserNickName: string; out UserOrganizationName: string; const UserAgent: UnicodeString = ''): Boolean;
+function GetOrgDataAndLogoURL(const Nickname: string; out OrgName: string; out LogoURL: UnicodeString): Boolean;
 
-{*}
-function GetUserOrganizationAndLogo(const Username: string; out OrgName: string;
-  TargetImage: TImage; const UserAgent: UnicodeString = ''): Boolean;
+{*
+  Retrieves an organization logo, prioritising the local cache over the network.
+  If the file exists in the cache, it is loaded into the stream. Otherwise, it is downloaded and saved locally.
+  @param(OrgName The name of the organization (used for cache filename).)
+  @param(LogoURL The remote URL of the image.)
+  @param(TargetStream The destination TStream where the image data will be written.)
+  @returns(@True if the data was successfully loaded from cache or downloaded.)
+}
+function GetOrLoadOrgLogoToStream(const OrgName: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;
 
+{*
+  Scrapes the public dossier of a user to retrieve the Avatar logo URL.
+  @param(Nickname The Star Citizen Nickname to look up.)
+  @param(LogoURL Output parameter for the absolute URL of the avatar image.)
+  @returns(@True if the avatar URL was successfully parsed.)
+}
+function GetAvatarDataAndLogoURL(const Nickname: string; out LogoURL: UnicodeString): Boolean;
 
-{*}
-function GetOrgDataAndLogoURL(const Username: string; out OrgName: string; out LogoURL: string): Boolean;
+{*
+  Retrieves a citizen's avatar logo, prioritising the local cache over the network.
+  If the file exists in the cache, it is loaded into the stream. Otherwise, it is downloaded and saved locally.
+  @param(Nickname The Star Citizen Nickname (used for cache filename).)
+  @param(LogoURL The remote URL of the image.)
+  @param(TargetStream The destination TStream where the image data will be written.)
+  @returns(@True if the data was successfully loaded from cache or downloaded.)
+}
+function GetOrLoadAvatarLogoToStream(const Nickname: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;
 
-{*}
-function GetOrLoadOrgLogoToStream(const OrgName: string; const LogoURL: string; TargetStream: TStream): Boolean;
+{*
+  Constructs a complete regular expression to find an organization's logo URL based on its name.
+  @param(OrgName The Organization SID/Name to include in the regex pattern.)
+  @returns(A string containing the formatted Regular Expression.)
+}
+function RegExOrgLogoURL(OrgName: String): String;
+
 
 
 
 
 const
+  {* Standard HTTPS protocol prefix. }
+  HTTPSPrefix = UnicodeString('https://');
+
+  {* User-Agent string used for WinHttp requests. }
   StarToolsAgent = 'StarTools Agent/' + UnicodeString(StarToolsVersionMM);
+
+  {* Main RSI website domain. }
+  RobertsSpaceIndustriesHost = UnicodeString('robertsspaceindustries.com');
+
+  {* RSI Content Delivery Network domain. }
+  RobertsSpaceIndustriesCDNHost = UnicodeString('cdn.robertsspaceindustries.com');       
+
+  {* RSI Service Status domain. }
+  RobertsSpaceIndustriesStatusHost = UnicodeString('status.robertsspaceindustries.com');
+
+  {* URL path prefix for public citizen profiles. }
+  ENCitizenPrefix = UnicodeString('/en/citizens/');
+
+  {* URL path prefix for public organization profiles. }
+  ENOrgsPrefix = UnicodeString('/en/orgs/');
+
+
+  { REG EX }
+
+  {* Regular expression to extract the Avatar image URL from a citizen's dossier page. }
+  RegExAvatarLogoURL = '(?:"\/account\/profile"|id\s*=\s*"public-profile".*?UEE Citizen Record).*?<img\s+src\s*=\s*"([^>\s"]+)';
+
+  {* Prefix for the regular expression used to find the organization logo link. }
+  RegExOrgLogoURLPrefix = '<a\s+href\s*=\s*"\/orgs\/';
+
+  {* Suffix for the regular expression used to find the organization logo link. }
+  RegExOrgLogoURLSuffix = '"\s*>\s*<img\s+src\s*=\s*"([^>\s"]+)"';
+
+  {* Regular expression to extract the Spectrum Identification (SID) from an organization block. }
+  RegExOrgSID = '<span[^>]*>\s*Spectrum\s+Identification\s+\(SID\)\s*<\/span>\s*<strong[^>]*>\s*([^<\s]+)';
+
+
 
 
 
@@ -72,119 +126,54 @@ implementation
 
 
 
-
-// <p class="entry"><span class="label data8">Spectrum Identification (SID)</span><strong class="value data9">ORGANIZATION_NAME</strong></p>
-function ExtractOrganizationSIDByHTML(const HTML: string): string;
-var
-  RegEx: TRegExpr;
+function RegExOrgLogoURL(OrgName: String): String;
 begin
-  Result := '';
-  RegEx := TRegExpr.Create;
-  try
-    RegEx.Expression := '<span[^>]*>\s*Spectrum\s+Identification\s+\(SID\)\s*<\/span>\s*<strong[^>]*>\s*([^<\s]+)';
-    RegEx.ModifierS := True;
-
-    if RegEx.Exec(HTML) then
-      Result := Trim(RegEx.Match[1]);
-  finally
-    RegEx.Free;
-  end;
+  Result := RegExOrgLogoURLPrefix + OrgName + RegExOrgLogoURLSuffix;
 end;
-
-
-function GetUserOrganization(const UserNickName: string; out UserOrganizationName: string; const UserAgent: UnicodeString = ''): Boolean;
-var
-  hSession, hConnect, hRequest: HINTERNET;
-  dwStatusCode, dwSize, dwDownloaded: DWORD;
-  wHost, wPath: UnicodeString;
-  ResponseData: TStringStream;
-  Buffer: array[0..8191] of Byte;
-begin
-  Result := False;
-  UserOrganizationName := '';
-  wHost := 'robertsspaceindustries.com';
-  wPath := '/en/citizens/' + UnicodeString(UserNickName);
-
-  hSession := WinHttpOpen(PWideChar(UserAgent), WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, nil, nil, 0);
-  if not Assigned(hSession) then Exit;
-
-  try
-    hConnect := WinHttpConnect(hSession, PWideChar(wHost), INTERNET_DEFAULT_HTTPS_PORT, 0);
-    if not Assigned(hConnect) then Exit;
-
-    hRequest := WinHttpOpenRequest(hConnect, 'GET', PWideChar(wPath), nil, nil, nil, WINHTTP_FLAG_SECURE);
-    if not Assigned(hRequest) then Exit;
-
-    if WinHttpSendRequest(hRequest, nil, 0, nil, 0, 0, 0) and WinHttpReceiveResponse(hRequest, nil) then
-    begin
-      dwSize := SizeOf(dwStatusCode);
-      WinHttpQueryHeaders(hRequest, WINHTTP_QUERY_STATUS_CODE or WINHTTP_QUERY_FLAG_NUMBER, nil, @dwStatusCode, @dwSize, nil);
-
-      if dwStatusCode = 200 then
-      begin
-        ResponseData := TStringStream.Create('');
-        try
-          // Data retrieval loop
-          repeat
-            dwSize := 0;
-            if not WinHttpQueryDataAvailable(hRequest, @dwSize) then Break;
-            if dwSize = 0 then Break;
-            if dwSize > SizeOf(Buffer) then dwSize := SizeOf(Buffer);
-
-            if WinHttpReadData(hRequest, @Buffer, dwSize, @dwDownloaded) then
-              ResponseData.Write(Buffer, dwDownloaded);
-          until dwDownloaded = 0;
-
-          // Process the HTML with the Regex function
-          UserOrganizationName := ExtractOrganizationSIDByHTML(ResponseData.DataString);
-
-          // If UserOrganizationName is found, the operation is successful
-          Result := (UserOrganizationName <> '');
-        finally
-          ResponseData.Free;
-        end;
-      end;
-    end;
-  finally
-    WinHttpCloseHandle(hRequest);
-    WinHttpCloseHandle(hConnect);
-    WinHttpCloseHandle(hSession);
-  end;
-end;
-
 
 
 function DownloadToStream(hSession: HINTERNET; const FullURL: UnicodeString; Stream: TStream): Boolean;
 var
   hConnect, hRequest: HINTERNET;
-  wHost, wPath: UnicodeString;
-  p: Integer;
-  dwSize, dwDownloaded: DWORD;
+  wPath: UnicodeString;
+  Uri: TURI;
+  dwStatusCode, dwSize, dwDownloaded: DWORD;
   Buffer: array[0..8191] of Byte;
 begin
   Result := False;
-  // Basic URL parsing: find host and path
-  // Expected format: https://robertsspaceindustries.com/media/...
-  wHost := 'robertsspaceindustries.com';
-  p := Pos(wHost, FullURL);
-  if p = 0 then Exit;
 
-  wPath := Copy(FullURL, p + Length(wHost), Length(FullURL));
+  Uri := ParseURI(String(FullURL));
 
-  hConnect := WinHttpConnect(hSession, PWideChar(wHost), INTERNET_DEFAULT_HTTPS_PORT, 0);
+  // Uri.Path is the path, Uri.Document is the file, Uri.Params are any query params
+  // WinHttpOpenRequest requires the full path after the host
+  wPath := UnicodeString(Uri.Path) + UnicodeString(Uri.Document) + UnicodeString(Uri.Params);
+  if (wPath = '') then wPath := '/';
+
+  hConnect := WinHttpConnect(hSession, PWideChar(UnicodeString(Uri.Host)), Uri.Port, 0);
+  //hConnect := WinHttpConnect(hSession, PWideChar(RobertsSpaceIndustriesHost), INTERNET_DEFAULT_HTTPS_PORT, 0);
   if not Assigned(hConnect) then Exit;
+
   try
     hRequest := WinHttpOpenRequest(hConnect, 'GET', PWideChar(wPath), nil, nil, nil, WINHTTP_FLAG_SECURE);
+    //hRequest := WinHttpOpenRequest(hConnect, 'GET', PWideChar(wPath), nil, nil, nil,
+    //              ifThen(Uri.Protocol = 'https', WINHTTP_FLAG_SECURE, 0)); // webunit.pas(122,74) Error: Incompatible type for arg no. 3: Got "ShortInt", expected "AnsiString"
     if not Assigned(hRequest) then Exit;
+
     try
       if WinHttpSendRequest(hRequest, nil, 0, nil, 0, 0, 0) and WinHttpReceiveResponse(hRequest, nil) then
       begin
-        repeat
-          dwDownloaded := 0;
-          if not WinHttpReadData(hRequest, @Buffer, SizeOf(Buffer), @dwDownloaded) then Break;
-          if dwDownloaded = 0 then Break;
-          Stream.Write(Buffer, dwDownloaded);
-        until dwDownloaded = 0;
+        dwSize := SizeOf(dwStatusCode);
+        WinHttpQueryHeaders(hRequest, WINHTTP_QUERY_STATUS_CODE or WINHTTP_QUERY_FLAG_NUMBER,
+                            nil, @dwStatusCode, @dwSize, nil);
+        if dwStatusCode = 200 then
+        begin
+          repeat
+            dwDownloaded := 0;
+            if not WinHttpReadData(hRequest, @Buffer, SizeOf(Buffer), @dwDownloaded) then Break;
+            if dwDownloaded = 0 then Break;
+            Stream.Write(Buffer, dwDownloaded);
+          until dwDownloaded = 0;
+        end;
         Result := (Stream.Size > 0);
       end;
     finally
@@ -196,7 +185,8 @@ begin
 end;
 
 
-function GetOrLoadOrgLogo(const OrgName: string; const LogoURL: string; TargetImage: TImage; hSession: HINTERNET): Boolean;
+
+function GetOrLoadOrgLogo(const OrgName: string; const LogoURL: UnicodeString; TargetImage: TImage; hSession: HINTERNET): Boolean;
 var
   CacheDir, FileName: string;
   ImgStream: TMemoryStream;
@@ -204,14 +194,11 @@ begin
   Result := False;
   if OrgName = '' then Exit;
 
-  // Definisci il percorso della cache
   CacheDir := AppendPathDelim(ExtractFilePath(GetAppConfigFile(False)) + 'cache');
-  //CacheDir := AppendPathDelim(ExtractFilePath(ParamStr(0))) + 'cache';
   if not DirectoryExists(CacheDir) then CreateDir(CacheDir);
 
   FileName := AppendPathDelim(CacheDir) + OrgName + '.png';
 
-  // 1. Controllo Cache locale
   if FileExists(FileName) then
   begin
     try
@@ -219,21 +206,19 @@ begin
       Result := True;
       Exit;
     except
-      // Se il file è corrotto, procediamo al download
+      // If the file is corrupt, proceed with the download
     end;
   end;
 
-  // 2. Download se non presente o corrotto
+  // 2. Download if not present or corrupted
   if LogoURL <> '' then
   begin
     ImgStream := TMemoryStream.Create;
     try
-      if DownloadToStream(hSession, UnicodeString(LogoURL), ImgStream) then
+      if DownloadToStream(hSession, LogoURL, ImgStream) then
       begin
         ImgStream.Position := 0;
-        // Carica nella TImage
         TargetImage.Picture.LoadFromStream(ImgStream);
-        // Salva su disco per il prossimo avvio
         ImgStream.Position := 0;
         ImgStream.SaveToFile(FileName);
         Result := True;
@@ -245,96 +230,8 @@ begin
 end;
 
 
-function GetUserOrganizationAndLogo(const Username: string; out OrgName: string;
-  TargetImage: TImage; const UserAgent: UnicodeString = ''): Boolean;
-var
-  hSession: HINTERNET;
-  hConnect, hRequest: HINTERNET;
-  dwSize, dwDownloaded: DWORD;
-  wHost, wPath: UnicodeString;
-  ResponseData: TStringStream;
-  Buffer: array[0..8191] of Byte;
-  Html, LogoPath: string;
-  RegEx: TRegExpr;
-  //ImgStream: TMemoryStream;
-begin
-  Result := False;
-  OrgName := '';
-  wHost := 'robertsspaceindustries.com';
-  wPath := '/en/citizens/' + UnicodeString(Username);
 
-  hSession := WinHttpOpen(PWideChar(UserAgent), WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, nil, nil, 0);
-  if not Assigned(hSession) then Exit;
-
-  try
-    hConnect := WinHttpConnect(hSession, PWideChar(wHost), INTERNET_DEFAULT_HTTPS_PORT, 0);
-    if not Assigned(hConnect) then Exit;
-    try
-      hRequest := WinHttpOpenRequest(hConnect, 'GET', PWideChar(wPath), nil, nil, nil, WINHTTP_FLAG_SECURE);
-      if not Assigned(hRequest) then Exit;
-      try
-        if WinHttpSendRequest(hRequest, nil, 0, nil, 0, 0, 0) and WinHttpReceiveResponse(hRequest, nil) then
-        begin
-          ResponseData := TStringStream.Create('');
-          try
-            repeat
-              dwDownloaded := 0;
-              if not WinHttpReadData(hRequest, @Buffer, SizeOf(Buffer), @dwDownloaded) then Break;
-              ResponseData.Write(Buffer, dwDownloaded);
-            until dwDownloaded = 0;
-
-            Html := ResponseData.DataString;
-            RegEx := TRegExpr.Create;
-            try
-              RegEx.ModifierS := True;
-              // 1. Extract SID
-              RegEx.Expression := '<span[^>]*>\s*Spectrum\s+Identification\s+\(SID\)\s*<\/span>\s*<strong[^>]*>\s*([^<\s]+)';
-              if RegEx.Exec(Html) then
-              begin
-                OrgName := Trim(RegEx.Match[1]);
-
-                // 2. Extract Logo Path
-                RegEx.Expression := '<a\s+href\s*=\s*"\/orgs\/' + OrgName + '"\s*>\s*<img\s+src\s*=\s*"([^>\s"]+)"';
-                if RegEx.Exec(Html) then
-                begin
-                  LogoPath := RegEx.Match[1];
-                  Result := GetOrLoadOrgLogo(OrgName, 'https://robertsspaceindustries.com' + LogoPath, TargetImage, hSession);
-                  //ImgStream := TMemoryStream.Create;
-                  //try
-                  //  // Use UnicodeString for the full URL to avoid conversion warnings
-                  //  if DownloadToStream(hSession, UnicodeString('https://robertsspaceindustries.com' + LogoPath), ImgStream) then
-                  //  begin
-                  //    ImgStream.Position := 0;
-                  //    TargetImage.Picture.LoadFromStream(ImgStream);
-                  //    Result := True;
-                  //  end;
-                  //finally
-                  //  ImgStream.Free;
-                  //end;
-                end;
-              end;
-            finally
-              RegEx.Free;
-            end;
-          finally
-            ResponseData.Free;
-          end;
-        end;
-      finally
-        WinHttpCloseHandle(hRequest);
-      end;
-    finally
-      WinHttpCloseHandle(hConnect);
-    end;
-  finally
-    WinHttpCloseHandle(hSession);
-  end;
-end;
-
-
-
-// Restituisce solo i metadati estratti dall'HTML
-function GetOrgDataAndLogoURL(const Username: string; out OrgName: string; out LogoURL: string): Boolean;
+function GetOrgDataAndLogoURL(const Nickname: string; out OrgName: string; out LogoURL: UnicodeString): Boolean;
 var
   hSession, hConnect, hRequest: HINTERNET;
   ResponseData: TStringStream;
@@ -349,10 +246,10 @@ begin
   hSession := WinHttpOpen(StarToolsAgent, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, nil, nil, 0);
   if not Assigned(hSession) then Exit;
   try
-    hConnect := WinHttpConnect(hSession, 'robertsspaceindustries.com', INTERNET_DEFAULT_HTTPS_PORT, 0);
+    hConnect := WinHttpConnect(hSession, RobertsSpaceIndustriesHost, INTERNET_DEFAULT_HTTPS_PORT, 0);
     if Assigned(hConnect) then
     try
-      hRequest := WinHttpOpenRequest(hConnect, 'GET', PWideChar(UnicodeString('/en/citizens/' + Username)), nil, nil, nil, WINHTTP_FLAG_SECURE);
+      hRequest := WinHttpOpenRequest(hConnect, 'GET', PWideChar(ENCitizenPrefix + UnicodeString(Nickname)), nil, nil, nil, WINHTTP_FLAG_SECURE);
       if Assigned(hRequest) then
       try
         if WinHttpSendRequest(hRequest, nil, 0, nil, 0, 0, 0) and WinHttpReceiveResponse(hRequest, nil) then
@@ -369,16 +266,16 @@ begin
             RegEx := TRegExpr.Create;
             try
               RegEx.ModifierS := True;
-              // Estrazione SID (OrgName)
-              RegEx.Expression := '<span[^>]*>\s*Spectrum\s+Identification\s+\(SID\)\s*<\/span>\s*<strong[^>]*>\s*([^<\s]+)';
+              // SID Extraction (OrgName)
+              RegEx.Expression := RegExOrgSID;
               if RegEx.Exec(Html) then
               begin
                 OrgName := Trim(RegEx.Match[1]);
-                // Estrazione Logo Path
-                RegEx.Expression := '<a\s+href\s*=\s*"\/orgs\/' + OrgName + '"\s*>\s*<img\s+src\s*=\s*"([^>\s"]+)"';
+                // Logo Path Extraction
+                RegEx.Expression := RegExOrgLogoURL(OrgName);
                 if RegEx.Exec(Html) then
                 begin
-                  LogoURL := 'https://robertsspaceindustries.com' + RegEx.Match[1];
+                  LogoURL := HTTPSPrefix + RobertsSpaceIndustriesHost + UnicodeString(RegEx.Match[1]);
                   Result := True;
                 end;
               end;
@@ -402,16 +299,15 @@ end;
 
 
 
-// Gestisce Cache e Download senza toccare la UI
-function GetOrLoadOrgLogoToStream(const OrgName: string; const LogoURL: string; TargetStream: TStream): Boolean;
+function GetOrLoadOrgLogoToStream(const OrgName: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;
 var
-  CacheDir, FileName: string;
+  FileName: string;
   hSession: HINTERNET;
 begin
   Result := False;
-  CacheDir := AppendPathDelim(ExtractFilePath(GetAppConfigFile(False)) + 'cache');
-  if not DirectoryExists(CacheDir) then CreateDir(CacheDir);
-  FileName := AppendPathDelim(CacheDir) + OrgName + '.png';
+  if not DirectoryExists(GetCacheDir) then
+    ForceDirectories(GetCacheDir);
+  FileName := GetCacheDir + OrgName + '.png';
 
   if FileExists(FileName) then
   begin
@@ -428,7 +324,7 @@ begin
     hSession := WinHttpOpen(StarToolsAgent, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, nil, nil, 0);
     if Assigned(hSession) then
     try
-      if DownloadToStream(hSession, UnicodeString(LogoURL), TargetStream) then
+      if DownloadToStream(hSession, LogoURL, TargetStream) then
       begin
         TargetStream.Position := 0;
         TMemoryStream(TargetStream).SaveToFile(FileName);
@@ -439,6 +335,114 @@ begin
     end;
   end;
 end;
+
+
+
+function GetAvatarDataAndLogoURL(const Nickname: string; out LogoURL: UnicodeString): Boolean;
+var
+  hSession, hConnect, hRequest: HINTERNET;
+  ResponseData: TStringStream;
+  Buffer: array[0..8191] of Byte;
+  dwDownloaded: DWORD;
+  Html: string;
+  RegEx: TRegExpr;
+begin
+  Result := False;
+  LogoURL := '';
+
+  hSession := WinHttpOpen(StarToolsAgent, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, nil, nil, 0);
+  if not Assigned(hSession) then Exit;
+  try
+    hConnect := WinHttpConnect(hSession, RobertsSpaceIndustriesHost, INTERNET_DEFAULT_HTTPS_PORT, 0);
+    if Assigned(hConnect) then
+    try
+      hRequest := WinHttpOpenRequest(hConnect, 'GET', PWideChar(ENCitizenPrefix + UnicodeString(Nickname)), nil, nil, nil, WINHTTP_FLAG_SECURE);
+      if Assigned(hRequest) then
+      try
+        if WinHttpSendRequest(hRequest, nil, 0, nil, 0, 0, 0) and WinHttpReceiveResponse(hRequest, nil) then
+        begin
+          ResponseData := TStringStream.Create('');
+          try
+            repeat
+              dwDownloaded := 0;
+              if not WinHttpReadData(hRequest, @Buffer, SizeOf(Buffer), @dwDownloaded) then Break;
+              ResponseData.Write(Buffer, dwDownloaded);
+            until dwDownloaded = 0;
+            Html := ResponseData.DataString;
+
+            RegEx := TRegExpr.Create;
+            try
+              RegEx.ModifierS := True;
+              RegEx.Expression := RegExAvatarLogoURL;
+
+              if RegEx.Exec(Html) then
+              begin
+                // User 'xxx    ' -> <img src="https://cdn.robertsspaceindustries.com/static/images/account/avatar_default_big.jpg" />  (1)
+                // User JoeCrisix -> <img src="/media/ln4m651xxr7v2r/heap_infobox/38723888-4dba-41a9-B135-70ffb1803854.png" />          (2)
+                //
+                LogoURL := UnicodeString(RegEx.Match[1]);                         // (1)
+                if Pos(HTTPSPrefix, RegEx.Match[1]) = 0 then
+                  LogoURL := HTTPSPrefix + RobertsSpaceIndustriesHost + LogoURL;  // (2)
+                Result := True;
+              end;
+            finally
+              RegEx.Free;
+            end;
+          finally
+            ResponseData.Free;
+          end;
+        end;
+      finally
+        WinHttpCloseHandle(hRequest);
+      end;
+    finally
+      WinHttpCloseHandle(hConnect);
+    end;
+  finally
+    WinHttpCloseHandle(hSession);
+  end;
+end;
+
+
+
+function GetOrLoadAvatarLogoToStream(const Nickname: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;
+var
+  FileName: string;
+  hSession: HINTERNET;
+begin
+  Result := False;
+  if not DirectoryExists(GetCacheDir) then
+    ForceDirectories(GetCacheDir);
+  FileName := GetCacheDir + Nickname + '.png';
+
+  if FileExists(FileName) then
+  begin
+    try
+      TMemoryStream(TargetStream).LoadFromFile(FileName);
+      Exit(True);
+    except
+      //
+    end;
+  end;
+
+  if LogoURL <> '' then
+  begin
+    hSession := WinHttpOpen(StarToolsAgent, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, nil, nil, 0);
+    if Assigned(hSession) then
+    try
+      if DownloadToStream(hSession, LogoURL, TargetStream) then
+      begin
+        TargetStream.Position := 0;
+        TMemoryStream(TargetStream).SaveToFile(FileName);
+        Result := True;
+      end;
+    finally
+      WinHttpCloseHandle(hSession);
+    end;
+  end;
+end;
+
+
 
 
 end.

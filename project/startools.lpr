@@ -11,7 +11,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   SysUtils,
-  Forms, MainUnit
+  Forms, MainUnit, IOUnit
   { you can add units after this };
 
 {$R *.res}
@@ -27,6 +27,7 @@ begin
   Application.MainFormOnTaskbar:=True;
   {$POP}
   Application.Initialize;
+  IOUnit.InitPaths;
   Application.CreateForm(TFormMain, FormMain);
   Application.Run;
 end.

@@ -11,7 +11,7 @@
 <h2><a href="index.html">StarTools Docs</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="GVUses.png">Unit dependency graph</a></li><li><a href="GVClasses.png">Classes hierarchy graph</a></li></ul></div><div class="content">
 <h1 class="unit">Unit WebUnit</h1>
 <div class="sections">
-<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section">Types</div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section">Types</div><div class="one_section"><a class="section" href="#PasDoc-Constants">Constants</a></div><div class="one_section">Variables</div></div>
 <span id="PasDoc-Description"></span><h2 class="description">Description</h2>
 <p>
 Web Unit</p>
@@ -19,51 +19,247 @@ Web Unit</p>
 <span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
 <table class="summary wide_list">
 <tr class="list">
-<td class="itemcode"><code>function <strong><a href="WebUnit.html#ExtractOrganizationSIDByHTML">ExtractOrganizationSIDByHTML</a></strong>(const HTML: string): string;</code></td>
+<td class="itemcode"><code>function <strong><a href="WebUnit.html#GetOrgDataAndLogoURL">GetOrgDataAndLogoURL</a></strong>(const Nickname: string; out OrgName: string; out LogoURL: UnicodeString): Boolean;</code></td>
 </tr>
 <tr class="list2">
-<td class="itemcode"><code>function <strong><a href="WebUnit.html#GetUserOrganization">GetUserOrganization</a></strong>(const UserNickName: string; out UserOrganizationName: string; const UserAgent: UnicodeString = ''): Boolean;</code></td>
+<td class="itemcode"><code>function <strong><a href="WebUnit.html#GetOrLoadOrgLogoToStream">GetOrLoadOrgLogoToStream</a></strong>(const OrgName: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="WebUnit.html#GetAvatarDataAndLogoURL">GetAvatarDataAndLogoURL</a></strong>(const Nickname: string; out LogoURL: UnicodeString): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="WebUnit.html#GetOrLoadAvatarLogoToStream">GetOrLoadAvatarLogoToStream</a></strong>(const Nickname: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="WebUnit.html#RegExOrgLogoURL">RegExOrgLogoURL</a></strong>(OrgName: String): String;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Constants"></span><h3 class="summary">Constants</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="WebUnit.html#HTTPSPrefix">HTTPSPrefix</a></strong> = UnicodeString('https://');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="WebUnit.html#StarToolsAgent">StarToolsAgent</a></strong> = 'StarTools Agent/' + UnicodeString(<a href="VersionUnit.html#StarToolsVersionMM">StarToolsVersionMM</a>);</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="WebUnit.html#RobertsSpaceIndustriesHost">RobertsSpaceIndustriesHost</a></strong> = UnicodeString('robertsspaceindustries.com');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="WebUnit.html#RobertsSpaceIndustriesCDNHost">RobertsSpaceIndustriesCDNHost</a></strong> = UnicodeString('cdn.robertsspaceindustries.com');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="WebUnit.html#RobertsSpaceIndustriesStatusHost">RobertsSpaceIndustriesStatusHost</a></strong> = UnicodeString('status.robertsspaceindustries.com');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="WebUnit.html#ENCitizenPrefix">ENCitizenPrefix</a></strong> = UnicodeString('/en/citizens/');</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="WebUnit.html#ENOrgsPrefix">ENOrgsPrefix</a></strong> = UnicodeString('/en/orgs/');</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="WebUnit.html#RegExAvatarLogoURL">RegExAvatarLogoURL</a></strong> = '(?:&quot;\/account\/profile&quot;|id\s*=\s*&quot;public-profile&quot;.*?UEE Citizen Record).*?&lt;img\s+src\s*=\s*&quot;([&circ;&gt;\s&quot;]+)';</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="WebUnit.html#RegExOrgLogoURLPrefix">RegExOrgLogoURLPrefix</a></strong> = '&lt;a\s+href\s*=\s*&quot;\/orgs\/';</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="WebUnit.html#RegExOrgLogoURLSuffix">RegExOrgLogoURLSuffix</a></strong> = '&quot;\s*&gt;\s*&lt;img\s+src\s*=\s*&quot;([&circ;&gt;\s&quot;]+)&quot;';</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="WebUnit.html#RegExOrgSID">RegExOrgSID</a></strong> = '&lt;span[&circ;&gt;]*&gt;\s*Spectrum\s+Identification\s+\(SID\)\s*&lt;\/span&gt;\s*&lt;strong[&circ;&gt;]*&gt;\s*([&circ;&lt;\s]+)';</code></td>
 </tr>
 </table>
 <h2 class="description">Description</h2>
 <h3 class="detail">Functions and Procedures</h3>
 <table class="detail wide_list">
 <tr class="list">
-<td class="itemcode"><span id="ExtractOrganizationSIDByHTML"></span><code>function <strong>ExtractOrganizationSIDByHTML</strong>(const HTML: string): string;</code></td>
+<td class="itemcode"><span id="GetOrgDataAndLogoURL"></span><code>function <strong>GetOrgDataAndLogoURL</strong>(const Nickname: string; out OrgName: string; out LogoURL: UnicodeString): Boolean;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
-Extract Organization SID by HTML
-
-<p> </p>
+Scrapes the public dossier of a user to retrieve Organization details.    </p>
 <h6 class="description_section">Parameters</h6>
 <dl class="parameters">
-<dt>HTML</dt>
-<dd>HTML string</dd>
+<dt>Nickname</dt>
+<dd>The Star Citizen Nickname to look up.</dd>
+<dt>OrgName</dt>
+<dd>Output parameter for the Organization SID/Name.</dd>
+<dt>LogoURL</dt>
+<dd>Output parameter for the absolute URL of the organization's logo.</dd>
 </dl>
 <h6 class="description_section">Returns</h6>
-<p class="return">Organization SID</p></td></tr>
+<p class="return"><code>True</code> if the organization data was successfully parsed.</p></td></tr>
 </table>
 <table class="detail wide_list">
 <tr class="list">
-<td class="itemcode"><span id="GetUserOrganization"></span><code>function <strong>GetUserOrganization</strong>(const UserNickName: string; out UserOrganizationName: string; const UserAgent: UnicodeString = ''): Boolean;</code></td>
+<td class="itemcode"><span id="GetOrLoadOrgLogoToStream"></span><code>function <strong>GetOrLoadOrgLogoToStream</strong>(const OrgName: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;</code></td>
 </tr>
 <tr><td colspan="1">
 <p>
-Get User Organization
-
-<p>   </p>
+Retrieves an organization logo, prioritising the local cache over the network. If the file exists in the cache, it is loaded into the stream. Otherwise, it is downloaded and saved locally.    </p>
 <h6 class="description_section">Parameters</h6>
 <dl class="parameters">
-<dt>UserNickName</dt>
-<dd>User Nick Name</dd>
-<dt>UserOrganizationName</dt>
-<dd>User Organization Name</dd>
-<dt>UserAgent</dt>
-<dd>User Agent</dd>
+<dt>OrgName</dt>
+<dd>The name of the organization (used for cache filename).</dd>
+<dt>LogoURL</dt>
+<dd>The remote URL of the image.</dd>
+<dt>TargetStream</dt>
+<dd>The destination TStream where the image data will be written.</dd>
 </dl>
 <h6 class="description_section">Returns</h6>
-<p class="return">True on success, False on failure</p></td></tr>
+<p class="return"><code>True</code> if the data was successfully loaded from cache or downloaded.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="GetAvatarDataAndLogoURL"></span><code>function <strong>GetAvatarDataAndLogoURL</strong>(const Nickname: string; out LogoURL: UnicodeString): Boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Scrapes the public dossier of a user to retrieve the Avatar logo URL.   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Nickname</dt>
+<dd>The Star Citizen Nickname to look up.</dd>
+<dt>LogoURL</dt>
+<dd>Output parameter for the absolute URL of the avatar image.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> if the avatar URL was successfully parsed.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="GetOrLoadAvatarLogoToStream"></span><code>function <strong>GetOrLoadAvatarLogoToStream</strong>(const Nickname: string; const LogoURL: UnicodeString; TargetStream: TStream): Boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Retrieves a citizen's avatar logo, prioritising the local cache over the network. If the file exists in the cache, it is loaded into the stream. Otherwise, it is downloaded and saved locally.    </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>Nickname</dt>
+<dd>The Star Citizen Nickname (used for cache filename).</dd>
+<dt>LogoURL</dt>
+<dd>The remote URL of the image.</dd>
+<dt>TargetStream</dt>
+<dd>The destination TStream where the image data will be written.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> if the data was successfully loaded from cache or downloaded.</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RegExOrgLogoURL"></span><code>function <strong>RegExOrgLogoURL</strong>(OrgName: String): String;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Constructs a complete regular expression to find an organization's logo URL based on its name.  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>OrgName</dt>
+<dd>The Organization SID/Name to include in the regex pattern.</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">A string containing the formatted Regular Expression.</p></td></tr>
+</table>
+<h3 class="detail">Constants</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="HTTPSPrefix"></span><code><strong>HTTPSPrefix</strong> = UnicodeString('https://');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Standard HTTPS protocol prefix.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StarToolsAgent"></span><code><strong>StarToolsAgent</strong> = 'StarTools Agent/' + UnicodeString(<a href="VersionUnit.html#StarToolsVersionMM">StarToolsVersionMM</a>);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+User-Agent string used for WinHttp requests.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RobertsSpaceIndustriesHost"></span><code><strong>RobertsSpaceIndustriesHost</strong> = UnicodeString('robertsspaceindustries.com');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Main RSI website domain.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RobertsSpaceIndustriesCDNHost"></span><code><strong>RobertsSpaceIndustriesCDNHost</strong> = UnicodeString('cdn.robertsspaceindustries.com');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+RSI Content Delivery Network domain.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RobertsSpaceIndustriesStatusHost"></span><code><strong>RobertsSpaceIndustriesStatusHost</strong> = UnicodeString('status.robertsspaceindustries.com');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+RSI Service Status domain.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ENCitizenPrefix"></span><code><strong>ENCitizenPrefix</strong> = UnicodeString('/en/citizens/');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+URL path prefix for public citizen profiles.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="ENOrgsPrefix"></span><code><strong>ENOrgsPrefix</strong> = UnicodeString('/en/orgs/');</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+URL path prefix for public organization profiles.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RegExAvatarLogoURL"></span><code><strong>RegExAvatarLogoURL</strong> = '(?:&quot;\/account\/profile&quot;|id\s*=\s*&quot;public-profile&quot;.*?UEE Citizen Record).*?&lt;img\s+src\s*=\s*&quot;([&circ;&gt;\s&quot;]+)';</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Regular expression to extract the Avatar image URL from a citizen's dossier page.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RegExOrgLogoURLPrefix"></span><code><strong>RegExOrgLogoURLPrefix</strong> = '&lt;a\s+href\s*=\s*&quot;\/orgs\/';</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Prefix for the regular expression used to find the organization logo link.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RegExOrgLogoURLSuffix"></span><code><strong>RegExOrgLogoURLSuffix</strong> = '&quot;\s*&gt;\s*&lt;img\s+src\s*=\s*&quot;([&circ;&gt;\s&quot;]+)&quot;';</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Suffix for the regular expression used to find the organization logo link.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="RegExOrgSID"></span><code><strong>RegExOrgSID</strong> = '&lt;span[&circ;&gt;]*&gt;\s*Spectrum\s+Identification\s+\(SID\)\s*&lt;\/span&gt;\s*&lt;strong[&circ;&gt;]*&gt;\s*([&circ;&lt;\s]+)';</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Regular expression to extract the Spectrum Identification (SID) from an organization block.</p>
+</td></tr>
 </table>
 <br>
 <footer id="main-footer" class="doc-footer">

@@ -39,11 +39,17 @@ type
     PanelTop: TPanel;
   private
     {* User Nick Name }
-    function GetNickName : String;
+    function GetNickName: String;
+
+    {*
+      Sets the user nick name.
+      @param(ANickName The user nick name.)
+    }
+    procedure SetNickName(const ANickName: String);
 
   public
     {* User Nick Name }
-    property NickName : String read GetNickName;
+    property NickName : String read GetNickName write SetNickName;
 
   end;
 
@@ -66,6 +72,12 @@ begin
   Result := EditUserNickName.Text;
 end;
 
+
+
+procedure TFormUserNickName.SetNickName(const ANickName: String);
+begin
+  EditUserNickName.Text := ANickName;
+end;
 
 {$R *.lfm}
 
