@@ -30,7 +30,7 @@ const                   // TODO: Make this dynamic
   {* Major Version Value }
   StarToolsVersionMajor = '1';
   {* Minor Version Value }
-  StarToolsVersionMinor = '1';
+  StarToolsVersionMinor = '2';
   {* Patch Version Value }
   StarToolsVersionPatch = '0';
 
