@@ -23,11 +23,15 @@ The project is built with a **non-intrusive philosophy**: StarTools does not rea
   <a href="https://github.com/JoeFerri/StarTools/releases/download/v1.1.0-alpha/StarTools_v1.1.0-alpha-Debug.zip">
     <img src="https://img.shields.io/badge/Download-v1.1.0--alpha_Debug-grey?style=for-the-badge&logo=bug&logoColor=white" />
   </a>
+</p>
+<p align="center">
+  <a href="#ignore">
+    <img src="https://img.shields.io/github/downloads/JoeFerri/StarTools/v1.1.0-alpha/total?label=Downloads&style=flat-square" pointer-events="none" />
+  </a>
   <br>
-  <br>
-  <img src="https://img.shields.io/github/downloads/JoeFerri/StarTools/v1.1.0-alpha/total?label=Downloads&style=flat-square" />
-  <br>
-  <img src="https://img.shields.io/github/downloads/JoeFerri/StarTools/total?label=Total%20Project%20Downloads&style=flat-square" />
+  <a href="#ignore">
+    <img src="https://img.shields.io/github/downloads/JoeFerri/StarTools/total?label=Total%20Project%20Downloads&style=flat-square" pointer-events="none" />
+  </a>
 </p>
 
 ## ✨ Features
