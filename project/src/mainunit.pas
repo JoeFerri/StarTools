@@ -960,9 +960,24 @@ end;
 
 
 
-procedure TFormMain.TimerStarCitizenActivityTimer(Sender: TObject);
+procedure TFormMain.TimerStarCitizenActivityTimer(Sender: TObject);   
+var
+  StartTime: TDateTime;
+  StarCitizenProcessFoundPrev: Boolean;
 begin
-  if _StarCitizenProcessFound then
+  StarCitizenProcessFoundPrev := _StarCitizenProcessFound;
+  if FindProcessStartForExe(StarCitizenProcessName, StartTime) then
+  begin
+    _StarCitizenProcessFound := True;
+    _StarCitizenProcessStart := StartTime;
+  end
+  else
+  begin
+    _StarCitizenProcessFound := False;
+    _StarCitizenProcessStart := 0;
+  end;
+
+  if _StarCitizenProcessFound and (not StarCitizenProcessFoundPrev) then
   begin
     LabelStarCitizenActivity.Caption := 'Star Citizen Online';
     LabelStarCitizenActivity.Font.Color := clGreen;
@@ -970,8 +985,8 @@ begin
     ImageStarCitizenLogoRight.Visible := True;
     ImageStarCitizenLogoGreyLeft.Visible := False;
     ImageStarCitizenLogoGreyRight.Visible := False;
-  end
-  else
+  end;
+  if (not _StarCitizenProcessFound) and StarCitizenProcessFoundPrev then
   begin
     LabelStarCitizenActivity.Caption := 'Star Citizen Offline';
     LabelStarCitizenActivity.Font.Color := clMaroon;   
@@ -986,28 +1001,21 @@ end;
 
 procedure TFormMain.TimerTimeActivityTimer(Sender: TObject);
 var
-  CurrentTime: TDateTime;   
-  StartTime: TDateTime;
+  CurrentTime: TDateTime;
 begin
   CurrentTime := Now;
 
   StaticTextTime.Caption := FormatDateTime('hh" : "nn" : "ss', CurrentTime);
 
   //StaticTextTimeStamp.Caption := FormatDateTime('hh"h " nn"m " ss"s"', CurrentTime - _StartTime);
-  if FindProcessStartForExe(StarCitizenProcessName, StartTime) then
+  if _StarCitizenProcessFound then
   begin
-    _StarCitizenProcessFound := True;
-    _StarCitizenProcessStart := StartTime;
-
     // 'hh"h " nn"m " ss"s"'
     // 'yyyy-mm-dd hh:nn:ss'
     StaticTextTimeStamp.Caption := FormatDateTime('hh:nn:ss', CurrentTime - _StarCitizenProcessStart);
   end
   else
   begin
-    _StarCitizenProcessFound := False;
-    _StarCitizenProcessStart := 0;
-
     StaticTextTimeStamp.Caption := 'hh:nn:ss';
   end;
 end;

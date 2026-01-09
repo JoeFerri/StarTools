@@ -2721,7 +2721,7 @@ object FormMain: TFormMain
     }
   end
   object TimerStarCitizenActivity: TTimer
-    Interval = 6000
+    Interval = 45000
     OnTimer = TimerStarCitizenActivityTimer
     Left = 16
     Top = 440
