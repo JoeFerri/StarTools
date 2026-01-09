@@ -118,6 +118,15 @@ const
   {* Regular expression to extract the Spectrum Identification (SID) from an organization block. }
   RegExOrgSID = '<span[^>]*>\s*Spectrum\s+Identification\s+\(SID\)\s*<\/span>\s*<strong[^>]*>\s*([^<\s]+)';
 
+  {*}
+  RegExStatusPlatform = 'Platform.*?<span\s+class\s*=\s*"component-status".*?>\s*(.*?)\s*<\/span>'                        {/gs}
+
+  {*}
+  RegExStatusPersistentUniverse = 'Persistent Universe.*?<span\s+class\s*=\s*"component-status".*?>\s*(.*?)\s*<\/span>';  {/gs}
+
+  {*}
+  RegExStatusArenaCommander = 'Arena Commander.*?<span\s+class\s*=\s*"component-status".*?>\s*(.*?)\s*<\/span>';          {/gs}
+
 
 
 
