@@ -2,82 +2,51 @@
 
 - [x] MVP (Minimum Viable Product) code implementation
 
-- [ ] GitHub Project
-    - start: 
-        - [ ] labels [JoeFerri/labels](https://github.com/JoeFerri/labels)
-    - end:
+- [x] Star Citizen executable runtime tracking
 
-- [ ] Docs
-    - start: 
-        - [ ] docs [docs](https://joeferri.github.io/StarTools/)
-    - end:
+- [x] Fetch Star Citizen username (show icon, name, and profile link)
 
-- [ ] Contract creation/start timer
-    - start: 
-    - end: 
+- [ ] **{work in progress}** Station selection system (favorites or most used in dropdowns)
 
-- [ ] Ongoing and past contract statistics
-    - start: 
-    - end: 
-
-- [ ] Star Citizen executable runtime tracking
-    - start: 
-    - end: 
-
-- [ ] Fetch Star Citizen username (show icon, name, and profile link)
-    - start: 
-    - end: 
-
-- [ ] Implement custom sorting
-    - start: 
-    - end: 
-
-- [ ] Contract tab GUI
-    - start: 
-    - end: 
-
-- [ ] Travel logs / Trip reports
-    - start: 
-    - end: 
-
-- [ ] Ship selection GUI (manual or automatic cargo grid snapping)
-    - start: 
-    - end: 
-
-- [ ] Mission templates (manual implementation or automated scripts)
-    - start: 
-    - end: 
-
-- [ ] Station selection system (favorites or most used in dropdowns)
-    - start: 
-    - end: 
-
-- [ ] Community bug reporting system for contracts
-    - start: 
-    - end: 
-
-- [ ] Automatic route calculation (requires coordinate data) (TSP, A*, 2-OPT, ETSP, RCSPP, ...)
-    - start: 
-    - end: 
-
-- [ ] Star Citizen universe time sync (server-side time synchronization)
-    - start: 
-    - end: 
-
-- [ ] Ship properties GUI
-    - start: 
-    - end: 
+- [ ] **{work in progress}** Commodities selection system (favorites or most used in dropdowns)
 
 - [ ] Star Citizen Server Status GUI
-    - start: 
-    - end: 
+
+- [ ] GitHub Project
+    - [ ] labels [JoeFerri/labels](https://github.com/JoeFerri/labels)
+
+- [ ] Docs
+    - [x] docs [docs](https://joeferri.github.io/StarTools/)
+    - [ ] docs/index.html [docs/index](https://joeferri.github.io/StarTools/index) (switch to sections)
+    - [ ] user-guide [docs/user-guide](https://joeferri.github.io/StarTools/user-guide)
+    - [ ] dev-guide [docs/dev-guide](https://joeferri.github.io/StarTools/dev-guide) (docs becomes docs/dev-guide)
+
+- [ ] Contract creation/start timer
+
+- [ ] Ongoing and past contract statistics
+
+- [ ] Implement custom sorting
+
+- [ ] Contract tab GUI
+
+- [ ] Travel logs / Trip reports
+
+- [ ] Ship selection GUI (manual or automatic cargo grid snapping)
+
+- [ ] Mission templates (manual implementation or automated scripts)
+
+- [ ] Community bug reporting system for contracts
+
+- [ ] Automatic route calculation (requires coordinate data) (TSP, A*, 2-OPT, ETSP, RCSPP, ...)
+
+- [ ] Star Citizen universe time sync (server-side time synchronization)
+
+- [ ] Ship properties GUI
 
 - [ ] System design (diagrams, schematics, flowcharts, ...)
-    - start:
-        - [diagrams](https://github.com/JoeFerri/StarTools/docs/diagrams)
-            - [ ] Components
-            - [ ] WBS (Work Breakdown Structure)
-            - [ ] Use Case
-            - [ ] Activity
-            - [ ] Class
-    - end:
+    - [diagrams](https://github.com/JoeFerri/StarTools/docs/diagrams)
+        - [ ] Components
+        - [ ] WBS (Work Breakdown Structure)
+        - [ ] Use Case
+        - [ ] Activity
+        - [ ] Class
