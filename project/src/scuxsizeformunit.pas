@@ -144,6 +144,8 @@ type
     ToolBarTopMenuOp: TToolBar;
     ToolBarTopMenuWin: TToolBar;
     ToolBarTopMenuDev: TToolBar;
+    ToolButtonStationsList: TToolButton;
+    ToolButtonCommoditiesList: TToolButton;
     ToolButtonClearAll: TToolButton;
     ToolButtonContractView: TToolButton;
     ToolButtonCustomSort: TToolButton;
@@ -183,11 +185,13 @@ type
     procedure ImageSortSCUClick(Sender: TObject);
     procedure ImageSortUnloadingStationClick(Sender: TObject);
     procedure ToolButtonAlwaysShowOnTopClick(Sender: TObject);
+    procedure ToolButtonCommoditiesListClick(Sender: TObject);
     procedure ToolButtonContractViewClick(Sender: TObject);
     procedure ToolButtonClearAllClick(Sender: TObject);
     procedure ToolButtonConsoleClick(Sender: TObject);
     procedure ToolButtonCustomSortClick(Sender: TObject);
     procedure ToolButtonShowHideDoneClick(Sender: TObject);
+    procedure ToolButtonStationsListClick(Sender: TObject);
     procedure ToolButtonTestClick(Sender: TObject);
   private
     {* State of the Form }
@@ -1229,6 +1233,20 @@ begin
     Self.FormStyle := fsSystemStayOnTop
   else        
     Self.FormStyle := fsNormal;
+end;
+
+
+
+procedure TFormSCUxSize.ToolButtonStationsListClick(Sender: TObject);
+begin
+  // TODO
+end;
+
+
+
+procedure TFormSCUxSize.ToolButtonCommoditiesListClick(Sender: TObject);
+begin
+  // TODO
 end;
 
 
