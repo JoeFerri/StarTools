@@ -110,15 +110,15 @@ I am currently working on comprehensive guides to help players get the most out 
 
 ## 🗺️ Main RoadMap - tasks completed
 
-- [x] MVP (Minimum Viable Product) code implementation
+- [x] [1.0.0] - 2026-01-03 | MVP (Minimum Viable Product) code implementation
 
-- [x] Star Citizen executable runtime tracking
+- [x] [1.1.0] - 2026-01-08 | Star Citizen executable runtime tracking
 
-- [x] Fetch Star Citizen username (show icon, name, and profile link)
+- [x] [1.1.0] - 2026-01-08 | Fetch Star Citizen username (show icon, name, and profile link)
 
-- [ ] **{work in progress}** Station selection system (favorites or most used in dropdowns)
+- [ ] [Unreleased]         | **{work in progress}** Station selection system (favorites or most used in dropdowns)
 
-- [ ] **{work in progress}** Commodities selection system (favorites or most used in dropdowns)
+- [ ] [Unreleased]         | **{work in progress}** Commodities selection system (favorites or most used in dropdowns)
 
 for the full roadmap see [roadmap.md](roadmap.md)
 
