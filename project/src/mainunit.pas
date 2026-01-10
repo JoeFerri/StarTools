@@ -966,15 +966,24 @@ var
   StarCitizenProcessFoundPrev: Boolean;
 begin
   StarCitizenProcessFoundPrev := _StarCitizenProcessFound;
+
   if FindProcessStartForExe(StarCitizenProcessName, StartTime) then
   begin
-    _StarCitizenProcessFound := True;
-    _StarCitizenProcessStart := StartTime;
+    if not _StarCitizenProcessFound then
+    begin
+      TimerStarCitizenActivity.Interval := 45000;
+      _StarCitizenProcessFound := True;
+      _StarCitizenProcessStart := StartTime;
+    end;
   end
   else
   begin
-    _StarCitizenProcessFound := False;
-    _StarCitizenProcessStart := 0;
+    if _StarCitizenProcessFound then
+    begin
+      TimerStarCitizenActivity.Interval := 5000;
+      _StarCitizenProcessFound := False;
+      _StarCitizenProcessStart := 0;
+    end;
   end;
 
   if _StarCitizenProcessFound and (not StarCitizenProcessFoundPrev) then
