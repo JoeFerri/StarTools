@@ -21,8 +21,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <MinorVersionNr Value="1"/>
-      <BuildNr Value="3"/>
+      <MinorVersionNr Value="2"/>
       <Attributes pvaPreRelease="True"/>
       <StringTable Comments="Fan-made Star Citizen tools." CompanyName="Giuseppe Ferri 2025" FileDescription="Fan-made Star Citizen tools." LegalCopyright="Giuseppe Ferri 2025" ProductName="StarTools" ProductVersion="1.0"/>
     </VersionInfo>
