@@ -72,7 +72,7 @@ type
     BevelTotals: TBevel;
     BevelTotalsFiltered: TBevel;
     CheckBoxRoutesShown: TCheckBox;
-    CheckBoxRoutesDone: TCheckBox;
+    CheckBoxRoutesUndone: TCheckBox;
     CheckBoxRoutesGroup: TCheckBox;
     CoolBarTopLeftMenu: TCoolBar;
     EditSCUTotal01: TEdit;
@@ -177,7 +177,7 @@ type
     procedure ActionShowConsoleSettingsExecute(Sender: TObject);
     procedure ApplicationPropertiesActivate(Sender: TObject);
     procedure ApplicationPropertiesDeactivate(Sender: TObject);
-    procedure CheckBoxRoutesDoneChange(Sender: TObject);
+    procedure CheckBoxRoutesUndoneChange(Sender: TObject);
     procedure CheckBoxRoutesGroupChange(Sender: TObject);
     procedure CheckBoxRoutesShownChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -313,6 +313,11 @@ var
 
   _HideDone: Boolean;
 
+  _RoutesGroupID: Integer;
+  _RoutesGroupFlag: Boolean;
+  _RoutesUndoneFlag: Boolean;
+  _RoutesShownFlag: Boolean;
+
   FormContractView: TFormContractView;
 
 
@@ -332,15 +337,27 @@ end;
 procedure TFormSCUxSize.SetEditSCUTotalN;
 var
   SCUxSize: TSCUxSizeRecord;
+  SCUxSizeFiltered: TSCUxSizeRecord;
   APanelRow: TPanelRow;
   TradeRouteLeg: TTradeRouteLeg;
 begin
   SCUxSize := default(TSCUxSizeRecord);
+  SCUxSizeFiltered := default(TSCUxSizeRecord);
+
   for APanelRow in PanelRowStack do
   begin
     TradeRouteLeg := APanelRow.TradeRouteLeg;
     if TradeRouteLeg.SCU > 0 then
-      SCUxSize := SCUxSize + TradeRouteLeg.SCUxSize;
+      begin
+        SCUxSize := SCUxSize + TradeRouteLeg.SCUxSize;
+
+        if ((not _RoutesShownFlag) or (_RoutesShownFlag and not TradeRouteLeg.Hide)) and
+              (not _RoutesUndoneFlag or (_RoutesUndoneFlag and not TradeRouteLeg.Done)) and
+                (not _RoutesGroupFlag or (_RoutesGroupFlag and (TradeRouteLeg.GroupId = _RoutesGroupID))) then
+          begin
+            SCUxSizeFiltered := SCUxSizeFiltered + TradeRouteLeg.SCUxSize;
+          end;
+      end;
   end;
 
   EditSCUTotal32.Text := IntToStr(SCUxSize.SCUSize32);
@@ -350,6 +367,14 @@ begin
   EditSCUTotal04.Text := IntToStr(SCUxSize.SCUSize04);
   EditSCUTotal02.Text := IntToStr(SCUxSize.SCUSize02);
   EditSCUTotal01.Text := IntToStr(SCUxSize.SCUSize01);
+
+  EditSCUTotalFiltered32.Text := IntToStr(SCUxSizeFiltered.SCUSize32);
+  EditSCUTotalFiltered24.Text := IntToStr(SCUxSizeFiltered.SCUSize24);
+  EditSCUTotalFiltered16.Text := IntToStr(SCUxSizeFiltered.SCUSize16);
+  EditSCUTotalFiltered08.Text := IntToStr(SCUxSizeFiltered.SCUSize08);
+  EditSCUTotalFiltered04.Text := IntToStr(SCUxSizeFiltered.SCUSize04);
+  EditSCUTotalFiltered02.Text := IntToStr(SCUxSizeFiltered.SCUSize02);
+  EditSCUTotalFiltered01.Text := IntToStr(SCUxSizeFiltered.SCUSize01);
 end;
 
 
@@ -459,7 +484,7 @@ begin
 
       eHide:
         begin
-          //? ignored
+          SetEditSCUTotalN;
         end;
 
       eSCUxSize:
@@ -530,28 +555,33 @@ end;
 
 procedure TFormSCUxSize.CheckBoxRoutesShownChange(Sender: TObject);
 begin
-  // TODO
+  _RoutesShownFlag := CheckBoxRoutesShown.Checked;
+  SetEditSCUTotalN;
 end;
 
 
 
-procedure TFormSCUxSize.CheckBoxRoutesDoneChange(Sender: TObject);
+procedure TFormSCUxSize.CheckBoxRoutesUndoneChange(Sender: TObject);
 begin
-  // TODO
+  _RoutesUndoneFlag := CheckBoxRoutesUndone.Checked;
+  SetEditSCUTotalN;
 end;
 
 
 
 procedure TFormSCUxSize.CheckBoxRoutesGroupChange(Sender: TObject);
 begin
-  // TODO
+  _RoutesGroupFlag := CheckBoxRoutesGroup.Checked;
+  SpinEditRoutesGroup.Enabled := _RoutesGroupFlag;
+  SetEditSCUTotalN;
 end;   
 
 
 
 procedure TFormSCUxSize.SpinEditRoutesGroupChange(Sender: TObject);
 begin
-  // TODO
+  _RoutesGroupID := SpinEditRoutesGroup.Value;
+  SetEditSCUTotalN;
 end;
 
 
@@ -1435,6 +1465,12 @@ begin
   ActionReloadDataListExecute(Self);
 
 
+  CheckBoxRoutesGroup.Checked := _RoutesGroupFlag;
+  CheckBoxRoutesUndone.Checked := _RoutesUndoneFlag;
+  CheckBoxRoutesShown.Checked := _RoutesShownFlag;
+  SpinEditRoutesGroup.Value := _RoutesGroupID;
+
+
   OpenDialog.Title := 'Select SCUxSize file to upload';
   OpenDialog.InitialDir := ExtractFilePath(Application.ExeName);
   OpenDialog.Filter := 'JSON files|*.json';
@@ -1493,6 +1529,11 @@ _StringListRecord.StationNames := TStringList.Create;
 _StringListRecord.Commodities := TStringList.Create;
 
 _HideDone := False;
+
+_RoutesGroupID := 0;
+_RoutesGroupFlag := False;
+_RoutesUndoneFlag := False;
+_RoutesShownFlag := False;
 
 
 

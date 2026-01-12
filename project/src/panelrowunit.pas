@@ -385,7 +385,8 @@ begin
     FGroupIdEnabled := False;
     SpinEditGroupID.Enabled := False;
     SpinEditGroupID.Value := 0;
-    FTradeRouteLegCallback(Self, eGroupId);
+    // FTradeRouteLegCallback(Self, eGroupId);
+    SpinEditGroupID.OnChange(nil); // trigger callback even if not changed
   end;
 end;
 
@@ -396,7 +397,8 @@ begin
   FGroupIdEnabled := AEnabled;
   SpinEditGroupID.Enabled := AEnabled;
   SpinEditGroupID.Value := 0;
-  FTradeRouteLegCallback(Self, eGroupId);
+  // FTradeRouteLegCallback(Self, eGroupId);
+    SpinEditGroupID.OnChange(nil); // trigger callback even if not changed
 end;
 
 
@@ -456,7 +458,7 @@ begin
 
   SetValue(AItem, ATradeRouteLeg);
 
-  FTradeRouteLegCallback(Self, AItem);
+  // FTradeRouteLegCallback(Self, AItem);
 end;
 
 
