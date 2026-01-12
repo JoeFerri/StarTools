@@ -66,7 +66,7 @@ testing
 
 # Private files
 private
-saves/*
+project/saves/*
 !saves/.gitkeep
 
 # Backup
