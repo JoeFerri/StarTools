@@ -164,7 +164,7 @@ type
     ToolButtonClearAll: TToolButton;
     ToolButtonContractView: TToolButton;
     ToolButtonCustomSort: TToolButton;
-    ToolButtonShowDone: TToolButton;
+    ToolButtonShowHideDone: TToolButton;
     ToolButtonTest: TToolButton;
     ToolButtonAlwaysShowOnTop: TToolButton;
     ToolButton3: TToolButton;
@@ -1366,17 +1366,18 @@ procedure TFormSCUxSize.ToolButtonShowHideDoneClick(Sender: TObject);
 var
   PanelRow: TPanelRow;
 begin
-  if ToolButtonShowDone.ImageIndex = 7 then
-    ToolButtonShowDone.ImageIndex := 6
-  else ToolButtonShowDone.ImageIndex := 7;
+  if ToolButtonShowHideDone.ImageIndex = 7 then
+    ToolButtonShowHideDone.ImageIndex := 6
+  else ToolButtonShowHideDone.ImageIndex := 7;
+  
+  _HideDone := not _HideDone;
 
   for PanelRow in PanelRowStack do
   begin
-    if PanelRow.TradeRouteLeg.Done then
-      PanelRow.CheckBoxShowHideRow.Checked := not _HideDone;
+    PanelRow.HideDone(_HideDone);
+    //if PanelRow.TradeRouteLeg.Done then
+    //  PanelRow.CheckBoxShowHideRow.Checked := not _HideDone;
   end;
-
-  _HideDone := not _HideDone;
 end;
 
 

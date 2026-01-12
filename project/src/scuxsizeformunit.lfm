@@ -1631,11 +1631,11 @@ object FormSCUxSize: TFormSCUxSize
           ShowHint = True
           OnClick = ToolButtonCustomSortClick
         end
-        object ToolButtonShowDone: TToolButton
+        object ToolButtonShowHideDone: TToolButton
           Left = 47
           Hint = 'Show/Hide completed panels.'
           Top = 2
-          Caption = 'ToolButtonShowDone'
+          Caption = 'ToolButtonShowHideDone'
           ImageIndex = 7
           ParentShowHint = False
           ShowHint = True

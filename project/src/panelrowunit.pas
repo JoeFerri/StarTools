@@ -118,6 +118,9 @@ type
     {* Create the components and insert them into the panel. }
     procedure CreateComponents;
 
+    {*}
+    procedure CheckBoxShowHideRowChangeByFlag;
+
     {*
       Initialise @link(TItemStringListRecord) by freeing the previous memory if necessary.
       @param(AStringListRecord The string lists for filling in @code(TCheckBox) components.)
@@ -256,6 +259,9 @@ type
     {* Pointer to the Contract Database. }
     property ContractDB: TContractDB read FContractDB;
 
+    {*}
+    procedure HideDone(AHideDoneFlag: Boolean);
+
     {* Register this panel in @code(ContractDB). }
     procedure RegisterPanel(AContractDB: TContractDB);
 
@@ -315,6 +321,10 @@ implementation
 var
   {* Console Server }
   Console: TConsoleReaderThread;
+
+  _HideDone: Boolean;
+
+
 
 const
   Spacing = 5;
@@ -449,6 +459,14 @@ begin
   TSCUxSizeRecord.SetSCUxSizeFromSCU(SpinEditSCU.Value, GetSCUMaxSize, Result);
 end;
 
+
+procedure TPanelRow.HideDone(AHideDoneFlag: Boolean);
+var
+  Flag: Boolean;
+begin
+  _HideDone := AHideDoneFlag;
+  CheckBoxShowHideRowChangeByFlag;
+end;
 
 
 procedure TPanelRow.PanelLegNotify(const Sender: TObject; const PanelID: Integer; const AItem: TTradeRouteLegItem; const ATradeRouteLeg: TTradeRouteLeg);
@@ -913,15 +931,21 @@ begin
     Edit01.Enabled := True;
   end;
 
+  CheckBoxShowHideRowChangeByFlag;
+
   TryContractDBPanelChanged(eDone);
   FTradeRouteLegCallback(Self, eDone);
 end;
 
 
 
-procedure TPanelRow.CheckBoxShowHideRowChange(Sender: TObject);
+procedure TPanelRow.CheckBoxShowHideRowChangeByFlag;
+var
+  Flag: Boolean;
 begin
-  if CheckBoxShowHideRow.Checked then
+  Flag := (_HideDone and CheckBoxDone.Checked) or CheckBoxShowHideRow.Checked;
+
+  if Flag then
   begin
     SpinEditGroupID.Hide;
     ComboBoxLoadingStation.Hide;
@@ -949,14 +973,23 @@ begin
     ComboBoxSCUMaxSize.Show;
     CheckBoxDone.Show;
 
-    Edit32.Show;
-    Edit24.Show;
-    Edit16.Show;
-    Edit08.Show;
-    Edit04.Show;
-    Edit02.Show;
-    Edit01.Show;
+    //Edit32.Show;
+    //Edit24.Show;
+    //Edit16.Show;
+    //Edit08.Show;
+    //Edit04.Show;
+    //Edit02.Show;
+    //Edit01.Show;
+
+    SetEditNVisibility;
   end;
+end;
+
+
+
+procedure TPanelRow.CheckBoxShowHideRowChange(Sender: TObject);
+begin
+  CheckBoxShowHideRowChangeByFlag;
 
   TryContractDBPanelChanged(eHide);
   FTradeRouteLegCallback(Self, eHide);
@@ -1205,7 +1238,7 @@ end;
 
 
 initialization
-
+_HideDone := False;
 
 
 finalization
