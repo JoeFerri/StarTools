@@ -29,7 +29,7 @@ uses
   Menus, ActnList,
   fpjson, jsonparser,
   Generics.Defaults,
-  LCLType, ComCtrls, Windows,
+  LCLType, ComCtrls, Spin, BGRACustomDrawn, Windows,
   StateFormUnit,
   ContractUnit, PanelRowUnit, SCUxSizeUnit, SizeDialogUnit, ContractDBUnit,
   ContractViewUnit,
@@ -70,17 +70,29 @@ type
     Bevel8: TBevel;
     Bevel9: TBevel;
     BevelTotals: TBevel;
+    BevelTotalsFiltered: TBevel;
+    CheckBoxRoutesShown: TCheckBox;
+    CheckBoxRoutesDone: TCheckBox;
+    CheckBoxRoutesGroup: TCheckBox;
     CoolBarTopLeftMenu: TCoolBar;
     EditSCUTotal01: TEdit;
     EditSCUTotal02: TEdit;
     EditSCUTotal04: TEdit;
     EditSCUTotal08: TEdit;
+    EditSCUTotalFiltered01: TEdit;
+    EditSCUTotalFiltered02: TEdit;
+    EditSCUTotalFiltered04: TEdit;
+    EditSCUTotalFiltered08: TEdit;
+    EditSCUTotalFiltered16: TEdit;
+    EditSCUTotalFiltered24: TEdit;
+    EditSCUTotalFiltered32: TEdit;
     EditSCUTotalDone: TEdit;
     EditSCUTotal16: TEdit;
     EditSCUTotalToDo: TEdit;
     EditSCUTotal24: TEdit;
     EditSCUTotal32: TEdit;
     EditSCUTotal: TEdit;
+    GroupBoxTotalFilters: TGroupBox;
     ImageListMenu: TImageList;
     ImageWarning_1: TImage;
     ImageWarning_2: TImage;
@@ -116,6 +128,7 @@ type
     LabelGroupID: TLabel;
     LabelDone: TLabel;
     LabelTotalDone: TLabel;
+    LabelTotalFilteredSCUN: TLabel;
     LabelTotalToDo: TLabel;
     LabelTotalSCUN: TLabel;
     LabelUnloadingStation: TLabel;
@@ -125,6 +138,7 @@ type
     MainMenuItemShowConsoleSettings: TMenuItem;
     MenuMain: TMainMenu;
     MainMenuItemFile: TMenuItem;
+    PanelTotalFilters: TPanel;
     PanelTopMenu: TPanel;
     PopupMenuItemReloadDataList: TMenuItem;
     MainMenuItemLoad: TMenuItem;
@@ -141,6 +155,7 @@ type
     PopupMenuMain: TPopupMenu;
     SaveDialog: TSaveDialog;
     SaveDialog1: TSaveDialog;
+    SpinEditRoutesGroup: TSpinEdit;
     ToolBarTopMenuOp: TToolBar;
     ToolBarTopMenuWin: TToolBar;
     ToolBarTopMenuDev: TToolBar;
@@ -162,6 +177,9 @@ type
     procedure ActionShowConsoleSettingsExecute(Sender: TObject);
     procedure ApplicationPropertiesActivate(Sender: TObject);
     procedure ApplicationPropertiesDeactivate(Sender: TObject);
+    procedure CheckBoxRoutesDoneChange(Sender: TObject);
+    procedure CheckBoxRoutesGroupChange(Sender: TObject);
+    procedure CheckBoxRoutesShownChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -184,6 +202,7 @@ type
     procedure ImageSortSCUMaxSizeClick(Sender: TObject);
     procedure ImageSortSCUClick(Sender: TObject);
     procedure ImageSortUnloadingStationClick(Sender: TObject);
+    procedure SpinEditRoutesGroupChange(Sender: TObject);
     procedure ToolButtonAlwaysShowOnTopClick(Sender: TObject);
     procedure ToolButtonCommoditiesListClick(Sender: TObject);
     procedure ToolButtonContractViewClick(Sender: TObject);
@@ -505,6 +524,34 @@ end;
 procedure TFormSCUxSize.ApplicationPropertiesDeactivate(Sender: TObject);
 begin
   State:= TState.UnFocused;
+end; 
+
+
+
+procedure TFormSCUxSize.CheckBoxRoutesShownChange(Sender: TObject);
+begin
+  // TODO
+end;
+
+
+
+procedure TFormSCUxSize.CheckBoxRoutesDoneChange(Sender: TObject);
+begin
+  // TODO
+end;
+
+
+
+procedure TFormSCUxSize.CheckBoxRoutesGroupChange(Sender: TObject);
+begin
+  // TODO
+end;   
+
+
+
+procedure TFormSCUxSize.SpinEditRoutesGroupChange(Sender: TObject);
+begin
+  // TODO
 end;
 
 

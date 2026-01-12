@@ -1,13 +1,13 @@
 object FormSCUxSize: TFormSCUxSize
   Left = 374
-  Height = 616
+  Height = 636
   Top = 250
   Width = 1380
   Anchors = []
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Hauling Manager'
-  ClientHeight = 616
+  ClientHeight = 636
   ClientWidth = 1380
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -31,15 +31,15 @@ object FormSCUxSize: TFormSCUxSize
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 16
-    Height = 436
-    Top = 170
+    Height = 446
+    Top = 180
     Width = 1348
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 16
-    BorderSpacing.Top = 114
+    BorderSpacing.Top = 134
     BorderSpacing.Right = 16
     BorderSpacing.Bottom = 10
-    ClientHeight = 436
+    ClientHeight = 446
     ClientWidth = 1348
     TabOrder = 0
     object LabelSCU: TLabel
@@ -369,7 +369,7 @@ object FormSCUxSize: TFormSCUxSize
       Left = 11
       Height = 20
       Hint = 'Add a new route.'
-      Top = 385
+      Top = 395
       Width = 20
       Anchors = [akLeft, akBottom]
       BorderSpacing.Left = 10
@@ -415,7 +415,7 @@ object FormSCUxSize: TFormSCUxSize
       Left = 11
       Height = 20
       Hint = 'Delete the last route.'
-      Top = 405
+      Top = 415
       Width = 20
       BorderSpacing.Top = 20
       Center = True
@@ -953,12 +953,12 @@ object FormSCUxSize: TFormSCUxSize
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
     Left = 647
-    Height = 99
-    Top = 56
+    Height = 130
+    Top = 46
     Width = 717
     Anchors = [akTop, akRight]
-    BorderSpacing.Top = 56
-    ClientHeight = 99
+    BorderSpacing.Top = 46
+    ClientHeight = 130
     ClientWidth = 717
     TabOrder = 1
     object EditSCUTotal: TEdit
@@ -968,7 +968,7 @@ object FormSCUxSize: TFormSCUxSize
       Left = 91
       Height = 24
       Hint = 'Total SCU for all routes (including non-contractual routes).'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akLeft, akBottom]
       BorderSpacing.Left = 90
@@ -987,11 +987,11 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideBottom.Control = BevelTotals
       Left = 451
       Height = 16
-      Top = 24
+      Top = 67
       Width = 143
       Anchors = [akLeft, akBottom]
       BorderSpacing.Top = 10
-      BorderSpacing.Bottom = 8
+      BorderSpacing.Bottom = 4
       Caption = 'Total SCUs for all routes'
     end
     object EditSCUTotal01: TEdit
@@ -1002,7 +1002,7 @@ object FormSCUxSize: TFormSCUxSize
       Left = 662
       Height = 24
       Hint = 'Total SCU size 1.'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akRight, akBottom]
       BorderSpacing.Left = 10
@@ -1022,10 +1022,9 @@ object FormSCUxSize: TFormSCUxSize
       Left = 608
       Height = 24
       Hint = 'Total SCU size 2.'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akRight, akBottom]
-      BorderSpacing.Left = 10
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 10
       NumbersOnly = True
@@ -1042,10 +1041,9 @@ object FormSCUxSize: TFormSCUxSize
       Left = 554
       Height = 24
       Hint = 'Total SCU size 4.'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akRight, akBottom]
-      BorderSpacing.Left = 10
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 10
       NumbersOnly = True
@@ -1062,10 +1060,9 @@ object FormSCUxSize: TFormSCUxSize
       Left = 500
       Height = 24
       Hint = 'Total SCU size 8.'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akRight, akBottom]
-      BorderSpacing.Left = 10
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 10
       NumbersOnly = True
@@ -1082,10 +1079,9 @@ object FormSCUxSize: TFormSCUxSize
       Left = 446
       Height = 24
       Hint = 'Total SCU size 16.'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akRight, akBottom]
-      BorderSpacing.Left = 10
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 10
       NumbersOnly = True
@@ -1102,10 +1098,9 @@ object FormSCUxSize: TFormSCUxSize
       Left = 392
       Height = 24
       Hint = 'Total SCU size 24.'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akRight, akBottom]
-      BorderSpacing.Left = 10
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 10
       NumbersOnly = True
@@ -1122,10 +1117,9 @@ object FormSCUxSize: TFormSCUxSize
       Left = 338
       Height = 24
       Hint = 'Total SCU size 32.'
-      Top = 64
+      Top = 95
       Width = 44
       Anchors = [akRight, akBottom]
-      BorderSpacing.Left = 10
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 10
       NumbersOnly = True
@@ -1141,11 +1135,11 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = EditSCUTotal
       Left = 338
-      Height = 8
-      Top = 48
+      Height = 4
+      Top = 87
       Width = 368
       Anchors = [akLeft, akRight, akBottom]
-      BorderSpacing.Bottom = 8
+      BorderSpacing.Bottom = 4
     end
     object EditSCUTotalDone: TEdit
       AnchorSideLeft.Control = EditSCUTotal
@@ -1153,7 +1147,7 @@ object FormSCUxSize: TFormSCUxSize
       Left = 91
       Height = 24
       Hint = 'Total SCUs completed.'
-      Top = 35
+      Top = 66
       Width = 44
       Anchors = [akLeft, akBottom]
       BorderSpacing.Bottom = 5
@@ -1170,7 +1164,7 @@ object FormSCUxSize: TFormSCUxSize
       Left = 91
       Height = 24
       Hint = 'Total SCU to be completed.'
-      Top = 6
+      Top = 37
       Width = 44
       Anchors = [akLeft, akBottom]
       BorderSpacing.Bottom = 5
@@ -1187,7 +1181,7 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Side = asrCenter
       Left = 11
       Height = 16
-      Top = 68
+      Top = 99
       Width = 77
       BorderSpacing.Left = 10
       Caption = 'Total All SCU'
@@ -1198,7 +1192,7 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Side = asrCenter
       Left = 11
       Height = 16
-      Top = 39
+      Top = 70
       Width = 62
       BorderSpacing.Left = 10
       Caption = 'Total Done'
@@ -1209,10 +1203,273 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Side = asrCenter
       Left = 11
       Height = 16
-      Top = 10
+      Top = 41
       Width = 65
       BorderSpacing.Left = 10
       Caption = 'Total To Do'
+    end
+    object GroupBoxTotalFilters: TGroupBox
+      AnchorSideLeft.Control = EditSCUTotalToDo
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = PanelTotals
+      AnchorSideRight.Control = BevelTotals
+      AnchorSideBottom.Control = PanelTotals
+      AnchorSideBottom.Side = asrBottom
+      Left = 145
+      Height = 118
+      Hint = 'Filters for calculating SCU totals.'
+      Top = 6
+      Width = 183
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 10
+      BorderSpacing.Bottom = 5
+      Caption = 'Total Filters'
+      ClientHeight = 97
+      ClientWidth = 179
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 10
+      object PanelTotalFilters: TPanel
+        AnchorSideLeft.Control = GroupBoxTotalFilters
+        AnchorSideTop.Control = GroupBoxTotalFilters
+        AnchorSideRight.Control = GroupBoxTotalFilters
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = GroupBoxTotalFilters
+        AnchorSideBottom.Side = asrBottom
+        Left = 5
+        Height = 92
+        Top = 0
+        Width = 169
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Left = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Bottom = 5
+        ClientHeight = 92
+        ClientWidth = 169
+        TabOrder = 0
+        object CheckBoxRoutesShown: TCheckBox
+          AnchorSideLeft.Control = PanelTotalFilters
+          AnchorSideBottom.Control = PanelTotalFilters
+          AnchorSideBottom.Side = asrBottom
+          Left = 6
+          Height = 20
+          Hint = 'Calculate only the totals of routes with the “show” flag.'
+          Top = 68
+          Width = 97
+          Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 5
+          BorderSpacing.Bottom = 3
+          Caption = 'routes shown'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+          OnChange = CheckBoxRoutesShownChange
+        end
+        object CheckBoxRoutesDone: TCheckBox
+          AnchorSideLeft.Control = PanelTotalFilters
+          AnchorSideBottom.Control = CheckBoxRoutesShown
+          Left = 6
+          Height = 20
+          Hint = 'Calculate only the totals of routes with the “done” flag.'
+          Top = 48
+          Width = 87
+          Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 5
+          Caption = 'routes done'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 1
+          OnChange = CheckBoxRoutesDoneChange
+        end
+        object CheckBoxRoutesGroup: TCheckBox
+          AnchorSideLeft.Control = PanelTotalFilters
+          AnchorSideBottom.Control = CheckBoxRoutesDone
+          Left = 6
+          Height = 20
+          Hint = 'Calculate only the totals of routes belonging to a group.'
+          Top = 28
+          Width = 92
+          Anchors = [akLeft, akBottom]
+          BorderSpacing.Left = 5
+          Caption = 'routes group'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 2
+          OnChange = CheckBoxRoutesGroupChange
+        end
+        object SpinEditRoutesGroup: TSpinEdit
+          AnchorSideLeft.Control = CheckBoxRoutesGroup
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = CheckBoxRoutesGroup
+          AnchorSideTop.Side = asrCenter
+          Left = 110
+          Height = 24
+          Hint = 'Group of belonging.'
+          Top = 26
+          Width = 50
+          BorderSpacing.Left = 12
+          MaxValue = 99
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 3
+          OnChange = SpinEditRoutesGroupChange
+        end
+      end
+    end
+    object EditSCUTotalFiltered01: TEdit
+      AnchorSideRight.Control = PanelTotals
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = EditSCUTotal01
+      Left = 662
+      Height = 24
+      Hint = 'Total SCU size 1.'
+      Top = 36
+      Width = 44
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 10
+      BorderSpacing.Bottom = 35
+      NumbersOnly = True
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 11
+      Text = '0'
+    end
+    object EditSCUTotalFiltered02: TEdit
+      AnchorSideRight.Control = EditSCUTotalFiltered01
+      AnchorSideBottom.Control = EditSCUTotalFiltered01
+      AnchorSideBottom.Side = asrBottom
+      Left = 608
+      Height = 24
+      Hint = 'Total SCU size 2.'
+      Top = 36
+      Width = 44
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 12
+      Text = '0'
+    end
+    object EditSCUTotalFiltered04: TEdit
+      AnchorSideRight.Control = EditSCUTotalFiltered02
+      AnchorSideBottom.Control = EditSCUTotalFiltered01
+      AnchorSideBottom.Side = asrBottom
+      Left = 554
+      Height = 24
+      Hint = 'Total SCU size 4.'
+      Top = 36
+      Width = 44
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 13
+      Text = '0'
+    end
+    object EditSCUTotalFiltered08: TEdit
+      AnchorSideRight.Control = EditSCUTotalFiltered04
+      AnchorSideBottom.Control = EditSCUTotalFiltered01
+      AnchorSideBottom.Side = asrBottom
+      Left = 500
+      Height = 24
+      Hint = 'Total SCU size 8.'
+      Top = 36
+      Width = 44
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 14
+      Text = '0'
+    end
+    object EditSCUTotalFiltered16: TEdit
+      AnchorSideRight.Control = EditSCUTotalFiltered08
+      AnchorSideBottom.Control = EditSCUTotalFiltered01
+      AnchorSideBottom.Side = asrBottom
+      Left = 446
+      Height = 24
+      Hint = 'Total SCU size 16.'
+      Top = 36
+      Width = 44
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 15
+      Text = '0'
+    end
+    object EditSCUTotalFiltered24: TEdit
+      AnchorSideRight.Control = EditSCUTotalFiltered16
+      AnchorSideBottom.Control = EditSCUTotalFiltered01
+      AnchorSideBottom.Side = asrBottom
+      Left = 392
+      Height = 24
+      Hint = 'Total SCU size 24.'
+      Top = 36
+      Width = 44
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 16
+      Text = '0'
+    end
+    object EditSCUTotalFiltered32: TEdit
+      AnchorSideRight.Control = EditSCUTotalFiltered24
+      AnchorSideBottom.Control = EditSCUTotalFiltered01
+      AnchorSideBottom.Side = asrBottom
+      Left = 338
+      Height = 24
+      Hint = 'Total SCU size 32.'
+      Top = 36
+      Width = 44
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ReadOnly = True
+      ShowHint = True
+      TabOrder = 17
+      Text = '0'
+    end
+    object LabelTotalFilteredSCUN: TLabel
+      AnchorSideLeft.Control = EditSCUTotal08
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideTop.Control = BevelTotals
+      AnchorSideBottom.Control = BevelTotalsFiltered
+      Left = 424
+      Height = 16
+      Top = 8
+      Width = 196
+      Anchors = [akLeft, akBottom]
+      BorderSpacing.Top = 10
+      BorderSpacing.Bottom = 4
+      Caption = 'Total SCUs for all routes (Filtered)'
+    end
+    object BevelTotalsFiltered: TBevel
+      AnchorSideLeft.Control = EditSCUTotal32
+      AnchorSideRight.Control = EditSCUTotal01
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = EditSCUTotalFiltered01
+      Left = 338
+      Height = 4
+      Top = 28
+      Width = 368
+      Anchors = [akLeft, akRight, akBottom]
+      BorderSpacing.Bottom = 4
     end
   end
   object PanelTopMenu: TPanel
