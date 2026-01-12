@@ -2,7 +2,7 @@
   This file is part of StarTools.
   StarTools is a fan-made suite of tools for Star Citizen.
 
-  Copyright (c) 2025 Giuseppe Ferri <jfinfoit@gmail.com>
+  Copyright (c) 2025-2026 Giuseppe Ferri <jfinfoit@gmail.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as

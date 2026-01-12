@@ -1,0 +1,15 @@
+{
+  "project_info": {
+    "name": "StarTools",
+    "author": "Giuseppe Ferri",
+    "version": "1.2.0",
+    "copyright": "© 2025-2026 Giuseppe Ferri",
+    "url": "https://github.com/JoeFerri/StarTools"
+  },
+  "software_dependencies": [
+  ],
+  "multimedia_assets": [
+  ],
+  "special_thanks": [
+  ]
+}

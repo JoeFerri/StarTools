@@ -135,6 +135,7 @@ To compile StarTools, you need to have the following tools installed on your sys
 * **IDE:** [Lazarus 4.4](https://www.lazarus-ide.org/)
 * **Compiler:** [Free Pascal 3.2.2](https://www.freepascal.org/)
 * **Documentation Tools:** [PasDoc](https://pasdoc.github.io/) and [Graphviz](https://graphviz.org/) (required only if you want to generate the documentation via Makefile).
+* **JSON Tools:** [jq](https://jqlang.org/) (required for credits.json parsing). (`sudo apt install jq`)
 * **Environment:** [WSL2 (Ubuntu)](https://learn.microsoft.com/en-us/windows/wsl/install) is required to run the provided `Makefile` on Windows 11.
 
 ### 👣 Step-by-Step Instructions
@@ -203,6 +204,7 @@ Once the application has been compiled via Lazarus, you can use the **WSL2** ter
 This command will:
 - Automatically detect the version number from the `.lpi` project file.
 - Create a `bin/` folder.
+- update `credits.json` with the current version number.
 - Package the executables along with the `data/` and `saves/` folders.
 - Include essential files such as `README.md`, `LICENSE`, and `CHANGELOG.md`.
 The resulting files (e.g., `StarTools_v1.2.3-Release.zip`, `StarTools_v1.2.3-Debug.zip`) will be ready for distribution inside the `bin/` directory.
@@ -235,7 +237,7 @@ All **game content, assets, and materials** are copyright of **Cloud Imperium Ri
 
 ### 🔓 AGPL-3.0 license 
 
-Copyright (c) 2025 Giuseppe Ferri
+Copyright (c) 2025-2026 Giuseppe Ferri
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as

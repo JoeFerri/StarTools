@@ -23,7 +23,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="2"/>
       <Attributes pvaPreRelease="True"/>
-      <StringTable Comments="StarTools, a Fan-made Star Citizen tools." CompanyName="Giuseppe Ferri 2025" FileDescription="StarTools, a Fan-made Star Citizen tools." LegalCopyright="Giuseppe Ferri 2025" ProductName="StarTools" ProductVersion="1.0"/>
+      <StringTable Comments="StarTools, a Fan-made Star Citizen tools." CompanyName="Giuseppe Ferri 2025-2026" FileDescription="StarTools, a Fan-made Star Citizen tools." LegalCopyright="Giuseppe Ferri 2025-2026" ProductName="StarTools" ProductVersion="1.2"/>
     </VersionInfo>
     <BuildModes>
       <Item Name="Default" Default="True"/>
