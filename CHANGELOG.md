@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - About Window
     - Changelog section
     - Credits section
+- Main Dashboard Window
+    - Klescher Rehabilitation Facilities Timer
+- Hauling Manager Window
+    - Total SCUs for all routes filter buttons (for show/hide, group, ...)
+
 
 ### Changed
 - label: "Total SCUs for all" -> "SCU breakdown by container size" in Totals Panel
