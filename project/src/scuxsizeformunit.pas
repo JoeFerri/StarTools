@@ -74,6 +74,7 @@ type
     CheckBoxRoutesShown: TCheckBox;
     CheckBoxRoutesUndone: TCheckBox;
     CheckBoxRoutesGroup: TCheckBox;
+    CheckGroupStationsSystem: TCheckGroup;
     CoolBarTopLeftMenu: TCoolBar;
     EditSCUTotal01: TEdit;
     EditSCUTotal02: TEdit;
@@ -138,6 +139,7 @@ type
     MainMenuItemShowConsoleSettings: TMenuItem;
     MenuMain: TMainMenu;
     MainMenuItemFile: TMenuItem;
+    Panel1: TPanel;
     PanelTotalFilters: TPanel;
     PanelTopMenu: TPanel;
     PopupMenuItemReloadDataList: TMenuItem;
