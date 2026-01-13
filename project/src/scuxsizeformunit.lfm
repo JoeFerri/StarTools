@@ -1238,9 +1238,12 @@ object FormSCUxSize: TFormSCUxSize
         AnchorSideRight.Side = asrBottom
         Left = 36
         Height = 17
+        Hint = 'Hide SCU count fields'
         Top = 1
         Width = 18
         Anchors = [akTop, akRight]
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
         OnClick = RadioButtonTotalsNAppearance_0Click
       end
@@ -1250,9 +1253,12 @@ object FormSCUxSize: TFormSCUxSize
         AnchorSideRight.Control = RadioButtonTotalsNAppearance_0
         Left = 18
         Height = 17
+        Hint = 'Reduce visibility of SCU count fields'
         Top = 0
         Width = 18
         Anchors = [akTop, akRight]
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 1
         OnClick = RadioButtonTotalsNAppearance_1Click
       end
@@ -1262,10 +1268,13 @@ object FormSCUxSize: TFormSCUxSize
         AnchorSideRight.Control = RadioButtonTotalsNAppearance_1
         Left = 0
         Height = 17
+        Hint = 'Show all SCU counting fields'
         Top = 0
         Width = 18
         Anchors = [akTop, akRight]
         Checked = True
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 2
         TabStop = True
         OnClick = RadioButtonTotalsNAppearance_2Click
@@ -1294,9 +1303,12 @@ object FormSCUxSize: TFormSCUxSize
         AnchorSideRight.Side = asrBottom
         Left = 36
         Height = 17
+        Hint = 'Hide SCU count fields'
         Top = 1
         Width = 18
         Anchors = [akTop, akRight]
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
         OnClick = RadioButtonTotalsNFilteredAppearance_0Click
       end
@@ -1306,9 +1318,12 @@ object FormSCUxSize: TFormSCUxSize
         AnchorSideRight.Control = RadioButtonTotalsNFilteredAppearance_0
         Left = 18
         Height = 17
+        Hint = 'Reduce visibility of SCU count fields'
         Top = 0
         Width = 18
         Anchors = [akTop, akRight]
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 1
         OnClick = RadioButtonTotalsNFilteredAppearance_1Click
       end
@@ -1318,10 +1333,13 @@ object FormSCUxSize: TFormSCUxSize
         AnchorSideRight.Control = RadioButtonTotalsNFilteredAppearance_1
         Left = 0
         Height = 17
+        Hint = 'Show all SCU counting fields'
         Top = 0
         Width = 18
         Anchors = [akTop, akRight]
         Checked = True
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 2
         TabStop = True
         OnClick = RadioButtonTotalsNFilteredAppearance_2Click
