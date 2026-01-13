@@ -42,6 +42,11 @@ const
   {* Maximum number of @link(TPanelRow). }
   NPanelRowMax: Integer = 32;
 
+
+type
+  TEditSCUTotalNArray = array of TEdit;
+
+
 type
   { TFormSCUxSize }
   TFormSCUxSize = class(TForm)
@@ -140,6 +145,10 @@ type
     MenuMain: TMainMenu;
     MainMenuItemFile: TMenuItem;
     Panel1: TPanel;
+    PanelTotalsNFilteredEditSCU: TPanel;
+    PanelTotalsNEditSCU: TPanel;
+    PanelTotalsNAppearance: TPanel;
+    PanelTotalsNFilteredAppearance: TPanel;
     PanelTotalFilters: TPanel;
     PanelTopMenu: TPanel;
     PopupMenuItemReloadDataList: TMenuItem;
@@ -155,6 +164,12 @@ type
     PanelTotals: TPanel;
     PanelRows: TPanel;
     PopupMenuMain: TPopupMenu;
+    RadioButtonTotalsNAppearance_0: TRadioButton;
+    RadioButtonTotalsNAppearance_1: TRadioButton;
+    RadioButtonTotalsNAppearance_2: TRadioButton;
+    RadioButtonTotalsNFilteredAppearance_0: TRadioButton;
+    RadioButtonTotalsNFilteredAppearance_1: TRadioButton;
+    RadioButtonTotalsNFilteredAppearance_2: TRadioButton;
     SaveDialog: TSaveDialog;
     SaveDialog1: TSaveDialog;
     SpinEditRoutesGroup: TSpinEdit;
@@ -204,6 +219,12 @@ type
     procedure ImageSortSCUMaxSizeClick(Sender: TObject);
     procedure ImageSortSCUClick(Sender: TObject);
     procedure ImageSortUnloadingStationClick(Sender: TObject);
+    procedure RadioButtonTotalsNAppearance_0Click(Sender: TObject);
+    procedure RadioButtonTotalsNAppearance_1Click(Sender: TObject);
+    procedure RadioButtonTotalsNAppearance_2Click(Sender: TObject);
+    procedure RadioButtonTotalsNFilteredAppearance_0Click(Sender: TObject);
+    procedure RadioButtonTotalsNFilteredAppearance_1Click(Sender: TObject);
+    procedure RadioButtonTotalsNFilteredAppearance_2Click(Sender: TObject);
     procedure SpinEditRoutesGroupChange(Sender: TObject);
     procedure ToolButtonAlwaysShowOnTopClick(Sender: TObject);
     procedure ToolButtonCommoditiesListClick(Sender: TObject);
@@ -223,6 +244,14 @@ type
 
     PanelRowStack: TPanelRowStack;
 
+    {*}
+    FEditSCUTotalNArray: TEditSCUTotalNArray;
+
+    {*}
+    FEditSCUTotalNFilteredArray: TEditSCUTotalNArray;
+
+    {*}
+    procedure RadioButtonTotalsNAppearanceClick(RBId: Integer; AEditSCUTotalNArray: TEditSCUTotalNArray);
     
     {*
       Handles the @bold(WM_DISPLAYCHANGE) system message.
@@ -1144,6 +1173,51 @@ end;
 
 
 
+
+procedure TFormSCUxSize.RadioButtonTotalsNAppearanceClick(RBId: Integer; AEditSCUTotalNArray: TEditSCUTotalNArray);
+var
+  EditSCU: TEdit;
+begin
+  for EditSCU in AEditSCUTotalNArray do
+  begin
+    EditSCU.Visible := not (RBId = 0);
+    EditSCU.Enabled := not (RBId = 1);
+  end;
+end;
+
+
+procedure TFormSCUxSize.RadioButtonTotalsNAppearance_0Click(Sender: TObject);
+begin
+  RadioButtonTotalsNAppearanceClick(0, FEditSCUTotalNArray);
+end;
+
+procedure TFormSCUxSize.RadioButtonTotalsNAppearance_1Click(Sender: TObject);
+begin
+  RadioButtonTotalsNAppearanceClick(1, FEditSCUTotalNArray);
+end;
+
+procedure TFormSCUxSize.RadioButtonTotalsNAppearance_2Click(Sender: TObject);
+begin
+  RadioButtonTotalsNAppearanceClick(2, FEditSCUTotalNArray);
+end;
+
+procedure TFormSCUxSize.RadioButtonTotalsNFilteredAppearance_0Click(Sender: TObject);
+begin
+  RadioButtonTotalsNAppearanceClick(0, FEditSCUTotalNFilteredArray);
+end;
+
+procedure TFormSCUxSize.RadioButtonTotalsNFilteredAppearance_1Click(Sender: TObject);
+begin
+  RadioButtonTotalsNAppearanceClick(1, FEditSCUTotalNFilteredArray);
+end;
+
+procedure TFormSCUxSize.RadioButtonTotalsNFilteredAppearance_2Click(Sender: TObject);
+begin
+  RadioButtonTotalsNAppearanceClick(2, FEditSCUTotalNFilteredArray);
+end;
+
+
+
 procedure TFormSCUxSize.ImageSortCommoditiesClick(Sender: TObject);
 var
   Commodity: String;
@@ -1455,6 +1529,26 @@ begin
     end;
 
   FMain.Console.NoticeLog('TFormSCUxSize.FormCreate', 'START');
+
+
+  SetLength(FEditSCUTotalNArray, 7);
+  FEditSCUTotalNArray[0] := EditSCUTotal32;
+  FEditSCUTotalNArray[1] := EditSCUTotal24;
+  FEditSCUTotalNArray[2] := EditSCUTotal16;
+  FEditSCUTotalNArray[3] := EditSCUTotal08;
+  FEditSCUTotalNArray[4] := EditSCUTotal04;
+  FEditSCUTotalNArray[5] := EditSCUTotal02;
+  FEditSCUTotalNArray[6] := EditSCUTotal01;
+
+  SetLength(FEditSCUTotalNFilteredArray, 7); 
+  FEditSCUTotalNFilteredArray[0] := EditSCUTotalFiltered32;
+  FEditSCUTotalNFilteredArray[1] := EditSCUTotalFiltered24;
+  FEditSCUTotalNFilteredArray[2] := EditSCUTotalFiltered16;
+  FEditSCUTotalNFilteredArray[3] := EditSCUTotalFiltered08;
+  FEditSCUTotalNFilteredArray[4] := EditSCUTotalFiltered04;
+  FEditSCUTotalNFilteredArray[5] := EditSCUTotalFiltered02;
+  FEditSCUTotalNFilteredArray[6] := EditSCUTotalFiltered01;
+
 
   PanelRowPrev := nil;
   for i := 0 to (NPanelRowMin -1) do begin
