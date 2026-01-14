@@ -1127,6 +1127,7 @@ begin
   ComboBoxLoadingStation.Top := 0;
   ComboBoxLoadingStation.Width := 220;
   ComboBoxLoadingStation.AutoComplete := True;
+  ComboBoxLoadingStation.Sorted := True;
   ComboBoxLoadingStation.AnchorSideTop.Control := SpinEditGroupID;
   ComboBoxLoadingStation.AnchorSideTop.Side := asrCenter;
   ComboBoxLoadingStation.OnChange := @ComboBoxLoadingStationChange;
@@ -1142,7 +1143,8 @@ begin
   ComboBoxUnloadingStation.Left := ComboBoxLoadingStation.Left + ComboBoxLoadingStation.Width + 10;
   ComboBoxUnloadingStation.Top := 0;
   ComboBoxUnloadingStation.Width := 220;
-  ComboBoxUnloadingStation.AutoComplete := True;
+  ComboBoxUnloadingStation.AutoComplete := True;    
+  ComboBoxUnloadingStation.Sorted := True;
   ComboBoxUnloadingStation.AnchorSideTop.Control := SpinEditGroupID;
   ComboBoxUnloadingStation.AnchorSideTop.Side := asrCenter;
   ComboBoxUnloadingStation.OnChange := @ComboBoxUnloadingStationChange;
@@ -1157,7 +1159,8 @@ begin
   ComboBoxCommodities.Left := ComboBoxUnloadingStation.Left + ComboBoxUnloadingStation.Width + 10;
   ComboBoxCommodities.Top := 0;
   ComboBoxCommodities.Width := 170;
-  ComboBoxCommodities.AutoComplete := True;
+  ComboBoxCommodities.AutoComplete := True; 
+  ComboBoxCommodities.Sorted := True;
   ComboBoxCommodities.AnchorSideTop.Control := SpinEditGroupID;
   ComboBoxCommodities.AnchorSideTop.Side := asrCenter;
   ComboBoxCommodities.OnChange := @ComboBoxCommoditiesChange;
