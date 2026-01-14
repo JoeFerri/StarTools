@@ -952,26 +952,26 @@ object FormSCUxSize: TFormSCUxSize
     AnchorSideRight.Control = PanelRows
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Side = asrBottom
-    Left = 647
+    Left = 642
     Height = 130
     Top = 46
-    Width = 717
+    Width = 722
     Anchors = [akTop, akRight]
     BorderSpacing.Top = 46
     ClientHeight = 130
-    ClientWidth = 717
+    ClientWidth = 722
     TabOrder = 1
     object EditSCUTotal: TEdit
       AnchorSideLeft.Control = PanelTotals
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 91
+      Left = 96
       Height = 24
       Hint = 'Total SCU for all routes (including non-contractual routes).'
       Top = 95
       Width = 44
       Anchors = [akLeft, akBottom]
-      BorderSpacing.Left = 90
+      BorderSpacing.Left = 95
       BorderSpacing.Bottom = 10
       NumbersOnly = True
       ParentShowHint = False
@@ -1002,14 +1002,14 @@ object FormSCUxSize: TFormSCUxSize
       Left = 338
       Height = 4
       Top = 87
-      Width = 368
+      Width = 373
       Anchors = [akLeft, akRight, akBottom]
       BorderSpacing.Bottom = 4
     end
     object EditSCUTotalDone: TEdit
       AnchorSideLeft.Control = EditSCUTotal
       AnchorSideBottom.Control = EditSCUTotal
-      Left = 91
+      Left = 96
       Height = 24
       Hint = 'Total SCUs completed.'
       Top = 66
@@ -1026,7 +1026,7 @@ object FormSCUxSize: TFormSCUxSize
     object EditSCUTotalToDo: TEdit
       AnchorSideLeft.Control = EditSCUTotal
       AnchorSideBottom.Control = EditSCUTotalDone
-      Left = 91
+      Left = 96
       Height = 24
       Hint = 'Total SCU to be completed.'
       Top = 37
@@ -1052,25 +1052,23 @@ object FormSCUxSize: TFormSCUxSize
       Caption = 'Total All SCU'
     end
     object LabelTotalDone: TLabel
-      AnchorSideLeft.Control = PanelTotals
+      AnchorSideLeft.Control = LabelTotalSCU
       AnchorSideTop.Control = EditSCUTotalDone
       AnchorSideTop.Side = asrCenter
       Left = 11
       Height = 16
       Top = 70
       Width = 62
-      BorderSpacing.Left = 10
       Caption = 'Total Done'
     end
     object LabelTotalToDo: TLabel
-      AnchorSideLeft.Control = PanelTotals
+      AnchorSideLeft.Control = LabelTotalSCU
       AnchorSideTop.Control = EditSCUTotalToDo
       AnchorSideTop.Side = asrCenter
       Left = 11
       Height = 16
       Top = 41
       Width = 65
-      BorderSpacing.Left = 10
       Caption = 'Total To Do'
     end
     object GroupBoxTotalFilters: TGroupBox
@@ -1081,10 +1079,10 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = BevelTotals
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 145
-      Height = 91
+      Left = 150
+      Height = 120
       Hint = 'Filters for calculating SCU totals.'
-      Top = 20
+      Top = 5
       Width = 183
       Anchors = [akTop, akLeft, akRight]
       AutoSize = True
@@ -1093,7 +1091,7 @@ object FormSCUxSize: TFormSCUxSize
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 5
       Caption = 'Total Filters'
-      ClientHeight = 70
+      ClientHeight = 99
       ClientWidth = 179
       ParentShowHint = False
       ShowHint = True
@@ -1106,7 +1104,7 @@ object FormSCUxSize: TFormSCUxSize
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Side = asrBottom
         Left = 3
-        Height = 60
+        Height = 89
         Top = 5
         Width = 172
         AutoSize = True
@@ -1114,7 +1112,7 @@ object FormSCUxSize: TFormSCUxSize
         BorderSpacing.Right = 5
         BorderSpacing.Bottom = 5
         BevelOuter = bvNone
-        ClientHeight = 60
+        ClientHeight = 89
         ClientWidth = 172
         TabOrder = 0
         object CheckBoxRoutesShown: TCheckBox
@@ -1124,7 +1122,7 @@ object FormSCUxSize: TFormSCUxSize
           Left = 5
           Height = 20
           Hint = 'Calculate only the totals of routes with the “show” flag.'
-          Top = 40
+          Top = 69
           Width = 97
           Anchors = [akLeft, akBottom]
           BorderSpacing.Left = 5
@@ -1140,7 +1138,7 @@ object FormSCUxSize: TFormSCUxSize
           Left = 5
           Height = 20
           Hint = 'Calculate only the totals of routes without the “done” flag.'
-          Top = 20
+          Top = 49
           Width = 101
           Anchors = [akLeft, akBottom]
           Caption = 'routes undone'
@@ -1151,14 +1149,13 @@ object FormSCUxSize: TFormSCUxSize
         end
         object CheckBoxRoutesGroup: TCheckBox
           AnchorSideLeft.Control = CheckBoxRoutesShown
-          AnchorSideTop.Control = PanelTotalFilters
           AnchorSideBottom.Control = CheckBoxRoutesUndone
           Left = 5
           Height = 20
           Hint = 'Calculate only the totals of routes belonging to a group.'
-          Top = 0
+          Top = 29
           Width = 92
-          Anchors = [akTop, akLeft, akBottom]
+          Anchors = [akLeft, akBottom]
           Caption = 'routes group'
           ParentShowHint = False
           ShowHint = True
@@ -1175,7 +1172,7 @@ object FormSCUxSize: TFormSCUxSize
           Left = 117
           Height = 24
           Hint = 'Group of belonging.'
-          Top = -2
+          Top = 27
           Width = 50
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 20
@@ -1186,6 +1183,27 @@ object FormSCUxSize: TFormSCUxSize
           ShowHint = True
           TabOrder = 3
           OnChange = SpinEditRoutesGroupChange
+        end
+        object ComboBoxRoutesItem: TComboBox
+          AnchorSideLeft.Control = CheckBoxRoutesShown
+          AnchorSideRight.Control = SpinEditRoutesGroup
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = CheckBoxRoutesGroup
+          Left = 5
+          Height = 24
+          Hint = 'Calculate only the totals for routes that contain this word.'
+          Top = 0
+          Width = 162
+          Anchors = [akLeft, akRight, akBottom]
+          AutoComplete = True
+          AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+          BorderSpacing.Bottom = 5
+          ItemHeight = 16
+          Sorted = True
+          TabOrder = 4
+          TextHint = 'Filter by word...'
+          OnChange = ComboBoxRoutesItemChange
+          OnExit = ComboBoxRoutesItemExit
         end
       end
     end
@@ -1211,7 +1229,7 @@ object FormSCUxSize: TFormSCUxSize
       Left = 338
       Height = 4
       Top = 28
-      Width = 368
+      Width = 373
       Anchors = [akLeft, akRight, akBottom]
       BorderSpacing.Bottom = 4
     end
@@ -1220,7 +1238,7 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = PanelTotalsNEditSCU
       AnchorSideRight.Side = asrBottom
-      Left = 652
+      Left = 657
       Height = 18
       Top = 66
       Width = 54
@@ -1285,7 +1303,7 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = PanelTotalsNFilteredEditSCU
       AnchorSideRight.Side = asrBottom
-      Left = 652
+      Left = 657
       Height = 18
       Top = 7
       Width = 54
@@ -1350,7 +1368,7 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = PanelTotals
       AnchorSideBottom.Side = asrBottom
-      Left = 338
+      Left = 343
       Height = 24
       Top = 95
       Width = 368
@@ -1492,7 +1510,7 @@ object FormSCUxSize: TFormSCUxSize
       AnchorSideRight.Control = PanelTotals
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = PanelTotalsNEditSCU
-      Left = 336
+      Left = 341
       Height = 26
       Top = 34
       Width = 370
@@ -1856,7 +1874,7 @@ object FormSCUxSize: TFormSCUxSize
     AnchorSideRight.Control = PanelTotals
     AnchorSideBottom.Control = PanelTotals
     AnchorSideBottom.Side = asrBottom
-    Left = 377
+    Left = 372
     Height = 130
     Top = 46
     Width = 260

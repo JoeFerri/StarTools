@@ -25,6 +25,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   Buttons, ExtCtrls,
+  Generics.Collections,
   IniPropStorage,
   Menus, ActnList,
   fpjson, jsonparser,
@@ -45,6 +46,8 @@ const
 
 type
   TEditSCUTotalNArray = array of TEdit;
+
+  TFilterItemSet = specialize THashSet<string>;
 
 
 type
@@ -80,6 +83,7 @@ type
     CheckBoxRoutesUndone: TCheckBox;
     CheckBoxRoutesGroup: TCheckBox;
     CheckGroupStationsSystem: TCheckGroup;
+    ComboBoxRoutesItem: TComboBox;
     CoolBarTopLeftMenu: TCoolBar;
     EditSCUTotal01: TEdit;
     EditSCUTotal02: TEdit;
@@ -197,6 +201,8 @@ type
     procedure CheckBoxRoutesUndoneChange(Sender: TObject);
     procedure CheckBoxRoutesGroupChange(Sender: TObject);
     procedure CheckBoxRoutesShownChange(Sender: TObject);
+    procedure ComboBoxRoutesItemChange(Sender: TObject);
+    procedure ComboBoxRoutesItemExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -249,6 +255,12 @@ type
 
     {*}
     FEditSCUTotalNFilteredArray: TEditSCUTotalNArray;
+
+    {*}
+    FFilterItemSet: TFilterItemSet;
+
+    {*}
+    procedure AddFilterItemAndUpdate(AItem: String);
 
     {*}
     procedure RadioButtonTotalsNAppearanceClick(RBId: Integer; AEditSCUTotalNArray: TEditSCUTotalNArray);
@@ -384,7 +396,11 @@ begin
 
         if ((not _RoutesShownFlag) or (_RoutesShownFlag and not TradeRouteLeg.Hide)) and
               (not _RoutesUndoneFlag or (_RoutesUndoneFlag and not TradeRouteLeg.Done)) and
-                (not _RoutesGroupFlag or (_RoutesGroupFlag and (TradeRouteLeg.GroupId = _RoutesGroupID))) then
+                (not _RoutesGroupFlag or (_RoutesGroupFlag and (TradeRouteLeg.GroupId = _RoutesGroupID))) and
+                  ((ComboBoxRoutesItem.Text = '') or
+                    (APanelRow.LoadingStationName = ComboBoxRoutesItem.Text) or
+                      (APanelRow.UnloadingStationName = ComboBoxRoutesItem.Text) or
+                        (APanelRow.Commodity = ComboBoxRoutesItem.Text)) then
           begin
             SCUxSizeFiltered := SCUxSizeFiltered + TradeRouteLeg.SCUxSize;
           end;
@@ -434,6 +450,56 @@ end;
 
 
 
+procedure TFormSCUxSize.AddFilterItemAndUpdate(AItem: String);
+var
+  OldItem: String;
+  PanelRow: TPanelRow;
+begin
+  OldItem := ComboBoxRoutesItem.Text;
+
+  if AItem <> '' then
+  begin
+    if FFilterItemSet.Add(AItem) then
+    begin
+      ComboBoxRoutesItem.Items.BeginUpdate;
+      try
+        ComboBoxRoutesItem.Items.Clear;
+        ComboBoxRoutesItem.Items.AddStrings(FFilterItemSet.ToArray);
+      finally
+        ComboBoxRoutesItem.Items.EndUpdate;
+      end;
+    end;
+  end
+  else begin
+    FFilterItemSet.Clear;
+    for PanelRow in PanelRowStack do
+    begin
+      FFilterItemSet.Add(PanelRow.LoadingStationName);
+      FFilterItemSet.Add(PanelRow.UnloadingStationName);
+      FFilterItemSet.Add(PanelRow.Commodity);
+    end;
+
+    ComboBoxRoutesItem.Items.BeginUpdate;
+    try
+      ComboBoxRoutesItem.Items.Clear;
+      ComboBoxRoutesItem.Items.AddStrings(FFilterItemSet.ToArray);
+    finally
+      ComboBoxRoutesItem.Items.EndUpdate;
+    end;
+  end;
+
+  if ComboBoxRoutesItem.Items.IndexOf(OldItem) < 0 then
+  begin
+    ComboBoxRoutesItem.ItemIndex := -1;
+    ComboBoxRoutesItem.Text := '';
+  end
+  else begin
+    ComboBoxRoutesItem.ItemIndex := ComboBoxRoutesItem.Items.IndexOf(OldItem);
+    ComboBoxRoutesItem.Text := OldItem;
+  end;
+end;
+
+
 procedure TFormSCUxSize.HandleTradeRouteLegChange(Sender: TObject; AItem: TTradeRouteLegItem);
 var
   APanelRow: TPanelRow;
@@ -455,17 +521,20 @@ begin
 
       eLoadingStationName:
         begin
-          //? ignored 
+          AddFilterItemAndUpdate(APanelRow.LoadingStationName);      
+          SetEditSCUTotalN;
         end;
 
       eUnloadingStationName:
         begin
-          //? ignored
+          AddFilterItemAndUpdate(APanelRow.UnloadingStationName);    
+          SetEditSCUTotalN;
         end;
 
       eCommodity:
         begin
-          //? ignored
+          AddFilterItemAndUpdate(APanelRow.Commodity);     
+          SetEditSCUTotalN;
         end;
 
       eSCU, eDone, eUndefined:
@@ -587,6 +656,46 @@ end;
 procedure TFormSCUxSize.CheckBoxRoutesShownChange(Sender: TObject);
 begin
   _RoutesShownFlag := CheckBoxRoutesShown.Checked;
+  SetEditSCUTotalN;
+end;
+
+
+
+procedure TFormSCUxSize.ComboBoxRoutesItemChange(Sender: TObject);
+begin         
+  SetEditSCUTotalN;
+end;
+
+
+
+procedure ComboBoxControlItemExit(CB: TComboBox);
+var
+  S: String;
+  Index: Integer;
+begin
+  if CB.Items.IndexOf(CB.Text) < 0 then
+  begin
+    S := CB.Text;
+    S := S.Trim;
+    Index := CB.Items.IndexOf(S);
+    if Index < 0 then
+    begin
+      CB.ItemIndex := -1;
+      CB.Text := '';
+    end
+    else begin
+      CB.ItemIndex := Index;
+      CB.Text := S;
+    end;
+    CB.OnChange(nil);
+  end;
+end;
+
+
+
+procedure TFormSCUxSize.ComboBoxRoutesItemExit(Sender: TObject);
+begin
+  ComboBoxControlItemExit(ComboBoxRoutesItem);
   SetEditSCUTotalN;
 end;
 
@@ -1531,6 +1640,8 @@ begin
   FMain.Console.NoticeLog('TFormSCUxSize.FormCreate', 'START');
 
 
+  FFilterItemSet := TFilterItemSet.Create;
+
   SetLength(FEditSCUTotalNArray, 7);
   FEditSCUTotalNArray[0] := EditSCUTotal32;
   FEditSCUTotalNArray[1] := EditSCUTotal24;
@@ -1603,6 +1714,8 @@ begin
 
   PanelRowStack.Free;
   PanelRowStack := nil;
+
+  FFilterItemSet.Free;
 
   FMain := nil;
 end;
