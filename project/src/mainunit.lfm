@@ -47,17 +47,33 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = PanelMainTools
       AnchorSideLeft.Side = asrCenter
       AnchorSideTop.Control = PanelMainTools
-      Left = 90
-      Height = 30
+      Left = 88
+      Height = 26
       Hint = 'Show Cargo Hauling Routes.'
       Top = 21
-      Width = 120
+      Width = 125
+      AutoSize = True
       BorderSpacing.Top = 20
       Caption = 'Hauling Manager'
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
       OnClick = BitBtnSCUxSizeClick
+    end
+    object ButtonPlanetKinematics: TButton
+      AnchorSideLeft.Control = BitBtnSCUxSize
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideTop.Control = BitBtnSCUxSize
+      AnchorSideTop.Side = asrBottom
+      Left = 85
+      Height = 26
+      Top = 67
+      Width = 131
+      AutoSize = True
+      BorderSpacing.Top = 20
+      Caption = 'Planet Kinematics'
+      TabOrder = 1
+      OnClick = ButtonPlanetKinematicsClick
     end
   end
   object PanelMainHeader: TPanel
@@ -1058,7 +1074,7 @@ object FormMain: TFormMain
         Left = 24
         Height = 24
         Top = 5
-        Width = 78
+        Width = 81
         Align = alNone
         AutoSize = True
         BorderSpacing.Left = 22
@@ -1071,7 +1087,7 @@ object FormMain: TFormMain
         TabOrder = 0
         object ToolButton3: TToolButton
           Left = 47
-          Height = 22
+          Height = 8
           Top = 2
           Caption = 'ToolButton3'
           Style = tbsSeparator
@@ -1114,7 +1130,7 @@ object FormMain: TFormMain
         Left = 134
         Height = 24
         Top = 5
-        Width = 24
+        Width = 25
         Align = alNone
         AutoSize = True
         BorderSpacing.Left = 132

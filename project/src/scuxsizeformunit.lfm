@@ -1719,7 +1719,7 @@ object FormSCUxSize: TFormSCUxSize
         Left = 24
         Height = 24
         Top = 5
-        Width = 78
+        Width = 81
         Align = alNone
         AutoSize = True
         BorderSpacing.Left = 22
@@ -1732,7 +1732,7 @@ object FormSCUxSize: TFormSCUxSize
         TabOrder = 0
         object ToolButton3: TToolButton
           Left = 47
-          Height = 22
+          Height = 8
           Top = 2
           Caption = 'ToolButton3'
           Style = tbsSeparator
@@ -1774,7 +1774,7 @@ object FormSCUxSize: TFormSCUxSize
         Left = 134
         Height = 24
         Top = 5
-        Width = 70
+        Width = 71
         Align = alNone
         AutoSize = True
         BorderSpacing.Left = 132
@@ -1819,7 +1819,7 @@ object FormSCUxSize: TFormSCUxSize
         Left = 234
         Height = 24
         Top = 5
-        Width = 70
+        Width = 25
         Align = alNone
         AutoSize = True
         BorderSpacing.Left = 232

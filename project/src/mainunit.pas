@@ -26,8 +26,8 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
   ExtCtrls, FileUtil, LazFileUtils, IniPropStorage, InitUnit, Menus, ActnList,
   fpjson, jsonparser, Generics.Defaults, LCLType, ComCtrls, Windows, LCLIntf,
-  AdvLed, LedNumber, IndLed, BCLeaLED, BCLeaQLED, StateFormUnit, ContractUnit,
-  ContractDBUnit, TRLSortUnit, SCUxSizeFormUnit, ConsoleUnit, FormUnit,
+  StateFormUnit, ContractUnit,
+  ContractDBUnit, TRLSortUnit, SCUxSizeFormUnit, ConsoleUnit, FormUnit, PlanetKinematicsUnit,
   ConsoleSettingsDialogUnit, MainServiceUnit, InfoUnit, ProcessInfoUnit,
   WebUnit, UserNicknameUnit, HTTPSUnit, SplashScreenUnit, IOUnit, VersionUnit;
 
@@ -69,6 +69,7 @@ type
     ApplicationProperties: TApplicationProperties;
     Bevel16: TBevel;
     BitBtnSCUxSize: TBitBtn;
+    ButtonPlanetKinematics: TButton;
     CoolBarTopLeftMenu: TCoolBar;
     ImageAvatarWeb: TImage;
     ImageOrganization: TImage;
@@ -126,6 +127,7 @@ type
     procedure ApplicationPropertiesDeactivate(Sender: TObject);
     procedure BitBtnSCUxSizeClick(Sender: TObject);
     procedure BitBtnShowConsoleSettingsApplyClick(Sender: TObject);
+    procedure ButtonPlanetKinematicsClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -152,6 +154,9 @@ type
 
     {* Reference to the SCU size calculation form. }
     FFormSCUxSize: TFormSCUxSize;
+
+    {*}
+    FFormOM1OM2Center: TFormOM1OM2Center;
 
     {* Reference to the splash screen/overlay form used to show progress during web requests. }
     FFormSplashScreen: TFormSplashScreen;
@@ -836,6 +841,13 @@ begin
     if not _ConsoleHide then
       Console.CSShow(_ConsolePosMode, Self, _SelectedConsoleMonitorIndex);
   end;
+end;
+
+
+
+procedure TFormMain.ButtonPlanetKinematicsClick(Sender: TObject);
+begin
+  FFormOM1OM2Center.Show;
 end;
 
 
@@ -1587,7 +1599,10 @@ begin
   TContract.SetConsoleServer(_Console);
   // ------------------------------------------------
 
-  FFormSCUxSize := TFormSCUxSize.Create(nil, Self as IMainService);
+  FFormSCUxSize := TFormSCUxSize.Create(nil, Self, Self as IMainService);
+
+  FFormOM1OM2Center := TFormOM1OM2Center.Create(Self);
+  FFormOM1OM2Center.Hide;
 
   ValidateMonitorSettings;
   UpdateMainFormPosition(Self); // TODO generalizzare in UpdateFormPosition

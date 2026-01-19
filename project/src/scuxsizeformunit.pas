@@ -246,7 +246,10 @@ type
     State: TState;
 
     {* Main Service }
-    FMain: IMainService;
+    FMainService: IMainService;
+
+    {*}
+    FMain: TForm;
 
     PanelRowStack: TPanelRowStack;
 
@@ -332,7 +335,7 @@ type
       @param(TheOwner The owner of the Form.)
       @param(AMainService The main service.)
     }
-    constructor Create(TheOwner: TComponent; const AMainService: IMainService); reintroduce;
+    constructor Create(TheOwner: TComponent; const TheMain: TForm; const AMainService: IMainService); reintroduce;
 
     {* Destructor. }
     destructor Destroy; override;
@@ -372,7 +375,7 @@ begin
 
   Application.ProcessMessages;
 
-  FMain.ValidateMonitorSettings;
+  FMainService.ValidateMonitorSettings;
 end;
 
 
@@ -431,11 +434,11 @@ var
   Details: TStringList;
   Contract: TContract;
 begin
-  if Assigned(FMain.ContractDB) and Assigned(FormContractView) then
+  if Assigned(FMainService.ContractDB) and Assigned(FormContractView) then
   begin
     Details := TStringList.Create;
 
-    for Contract in FMain.ContractDB.Contracts do
+    for Contract in FMainService.ContractDB.Contracts do
     begin
       Details.Add('________________________________________________________________');
       Details.Add(Contract.ToString);
@@ -738,25 +741,25 @@ var
   PanelRowArray: TPanelRowArray;
   PanelRow: TPanelRow;
 begin
-  if DirectoryExists(FMain.GetPathLoadExecuteDir) then
-    OpenDialog.InitialDir := FMain.GetPathLoadExecuteDir
+  if DirectoryExists(FMainService.GetPathLoadExecuteDir) then
+    OpenDialog.InitialDir := FMainService.GetPathLoadExecuteDir
   else begin
     OpenDialog.InitialDir := GetUserDir;
-    FMain.SetPathLoadExecuteDir(GetUserDir);
+    FMainService.SetPathLoadExecuteDir(GetUserDir);
   end;
 
-  FMain.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', 'OpenDialog.InitialDir = ' + OpenDialog.InitialDir);
-  FMain.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', 'PathLoadExecuteDir = ' + FMain.GetPathLoadExecuteDir);
+  FMainService.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', 'OpenDialog.InitialDir = ' + OpenDialog.InitialDir);
+  FMainService.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', 'PathLoadExecuteDir = ' + FMainService.GetPathLoadExecuteDir);
 
   if not OpenDialog.Execute then Exit;
 
   FileName := OpenDialog.FileName;
-  FMain.SetPathLoadExecuteDir(ExtractFilePath(FileName));
+  FMainService.SetPathLoadExecuteDir(ExtractFilePath(FileName));
 
-  FMain.SavePathLoadExecuteDir;
+  FMainService.SavePathLoadExecuteDir;
 
-  FMain.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', Format('FileName = %s', [FileName]));
-  FMain.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', Format('Dir: %s', [FMain.GetPathLoadExecuteDir]));
+  FMainService.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', Format('FileName = %s', [FileName]));
+  FMainService.Console.DebugLog('TFormSCUxSize.ActionLoadExecute', Format('Dir: %s', [FMainService.GetPathLoadExecuteDir]));
 
   if not FileExists(FileName) then
   begin
@@ -853,7 +856,7 @@ procedure TFormSCUxSize.ActionOpenCommoditiesExecute(Sender: TObject);
 var
   PathToFile: string;
 begin
-  PathToFile := ExtractFilePath(ParamStr(0)) + FMain.GetFileNameCommoditiesList;
+  PathToFile := ExtractFilePath(ParamStr(0)) + FMainService.GetFileNameCommoditiesList;
   ShellExecute(0, 'open', PChar(PathToFile), nil, nil, SW_SHOWNORMAL);
 end;
 
@@ -863,7 +866,7 @@ procedure TFormSCUxSize.ActionOpenStationsExecute(Sender: TObject);
 var
   PathToFile: string;
 begin
-  PathToFile := ExtractFilePath(ParamStr(0)) + FMain.GetFileNameStationsList;
+  PathToFile := ExtractFilePath(ParamStr(0)) + FMainService.GetFileNameStationsList;
   ShellExecute(0, 'open', PChar(PathToFile), nil, nil, SW_SHOWNORMAL);
 end;
 
@@ -929,22 +932,22 @@ begin
   FileName := 'SCUxSize_' + TimeStamp + '.json';
   SaveDialog.FileName := FileName;
 
-  if DirectoryExists(FMain.GetPathSaveExecuteDir) then
-    SaveDialog.InitialDir := FMain.GetPathSaveExecuteDir
+  if DirectoryExists(FMainService.GetPathSaveExecuteDir) then
+    SaveDialog.InitialDir := FMainService.GetPathSaveExecuteDir
   else begin
     SaveDialog.InitialDir := GetUserDir;
-    FMain.SetPathSaveExecuteDir(GetUserDir);
+    FMainService.SetPathSaveExecuteDir(GetUserDir);
   end;   
 
-  FMain.Console.DebugLog('TFormSCUxSize.ActionSaveExecute', 'SaveDialog.InitialDir = ' + SaveDialog.InitialDir);
-  FMain.Console.DebugLog('TFormSCUxSize.ActionSaveExecute', 'PathSaveExecuteDir = ' + FMain.GetPathSaveExecuteDir);
+  FMainService.Console.DebugLog('TFormSCUxSize.ActionSaveExecute', 'SaveDialog.InitialDir = ' + SaveDialog.InitialDir);
+  FMainService.Console.DebugLog('TFormSCUxSize.ActionSaveExecute', 'PathSaveExecuteDir = ' + FMainService.GetPathSaveExecuteDir);
 
   if SaveDialog.Execute then
   begin
     FileName := SaveDialog.FileName;
-    FMain.SetPathSaveExecuteDir(ExtractFilePath(FileName));
+    FMainService.SetPathSaveExecuteDir(ExtractFilePath(FileName));
 
-    FMain.SavePathSaveExecuteDir;
+    FMainService.SavePathSaveExecuteDir;
 
     if FileExists(FileName) then
     begin
@@ -983,7 +986,7 @@ end;
 
 procedure TFormSCUxSize.ActionShowConsoleSettingsExecute(Sender: TObject);
 begin
-  FMain.ShowConsoleSettings(Self);
+  FMainService.ShowConsoleSettings(Self);
 end;
 
 
@@ -994,8 +997,8 @@ var
   AppPath, FileStations, FileCommodities: String;
 begin
   AppPath := ExtractFilePath(Application.ExeName);
-  FileStations := AppPath + FMain.GetFileNameStationsList;
-  FileCommodities := AppPath + FMain.GetFileNameCommoditiesList;
+  FileStations := AppPath + FMainService.GetFileNameStationsList;
+  FileCommodities := AppPath + FMainService.GetFileNameCommoditiesList;
 
   _StringListRecord.StationNames.Clear;
   LoadListToStringList(FileStations, _StringListRecord.StationNames);
@@ -1169,10 +1172,10 @@ begin
   begin
     PanelRows.DisableAlign;
     try
-      PanelRow := TPanelRow.Create(PanelRows, @HandleTradeRouteLegChange, PanelRowStack.Peek, _StringListRecord, FMain.Console);
+      PanelRow := TPanelRow.Create(PanelRows, @HandleTradeRouteLegChange, PanelRowStack.Peek, _StringListRecord, FMainService.Console);
       PanelRowStack.Push(PanelRow);
       PanelRow.Visible := True;
-      PanelRow.RegisterPanel(FMain.ContractDB);
+      PanelRow.RegisterPanel(FMainService.ContractDB);
       Self.Height := Self.Height + PanelRowStack.Peek.Height + 10;
     finally
       PanelRows.EnableAlign;
@@ -1446,13 +1449,13 @@ var
   PanelRowIndexedRecordList: TPanelRowIndexedRecordList;
   index: Integer;
 begin
-  FMain.Console.DebugLog('TFormSCUxSize.ImageSorterClick', 'ImageSorterClick');
+  FMainService.Console.DebugLog('TFormSCUxSize.ImageSorterClick', 'ImageSorterClick');
   if (PanelRowStack.Count > 0) and (not PanelRowsNoData) then
   begin
     index := 0;
     PanelRowIndexedRecordList := TPanelRowIndexedRecordList.Create;
 
-    FMain.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRowStack.Count = %d', [PanelRowStack.Count]));
+    FMainService.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRowStack.Count = %d', [PanelRowStack.Count]));
 
     while PanelRowStack.Count > 0 do
     begin
@@ -1461,7 +1464,7 @@ begin
       PanelRowIndexedRecord.Index := index;
       index += 1;
       PanelRowIndexedRecordList.Add(PanelRowIndexedRecord);
-      FMain.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRow.ID = %d    Index = %d', [PanelRow.ID, index]));
+      FMainService.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRow.ID = %d    Index = %d', [PanelRow.ID, index]));
     end;
 
     PanelRowIndexedRecordList.Sort(specialize TComparer<TPanelRowIndexedRecord>.Construct(CompareFunc));
@@ -1469,7 +1472,7 @@ begin
     for PanelRowIndexedRecord in PanelRowIndexedRecordList do
     begin
       PanelRowStack.Push(PanelRowIndexedRecord.PanelRow);
-      FMain.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRow.ID = %d    Index = %d', [PanelRowIndexedRecord.PanelRow.ID, PanelRowIndexedRecord.Index]));
+      FMainService.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRow.ID = %d    Index = %d', [PanelRowIndexedRecord.PanelRow.ID, PanelRowIndexedRecord.Index]));
     end;
 
     PanelRowIndexedRecordList.Free; 
@@ -1481,7 +1484,7 @@ begin
     begin
       PanelRow.ChangeAnchorComponent(PanelRowPrev);
       PanelRowPrev := PanelRow;
-      FMain.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRow.ID = %d', [PanelRow.ID]));
+      FMainService.Console.DebugLog('TFormSCUxSize.ImageSorterClick', Format('PanelRow.ID = %d', [PanelRow.ID]));
     end;
     PanelRows.EnableAlign;
   end;
@@ -1534,7 +1537,7 @@ end;
 
 procedure TFormSCUxSize.ToolButtonConsoleClick(Sender: TObject);
 begin
-  FMain.ShowHideConsole;
+  FMainService.ShowHideConsole;
 end;
 
 
@@ -1569,8 +1572,8 @@ end;
 
 procedure TFormSCUxSize.ToolButtonTestClick(Sender: TObject);
 begin
-  if Assigned(FMain.ContractDB) then
-    FMain.ContractDB.Test;
+  if Assigned(FMainService.ContractDB) then
+    FMainService.ContractDB.Test;
 end;
 
 
@@ -1581,7 +1584,7 @@ begin
   case Key of
     VK_F1:
       begin
-        FMain.FormKeyDownPressConsole;
+        FMainService.FormKeyDownPressConsole;
         Key := 0;
       end
   else
@@ -1597,7 +1600,7 @@ begin
   case Key of
     '\':
       begin
-        FMain.FormKeyDownPressConsole;
+        FMainService.FormKeyDownPressConsole;
         Key := #0;
       end
   else
@@ -1608,14 +1611,15 @@ end;
 
 
 
-constructor TFormSCUxSize.Create(TheOwner: TComponent; const AMainService: IMainService);
+constructor TFormSCUxSize.Create(TheOwner: TComponent; const TheMain: TForm; const AMainService: IMainService);
 begin
   inherited Create(TheOwner);
 
   State:= TState.Created;
   _State:= TState.Created;
 
-  FMain := AMainService;
+  FMain := TheMain;
+  FMainService := AMainService;
 
   FormContractView := TFormContractView.Create(nil);
   FormContractView.Visible := False;
@@ -1637,7 +1641,7 @@ begin
       ApplicationPropertiesActivate(Sender);
     end;
 
-  FMain.Console.NoticeLog('TFormSCUxSize.FormCreate', 'START');
+  FMainService.Console.NoticeLog('TFormSCUxSize.FormCreate', 'START');
 
 
   FFilterItemSet := TFilterItemSet.Create;
@@ -1663,9 +1667,9 @@ begin
 
   PanelRowPrev := nil;
   for i := 0 to (NPanelRowMin -1) do begin
-    PanelRow := TPanelRow.Create(PanelRows, @HandleTradeRouteLegChange, PanelRowPrev, _StringListRecord, FMain.Console);
+    PanelRow := TPanelRow.Create(PanelRows, @HandleTradeRouteLegChange, PanelRowPrev, _StringListRecord, FMainService.Console);
     PanelRow.Visible := True;
-    PanelRow.RegisterPanel(FMain.ContractDB);
+    PanelRow.RegisterPanel(FMainService.ContractDB);
     PanelRowPrev := PanelRow;
     PanelRowStack.Push(PanelRowPrev);
   end;
@@ -1692,7 +1696,11 @@ end;
 
 procedure TFormSCUxSize.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  //
+  if Assigned(FMain) then
+  begin
+    FMain.SetFocus;
+    FMain.Show;
+  end;
 end;
 
 
@@ -1717,7 +1725,7 @@ begin
 
   FFilterItemSet.Free;
 
-  FMain := nil;
+  FMainService := nil;
 end;
 
 
