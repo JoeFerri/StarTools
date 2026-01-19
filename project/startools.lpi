@@ -119,6 +119,12 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="DateTimeCtrlsDsgn"/>
+      </Item>
+      <Item>
+        <PackageName Value="DateTimeCtrls"/>
+      </Item>
+      <Item>
         <PackageName Value="industrial"/>
       </Item>
       <Item>
@@ -241,6 +247,19 @@
         <Filename Value="src\initunit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="InitUnit"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\planetkinematicsunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormOM1OM2Center"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="PlanetKinematicsUnit"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src\geometryunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="GeometryUnit"/>
       </Unit>
     </Units>
   </ProjectOptions>

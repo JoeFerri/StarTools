@@ -11,7 +11,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   SysUtils,
-  Forms, MainUnit, IOUnit
+  Forms, datetimectrls, MainUnit, IOUnit, GeometryUnit
   { you can add units after this };
 
 {$R *.res}
